@@ -3,12 +3,124 @@ import Layout from '../layouts/BaseLayout.astro'
 ---
 
 <Layout>
-	<h1 class="sling-header">Sling</h1>
+	<div class="section-1">
+		<h1 class="sling-header">
+			<span class="char" style="transform: translateY(0) scaleY(1)">S</span>
+			<span class="char" style="transform: translateY(0) scaleY(1)">l</span>
+			<span class="char" style="transform: translateY(0) scaleY(1)">i</span>
+			<span class="char" style="transform: translateY(0) scaleY(1)">n</span>
+			<span class="char" style="transform: translateY(0) scaleY(1)">g</span>
+		</h1>
+	</div>
+	<div class="section-2">
+		<div class="bio">
+			<h2>
+				⇨ Sling partners with meaningful startups and impassioned individuals 🗩, reliably developing digital solutions and compelling online experiences. 🌎
+			</h2>
+		</div>
+		<div class="sub-bio">
+			<h1>⚐</h1>
+			<h4>
+				We believe in focusing on relationships that foster meaningful work and giving projects the careful attention they deserve. <br /> <br />
+				While we’re hyper-aware that deadlines matter, but our best work comes when we have the time to do what we do best. 
+			</h4>
+		</div>
+	</div>
 </Layout>
 
 <style>
-	.sling-header {
-		font-size: 210px;
-		font-family: Arial, sans-serif;
+	.section-1 {
+		height: 90vh;
+		position: fixed;
+		top: 0;
+		left: 50%;
+		background: white;
+		transform: translate(-50%);
+
 	}
-</style>
+	.sling-header {
+		font-size: 400px;
+		letter-spacing: -1rem;
+		font-family: "arial-narrow";
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		/* position: relative; */
+		position: sticky;
+		top: 20vh;
+		width: 100%;
+		margin: 0 auto;
+		padding-top: 10vh;
+		text-align: center;
+		/* outline: 1px solid; */
+	}
+	.char {
+		display: block;
+		transform-origin: bottom center;
+	}
+
+	.section-2 {
+		margin-top: 90vh;
+		height: 100vh;
+		background: white;
+		position: relative;
+		width: 100%;
+		border-top: 3px solid black;
+	}
+	.bio {
+		position: relative;
+		width: 100%;
+		margin-top: 8rem;
+	}
+	
+	.bio > h2 {
+		font-family: "items-thin";
+		font-size: 80px;
+		width: 90%;
+		margin: 0 auto;
+	}
+	
+	.bio > h2::first-letter {
+		margin-left: 4rem;
+	}
+	
+	.sub-bio {
+		width: 60%;
+		margin: 5rem auto;
+		font-family: "items-thin";
+		font-size: 40px;
+	}
+	.sub-bio > h4::first-letter {
+		margin-left: 4rem;
+	}
+	</style>
+
+<script>
+	import { animate, stagger, scroll } from "motion"
+
+	const char = document.querySelectorAll('.char')
+	const header = document.querySelector('.sling-header')
+	const scrollArea = document.querySelector('.section-1')
+	
+
+
+
+char.forEach((ch, i) => {
+
+	const index = i + 1
+
+	const transform = `translateY(-${(index * 0) + 0}vh)`
+	const scale = `scaleY(${(index * 0) + 3})`
+
+	scroll(
+		animate(char[i], {
+			transform: `${transform} ${scale}`
+		}),
+		{		
+			target: scrollArea,
+			offset: ["start start", "end start"]
+		}	
+	)
+})
+
+</script>

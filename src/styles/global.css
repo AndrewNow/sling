@@ -1,0 +1,10 @@
+@import url("./reset.css");
+
+@font-face {
+  font-family: "arial-narrow";
+  src: url("../fonts/arial-narrow.woff2") format("WOFF2");
+}
+@font-face {
+  font-family: "items-thin";
+  src: url("../fonts/items-thin.woff2") format("WOFF2");
+}
