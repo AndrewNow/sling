@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import { PortableText } from "astro-portabletext";
+import { getQuotePost } from "../../lib/api.js";
+
+export async function getStaticPaths() {
+  const posts = await getQuotePost();
+
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: { data: post },
+    };
+  });
+}
+
+const { data } = Astro.props;
+---
+
+<Layout>
+  <div class="quote-wrapper">
+    <h1>{data.title}</h1>
+    <PortableText value={data.body} />
+  </div>
+</Layout>
+
+
+
+<style>
+  .quote-wrapper {
+    width: min(90vw, 700px);
+    margin: 0 auto;
+
+    h1 {
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin-top: 3rem;
+    }
+  }
+</style>

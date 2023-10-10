@@ -8,3 +8,28 @@
   font-family: "items-thin";
   src: url("../fonts/items-thin.woff2") format("WOFF2");
 }
+
+
+h1 {
+  font-family: "arial-narrow";
+}
+h2 {
+  font-family: "arial-narrow";
+}
+h3 {
+  font-family: "arial-narrow";
+}
+h4 {
+  font-family: "arial-narrow";
+}
+h5 {
+  font-family: "arial-narrow";
+}
+h6 {
+  font-family: "arial-narrow";
+}
+
+p, ol, ul, li {
+  font-family: "arial-narrow";
+}
+
