@@ -1,6 +1,6 @@
 ---
+import SanityPortableText from "../../components/SanityPortableText.astro";
 import Layout from "../../layouts/BaseLayout.astro";
-import { PortableText } from "astro-portabletext";
 import { getQuotePost } from "../../lib/api.js";
 
 export async function getStaticPaths() {
@@ -18,25 +18,41 @@ const { data } = Astro.props;
 ---
 
 <Layout>
-  <div class="quote-wrapper">
-    <h1>{data.title}</h1>
-    <PortableText value={data.body} />
-  </div>
+  <article class="quote-wrapper">
+    <header>
+      <div class="sling">
+        <h1>Sling</h1>
+        <img src={data.clientLogo} />
+      </div>
+      <h2 class="quote-header">{data.title}</h2>
+      <small class="prepared-on">Prepared {data.preparedOn}</small>
+    </header>
+    <SanityPortableText portableText={data.body} />
+  </article>
 </Layout>
 
-
-
-<style>
-  .quote-wrapper {
-    width: min(90vw, 700px);
-    margin: 0 auto;
+<style lang="scss">
+  .sling {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
 
     h1 {
-      text-transform: uppercase;
+      font-size: 96px;
+      letter-spacing: -0.25rem;
+      margin-right: 2rem;
     }
-
-    h3 {
-      margin-top: 3rem;
-    }
+  }
+  .quote-wrapper {
+    width: min(90vw, 700px);
+    margin: 5vh auto;
+  }
+  .quote-header {
+    text-transform: uppercase;
+  }
+  .prepared-on {
+    display: block;
+    margin: 1rem 0;
+    text-transform: uppercase;
   }
 </style>

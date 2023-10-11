@@ -1,0 +1,27 @@
+---
+import { PortableText } from "astro-portabletext";
+const { portableText } = Astro.props;
+---
+
+<div class="styled-markdown">
+  <PortableText value={portableText} />
+</div>
+
+<style is:global lang="scss">
+  .styled-markdown {
+    & h1,
+    h2 {
+      text-transform: uppercase;
+    }
+    & h3 {
+      margin-top: 3rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      color: var(--grey-200);
+      border-bottom: 1px solid var(--grey-100);
+    }
+    & h4 {
+      color: grey;
+    }
+  }
+</style>

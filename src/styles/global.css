@@ -5,19 +5,38 @@
   src: url("../fonts/arial-narrow.woff2") format("WOFF2");
 }
 @font-face {
+  font-family: "akzidenz-regular";
+  src: url("../fonts/akzidenz-regular.woff2") format("WOFF2");
+}
+@font-face {
   font-family: "items-thin";
   src: url("../fonts/items-thin.woff2") format("WOFF2");
 }
 
+:root {
+  --grey-100: #dbdbdb;
+  --grey-200: #7c7c7c;
+  --grey-300: #3e3e3e;
+  --black: #000;
+  --white: #fff;
+}
 
 h1 {
   font-family: "arial-narrow";
+  font-stretch: condensed;
+  font-weight: 100;
+  font-size: 96px;
 }
 h2 {
   font-family: "arial-narrow";
+  font-weight: 400;
+  font-size: 32px;
 }
 h3 {
-  font-family: "arial-narrow";
+  font-family: "akzidenz-regular";
+  letter-spacing: 0.03rem;
+  font-size: 18px;
+  font-weight: 300;
 }
 h4 {
   font-family: "arial-narrow";
@@ -30,6 +49,13 @@ h6 {
 }
 
 p, ol, ul, li {
-  font-family: "arial-narrow";
+  font-family: "akzidenz-regular";
+  letter-spacing: 0.01rem;
+  line-height: 150%;
+  font-size: 16px;
+}
+small {
+  font-family: "akzidenz-regular";
+  font-size: 14px;
 }
 
