@@ -9,7 +9,6 @@ const { slug } = Astro.params;
 const data = posts.find((data) => data.slug === slug);
 
 if (!data) return Astro.redirect("/404");
-
 ---
 
 <Layout>
@@ -17,10 +16,22 @@ if (!data) return Astro.redirect("/404");
     <header>
       <div class="sling">
         <h1>Sling</h1>
-        <img class="client-logo" src={data.clientLogo} alt="See you soon's star logo" />
+        {
+          data.clientLogo && (
+            <img
+              class="client-logo"
+              src={data.clientLogo}
+              alt="See you soon's star logo"
+            />
+          )
+        }
       </div>
       <h2 class="quote-header">{data.title}</h2>
-      <small class="prepared-on">Prepared {data.preparedOn}</small>
+      {
+        data.preparedOn && (
+          <small class="prepared-on">Prepared {data.preparedOn}</small>
+        )
+      }
     </header>
     <SanityPortableText portableText={data.body} />
   </article>
