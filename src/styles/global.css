@@ -9,6 +9,10 @@
   src: url("../fonts/akzidenz-regular.woff2") format("WOFF2");
 }
 @font-face {
+  font-family: "akzidenz-medium";
+  src: url("../fonts/akzidenz-regular.woff2") format("WOFF2");
+}
+@font-face {
   font-family: "items-thin";
   src: url("../fonts/items-thin.woff2") format("WOFF2");
 }
