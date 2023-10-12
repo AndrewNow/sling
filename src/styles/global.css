@@ -10,7 +10,7 @@
 }
 @font-face {
   font-family: "akzidenz-medium";
-  src: url("../fonts/akzidenz-regular.woff2") format("WOFF2");
+  src: url("../fonts/akzidenz-medium.woff2") format("WOFF2");
 }
 @font-face {
   font-family: "items-thin";
@@ -64,6 +64,10 @@ p, ol, ul, li {
   letter-spacing: 0.01rem;
   line-height: 150%;
   font-size: 14px;
+  
+  em {   
+    font-family: "akzidenz-medium";
+  }
 }
 small {
   font-family: "akzidenz-regular";
