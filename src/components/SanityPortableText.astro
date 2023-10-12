@@ -38,35 +38,14 @@ const { portableText } = Astro.props;
 
     ul {
       list-style-type: square;
-      // list-style: none;
-      // margin-left: 0;
-      // padding-left: 0;
-      // text-indent: -1em;
-      // margin-top: 1rem;
     }
 
     li {
       margin: 0.5rem 0;
-      // margin-top: 0;
-      // padding-left: 1em;
-      // text-indent: -1em;
       li {
-        // outline: 1px solid;
         margin: 0.5rem 0;
-        // margin-left: 1rem;
-        // padding-left: 1.75em;
-        // text-indent: -1.75em;
       }
     }
-
-    // li:before {
-    //   transform: translateY(-3px);
-    //   display: inline-grid;
-    //   place-items: center;
-    //   content: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.22854 2.42142C4.22854 3.25966 3.51572 4.10709 2.6131 4.10709C1.9936 4.10709 1.87173 3.65259 2.12145 3.12378C2.25889 2.83273 2.389 2.41325 2.68334 2.24973C2.86554 2.14851 3.01816 2.17319 3.10476 2' stroke='black' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E%0A");
-    //   margin-right: 0.5em;
-    //   opacity: .65;
-    // }
 
     a {
       color: #bbce41;
@@ -77,18 +56,18 @@ const { portableText } = Astro.props;
       content: "";
       position: absolute;
       width: 100%;
-      height: 1px; /* Adjust this value to control the underline thickness */
-      background-color: #bbce41; /* Set the desired underline color */
+      height: 1px;
+      background-color: #bbce41;
       bottom: -3px;
       left: 0;
-      transform: scaleX(0); /* Initial state: no underline */
+      transform: scaleX(0);
       transform-origin: bottom middle;
       opacity: 0;
-      transition: all 0.25s ease; /* Add animation to the underline */
+      transition: all 0.25s ease;
     }
 
     a:hover::before {
-      transform: scaleX(1); /* Expand the underline on hover */
+      transform: scaleX(1);
       transform-origin: bottom middle;
       opacity: 1;
     }
