@@ -64,11 +64,7 @@ p, ol, ul, li {
   letter-spacing: 0.01rem;
   line-height: 150%;
   font-size: 14px;
-  
-  em {   
-    font-family: "akzidenz-medium";
   }
-}
 small {
   font-family: "akzidenz-regular";
   font-size: 14px;
