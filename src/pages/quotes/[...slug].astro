@@ -1,20 +1,15 @@
 ---
-import SanityPortableText from "../../components/SanityPortableText.astro";
-import Layout from "../../layouts/BaseLayout.astro";
+import SanityPortableText from "../../components/SanityPortableText.astro.jsx";
+import Layout from "../../layouts/BaseLayout.astro.jsx";
 import { getQuotePost } from "../../lib/api.js";
 
-export async function getStaticPaths() {
-  const posts = await getQuotePost();
+const posts = await getQuotePost();
+const { slug } = Astro.params;
 
-  return posts.map((post) => {
-    return {
-      params: { slug: post.slug },
-      props: { data: post },
-    };
-  });
-}
+const data = posts.find((data) => data.slug === slug);
 
-const { data } = Astro.props;
+if (!data) return Astro.redirect("/404");
+
 ---
 
 <Layout>
@@ -22,7 +17,7 @@ const { data } = Astro.props;
     <header>
       <div class="sling">
         <h1>Sling</h1>
-        <img src={data.clientLogo} />
+        <img class="client-logo" src={data.clientLogo} alt="See you soon's star logo" />
       </div>
       <h2 class="quote-header">{data.title}</h2>
       <small class="prepared-on">Prepared {data.preparedOn}</small>
@@ -34,6 +29,10 @@ const { data } = Astro.props;
 <style lang="scss">
   header {
     margin-bottom: 5rem;
+  }
+  .client-logo {
+    max-width: 84px;
+    height: auto;
   }
   .sling {
     display: flex;

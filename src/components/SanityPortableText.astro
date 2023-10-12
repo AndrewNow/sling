@@ -11,10 +11,11 @@ const { portableText } = Astro.props;
   .styled-markdown {
     h1,
     h2 {
+      margin-top: 5rem;
       text-transform: uppercase;
     }
     h3 {
-      margin-top: 3rem;
+      margin-top: 5rem;
       padding-bottom: 1rem;
       margin-bottom: 1rem;
       color: var(--grey-200);
@@ -23,10 +24,11 @@ const { portableText } = Astro.props;
     h4 {
       color: var(--grey-200);
     }
-    em {
+    em, strong {
       color: var(--grey-200);
+      font-style: normal;
     }
-
+    
     ul {
       list-style: none;
       margin-left: 0;
@@ -54,7 +56,8 @@ const { portableText } = Astro.props;
       display: inline-grid;
       place-items: center;
       content: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.22854 2.42142C4.22854 3.25966 3.51572 4.10709 2.6131 4.10709C1.9936 4.10709 1.87173 3.65259 2.12145 3.12378C2.25889 2.83273 2.389 2.41325 2.68334 2.24973C2.86554 2.14851 3.01816 2.17319 3.10476 2' stroke='black' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E%0A");
-      margin-right: .5em;
+      margin-right: 0.5em;
+      opacity: .65;
     }
 
     a {
