@@ -9,7 +9,7 @@ import Layout from "../layouts/BaseLayout.astro";
   </div>
   <div class="text-content">
     <div class="bio">
-      <h2>
+      <h2 class="bio-main">
         ⇨ Sling partners with meaningful startups and impassioned individuals 🗩,
         reliably developing digital solutions and compelling online experiences.
         🌎
@@ -20,7 +20,7 @@ import Layout from "../layouts/BaseLayout.astro";
         We believe in focusing on relationships that foster meaningful work and
         giving projects the careful attention they deserve. <br />
         <br />
-        In a sea of online content, we strive to create work that is
+         In a sea of online content, we strive to create work that is
         thoughtful, intuitive and lasting. This means taking on projects we
         believe in, for people we care about.
       </h2>
@@ -34,7 +34,6 @@ import Layout from "../layouts/BaseLayout.astro";
     height: 90vh;
     position: fixed;
     top: 0;
-    border-radius: 40px;
   }
   .sling-header {
     font-size: 400px;
@@ -58,19 +57,29 @@ import Layout from "../layouts/BaseLayout.astro";
   }
 
   .text-content {
+    margin: 0 auto;
     margin-top: 90vh;
-    padding-bottom: 10rem;
+    width: 100%;
+    padding-bottom: 5rem;
+    margin-bottom: 90vh;
+    border-radius: 45px;
     background: var(--grey-400);
-    backdrop-filter: blur(40px);
+    /* backdrop-filter: blur(45px); */
     color: var(--white);
     position: relative;
-    width: 100%;
     border-top: 3px solid black;
   }
   .bio {
     position: relative;
     width: 90%;
+    height: 250vh;
     margin: 10rem auto;
+  }
+
+  .bio-main {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .bio > h2 {
@@ -112,26 +121,36 @@ import Layout from "../layouts/BaseLayout.astro";
 </style>
 
 <script>
-  // import { animate, scroll } from "motion";
+  import { animate, scroll, stagger } from "motion";
 
-  // const char = document.querySelectorAll(".char");
-  // // const header = document.querySelector('.sling-header')
-  // const scrollArea = document.querySelector(".section-1");
+  const textBio = document.querySelector(".bio-main");
+  const sentence =
+    "⇨ Sling partners with meaningful startups and impassioned individuals 🗩, reliably developing digital solutions and compelling online experiences. 🌎";
 
-  // char.forEach((ch, i) => {
-  //   const index = i + 1;
+  const characterArray = Array.from(sentence);
+  const htmlString = characterArray
+    .map((char) => `<span id="main-bio-char">${char}</span>`)
+    .join("");
 
-  //   const transform = `translateY(-${index * 0 + 0}vh)`;
-  //   const scale = `scaleY(${index * 0 + 3})`;
+  textBio.innerHTML = htmlString;
 
-  //   scroll(
-  //     animate(char[i], {
-  //       transform: `${transform} ${scale}`,
-  //     }),
-  //     {
-  //       target: scrollArea,
-  //       offset: ["start start", "end start"],
-  //     }
-  //   );
-  // });
+  const characters = document.querySelectorAll("#main-bio-char");
+  const scrollContainer = document.querySelector(".bio");
+
+  characters.forEach((char, i) => {
+    const index = i + 1;
+    scroll(
+      animate(
+        char,
+        {
+          opacity: [0, 1],
+        },
+        {
+          delay: index * 0.001,
+          // duration: 0,
+        }
+      ),
+      { target: scrollContainer }
+    );
+  });
 </script>

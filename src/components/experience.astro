@@ -7,7 +7,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid red;
+    /* background: green; */
+    /* border: 1px solid red; */
     outline: none;
   }
 </style>
@@ -144,7 +145,7 @@
   // Controls
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
-  controls.autoRotate = true;
+  // controls.autoRotate = true;
   controls.enableZoom = false;
 
   //
@@ -161,7 +162,7 @@
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // const backgroundColor = new THREE.Color(0xffffff);
+  // const backgroundColor = new THREE.Color(0xff0000);
   // renderer.setClearColor(backgroundColor, 1);
 
   //
