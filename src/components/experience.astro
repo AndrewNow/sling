@@ -145,7 +145,8 @@
   // Controls
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
-  // controls.autoRotate = true;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.5;
   controls.enableZoom = false;
 
   //
