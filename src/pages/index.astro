@@ -1,4 +1,5 @@
 ---
+import Experience from "../components/experience.astro";
 import Layout from "../layouts/BaseLayout.astro";
 ---
 
@@ -6,20 +7,20 @@ import Layout from "../layouts/BaseLayout.astro";
   <div class="top-banner">
     <p>Site still in construction, come back soon! 🚧</p>
   </div>
-  <h1>Sling</h1>
+  <Experience />
 </Layout>
 
 <style>
   .top-banner {
-		width: 100%;
-		height: 50px;
-		background-color: #ECF96E;
-		display: grid;
-		place-items: center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		opacity: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #ecf96e;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
   }
   h1 {
     letter-spacing: -0.25rem;
@@ -32,14 +33,18 @@ import Layout from "../layouts/BaseLayout.astro";
 </style>
 
 <script>
-	import {animate} from 'motion'
+  import { animate } from "motion";
 
-	const banner = document.querySelector('.top-banner')
+  const banner = document.querySelector(".top-banner");
 
-	animate(banner, {
-		opacity: 1,
-	}, {
-		duration: 1,
-		delay: .5
-	})
+  animate(
+    banner,
+    {
+      opacity: 1,
+    },
+    {
+      duration: 1,
+      delay: 0.5,
+    }
+  );
 </script>

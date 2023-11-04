@@ -16,11 +16,11 @@
 <script>
   import * as THREE from "three";
   import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-  import * as dat from "lil-gui";
+  // import * as dat from "lil-gui";
   import vertexShader from "../components/three/shaders/vertex.glsl";
   import fragmentShader from "../components/three/shaders/fragment.glsl";
-  import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-  import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
+  // import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+  // import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
   // ATTRIBUTES are associated with each VERTEX
   // UNIFORMS are the same throughout each VERTEX
@@ -30,7 +30,7 @@
   // ════════════════════════════════════
   //
   // Debug
-  const gui = new dat.GUI();
+  // const gui = new dat.GUI();
 
   // Canvas
   const canvas = document.querySelector("canvas.webgl");
@@ -85,18 +85,18 @@
     side: THREE.DoubleSide,
   });
 
-  gui
-    .add(material.uniforms.uFrequency.value, "x")
-    .min(0)
-    .max(20)
-    .step(0.01)
-    .name("freqX");
-  gui
-    .add(material.uniforms.uFrequency.value, "y")
-    .min(0)
-    .max(20)
-    .step(0.01)
-    .name("freqY");
+  // gui
+  //   .add(material.uniforms.uFrequency.value, "x")
+  //   .min(0)
+  //   .max(20)
+  //   .step(0.01)
+  //   .name("freqX");
+  // gui
+  //   .add(material.uniforms.uFrequency.value, "y")
+  //   .min(0)
+  //   .max(20)
+  //   .step(0.01)
+  //   .name("freqY");
 
   // Mesh
   const mesh = new THREE.Mesh(geometry, material);
@@ -139,7 +139,7 @@
     0.1,
     100
   );
-  camera.position.set(0, 0, 2);
+  camera.position.set(0, 0, 4);
   scene.add(camera);
 
   // Controls
