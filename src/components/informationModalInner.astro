@@ -40,6 +40,13 @@ const services = [
       {services.map((service) => <span class="details-item">{service}</span>)}
     </div>
   </div>
+  <div class="details">
+    <h4>Contact us:</h4>
+    <a href="mailto:hello@sling.online">hello@sling.online</a>
+    <br />
+    <a href="https://www.instagram.com/sling.online/">@sling.online</a>
+  </div>
+  <button class="contact">hello@sling.online</button>
 </div>
 
 <style lang="scss">
@@ -55,6 +62,10 @@ const services = [
       font-size: 20px;
       font-family: Arial, sans-serif;
       letter-spacing: -0.01rem;
+    }
+    a {
+      font-size: 20px;
+      font-family: "Arial-narrow";
     }
   }
 
@@ -73,5 +84,20 @@ const services = [
     font-family: "Arial-narrow";
     background: var(--grey-50);
     color: var(--grey-300);
+  }
+
+  .contact {
+    border-radius: 8px;
+    border: 1.553px solid #e1e31b;
+    background: linear-gradient(180deg, #f5f83d 0%, #e1e31b 100%);
+    box-shadow:
+      0px 0px 0.94452px 0.70839px rgba(255, 255, 255, 0.5) inset,
+      0px -0.94452px 0.94452px 0.23613px #b3b515 inset;
+    margin: 3rem auto;
+    width: 80%;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #5a5b0b;
   }
 </style>
