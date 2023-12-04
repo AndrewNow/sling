@@ -40,7 +40,7 @@ import Layout from "../layouts/BaseLayout.astro";
 
 <style lang="scss">
   html {
-    background: black;
+    background: #ecf96e;
   }
   .parent {
     perspective: 1000px;
@@ -83,6 +83,7 @@ import Layout from "../layouts/BaseLayout.astro";
     transform: translateY(100%);
     z-index: 10;
     border-radius: 15px 15px 0px 0px;
+    box-shadow: 0px -50px 70px 0px rgba(0, 0, 0, 0.05);
   }
   .close-btn {
     width: 100%;
@@ -116,7 +117,7 @@ import Layout from "../layouts/BaseLayout.astro";
       {
         transform: "translate3d(0, -10px, -70px)",
         borderRadius: "15px 15px 0px 0px",
-        opacity: 0.85,
+        opacity: 0.95,
       },
       {
         duration: 0.25,
