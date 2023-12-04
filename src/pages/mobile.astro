@@ -1,10 +1,14 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+import InformationModalInner from "../components/informationModalInner.astro";
 ---
 
 <Layout>
-  <div class="parent">
-    <div class="wrapper" id="wrapper">
+  <div class="homepage-parent">
+    <div class="homepage-wrapper" id="wrapper">
+      <div class="webgl-wrapper" id="canvas-container">
+        <canvas class="webgl" id="webgl-canvas"></canvas>
+      </div>
       <h3>
         Sling was born out of our love of creating meaningful products, and our
         disdain for the status quo. In our years of experience working freelance
@@ -15,23 +19,12 @@ import Layout from "../layouts/BaseLayout.astro";
         <button id="info">More info</button>
       </div>
     </div>
-    <div class="modal" id="modal">
-      <div class="close-btn">
-        <button id="close">Close</button>
-        <div class="modal-inner">
-          <h3>
-            Sling partners with meaningful startups and impassioned individuals,
-            reliably developing digital solutions and compelling online
-            experiences.
-            <br />
-            <br />
-             We believe in focusing on relationships that foster meaningful work
-            and in giving projects the careful attention they deserve.
-            <br />
-            <br />In a sea of online content, we strive to create work that is
-            thoughtful, intuitive and lasting. This means taking on projects we
-            believe in, for people we care about.
-          </h3>
+
+    <div class="info-modal" id="modal">
+      <div class="info-modal-scroll-track">
+        <div class="close-btn">
+          <button id="close">Close</button>
+          <InformationModalInner />
         </div>
       </div>
     </div>
@@ -42,22 +35,47 @@ import Layout from "../layouts/BaseLayout.astro";
   html {
     background: #ecf96e;
   }
-  .parent {
+  .homepage-parent {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
     perspective: 1000px;
   }
-  .wrapper {
+  .homepage-wrapper {
     padding: 1.25rem;
     position: relative;
     background: white;
     height: 100svh;
+  }
 
+  .webgl-wrapper {
+    position: relative;
+    width: 100%;
+    height: 33vh;
+  }
+  .webgl {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .canvas-wrapper {
+    border: 1px solid red;
+    position: relative;
+    height: 33vh;
+    width: 100%;
+  }
+
+  .homepage-wrapper,
+  .info-modal {
     h3 {
       font-size: 22px;
       letter-spacing: 0;
     }
   }
+
   .button {
-    padding: 2rem 0;
+    padding: 3rem 0;
     button {
       padding: 1rem;
       display: inline-block;
@@ -68,22 +86,31 @@ import Layout from "../layouts/BaseLayout.astro";
       border: 0.566px solid #e1e1e1;
       background: linear-gradient(180deg, #f8f8f8 0%, #fefefe 100%);
       box-shadow:
-        0px -0.56569px 0.56569px 0.56569px #b0b0b0 inset,
+        0px -0.6px 0.56px 0.56px #b0b0b0 inset,
         0px 0px 1.13138px 0px #fcfcfc inset;
+      cursor: pointer;
     }
   }
 
-  .modal {
+  .info-modal {
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    transform: translateY(100%);
+    z-index: 10;
+  }
+  .info-modal-scroll-track {
     position: absolute;
     top: 2rem;
     left: 0%;
     background: white;
-    height: 100svh;
+    height: auto;
     width: 100vw;
-    transform: translateY(100%);
-    z-index: 10;
     border-radius: 15px 15px 0px 0px;
-    box-shadow: 0px -5px 70px 0px rgba(0, 0, 0, 0.05);
+    // box-shadow: 0px -5px 70px 0px rgba(0, 0, 0, 0.05);
   }
   .close-btn {
     width: 100%;
@@ -96,12 +123,12 @@ import Layout from "../layouts/BaseLayout.astro";
       width: 100%;
       display: inline-block;
       margin: 1rem auto;
-    }
-    .modal-inner {
-      padding: 1.25rem;
+      cursor: pointer;
     }
   }
 </style>
+
+<script src="../components/three/experience.js"></script>
 
 <script>
   import { animate } from "motion";
@@ -115,9 +142,10 @@ import Layout from "../layouts/BaseLayout.astro";
     animate(
       mainBg,
       {
-        transform: "translate3d(0, -10px, -70px)",
+        transform: "translate3d(0, -20px, -100px)",
         borderRadius: "15px 15px 0px 0px",
         opacity: 0.95,
+        filter: "brightness(.975)",
       },
       {
         duration: 0.25,
@@ -142,6 +170,7 @@ import Layout from "../layouts/BaseLayout.astro";
       {
         transform: "translateZ(0px)",
         opacity: 1,
+        filter: "brightness(1)",
       },
       {
         delay: 0,

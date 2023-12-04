@@ -1,0 +1,77 @@
+---
+const pastClients = [
+  "Vice Media Group",
+  "Condé Nast",
+  "Adobe Lightroom",
+  "AirBnb",
+  "Frank & Oak",
+  "Hennessy Canada",
+];
+const services = [
+  "UI / UX Design",
+  "Web Development",
+  "Branding",
+  "Brand Strategy",
+  "Technical Consultation",
+];
+---
+
+<div class="modal-inner">
+  <h3>
+    Sling partners with meaningful startups and impassioned individuals,
+    reliably developing digital solutions and compelling online experiences.
+    <br />
+    <br />We believe in focusing on relationships that foster meaningful work
+    and in giving projects the careful attention they deserve.
+    <br />
+    <br />In a sea of online content, we strive to create work that is
+    thoughtful, intuitive and lasting. This means taking on projects we believe
+    in, for people we care about.
+  </h3>
+  <div class="details">
+    <h4>Past clients include:</h4>
+    <div class="details-flex">
+      {pastClients.map((client) => <span class="details-item">{client}</span>)}
+    </div>
+  </div>
+  <div class="details">
+    <h4>Services:</h4>
+    <div class="details-flex">
+      {services.map((service) => <span class="details-item">{service}</span>)}
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .modal-inner {
+    background: white;
+    padding: 1.25rem;
+  }
+
+  .details {
+    margin: 3rem 0;
+    h4 {
+      margin-bottom: 0.75rem;
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+      letter-spacing: -0.01rem;
+    }
+  }
+
+  .details-flex {
+    display: inline-flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+
+  .details-item {
+    border-radius: 4px;
+    padding: 3px 9px;
+    font-size: 15px;
+    font-family: "Arial-narrow";
+    background: var(--grey-50);
+    color: var(--grey-300);
+  }
+</style>
