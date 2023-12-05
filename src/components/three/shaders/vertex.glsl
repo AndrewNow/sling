@@ -13,7 +13,7 @@ void main()
 
     modelPosition.x += elevation * 0.85;
     modelPosition.y += elevation * 0.5;
-    modelPosition.z += elevation * 0.1;
+    modelPosition.z += elevation * 0.4;
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
