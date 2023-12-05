@@ -20,22 +20,6 @@ import fragmentShader from "../../components/three/shaders/fragment.glsl";
 const canvas = document.querySelector("canvas.webgl");
 const canvasContainer = document.querySelector("#canvas-container");
 
-window.addEventListener("resize", resizeCanvas);
-
-function resizeCanvas() {
-  const canvasContainer = document.getElementById("canvas-container");
-  const canvas = document.querySelector("canvas.webgl");
-
-  // Set the canvas dimensions to match its container
-  canvas.width = canvasContainer.clientWidth;
-  canvas.height = canvasContainer.clientHeight;
-
-  // Additional WebGL setup and rendering code here...
-}
-
-// Call resizeCanvas initially to set the initial dimensions
-resizeCanvas();
-
 // Scene
 const scene = new THREE.Scene();
 
@@ -140,7 +124,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(0, 0, .75);
+camera.position.set(0, 0, 0.75);
 scene.add(camera);
 
 // Controls

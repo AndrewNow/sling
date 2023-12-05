@@ -150,6 +150,10 @@ const services = [
         await navigator.clipboard.writeText(textToCopy);
 
         // Provide visual feedback to the user (optional)
+        const button = document.getElementById("copy-button")
+
+        button.innerText = "Copied!"
+
         animate(
           success,
           {
