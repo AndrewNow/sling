@@ -32,7 +32,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
       </div>
     </div>
   </div>
-  <!-- <span class="email-copied" id="copy-success">Email copied!</span> -->
+  <span class="email-copied" id="copy-success">Email copied!</span>
 </Layout>
 
 <style lang="scss">
@@ -87,7 +87,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
     position: relative;
     // height: 20vh;
     height: auto;
-    width: 100%;
+    width: 40%;
   }
   .webgl {
     transform: translateY(2rem);
@@ -120,12 +120,22 @@ import InformationModalInner from "../components/informationModalInner.astro";
       font-size: 23px;
       font-family: Arial, Helvetica, sans-serif;
       border-radius: 14px;
-      border: 0.566px solid #e1e1e1;
+      border: 1px solid #e1e1e1;
       background: linear-gradient(180deg, #f8f8f8 0%, #fefefe 100%);
       box-shadow:
         0px -1px 1px 1px #b0b0b0 inset,
         0px 0px 1px 0px #fcfcfc inset;
       cursor: pointer;
+      transition: 0.25s all ease;
+    }
+  }
+
+  .button:hover {
+    button {
+      box-shadow:
+        0px 1px 5px 1px #b0b0b0 inset,
+        0px -1px 1px 0px #fcfcfc inset;
+      transform: translateY(2px);
     }
   }
 
@@ -182,10 +192,10 @@ import InformationModalInner from "../components/informationModalInner.astro";
     animate(
       mainBg,
       {
-        transform: "translate3d(0, -20px, -100px)",
+        transform: "translate3d(0, -25px, -100px)",
         borderRadius: "15px 15px 0px 0px",
         opacity: 0.95,
-        filter: "brightness(.975)",
+        filter: "brightness(.95)",
       },
       {
         duration: 0.25,

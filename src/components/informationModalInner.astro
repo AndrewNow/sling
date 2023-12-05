@@ -122,11 +122,11 @@ const services = [
     justify-content: center;
     gap: 7px;
     border-radius: 8px;
-    border: 1.553px solid #e1e31b;
+    border: 1px solid #e1e31b;
     background: linear-gradient(180deg, #f5f83d 0%, #e1e31b 100%);
     box-shadow:
-      0px 0px 0.94452px 0.70839px rgba(255, 255, 255, 0.5) inset,
-      0px -0.94452px 0.94452px 0.23613px #b3b515 inset;
+      0px 0px 1px 1px rgba(255, 255, 255, 0.85) inset,
+      0px -1px 1px 1px #b3b515 inset;
     width: 80%;
     margin: 6rem auto;
     margin-bottom: 9rem;
@@ -134,6 +134,14 @@ const services = [
     font-family: Arial, sans-serif;
     font-size: 20px;
     color: #5a5b0b;
+  }
+
+  .contact:hover {
+    box-shadow:
+      0px 1px 5px 1px rgba(255, 255, 255, 0.85) inset,
+      0px 1px 0px 1px #b3b515 inset;
+
+    transform: translateY(2px);
   }
 </style>
 
@@ -150,9 +158,9 @@ const services = [
         await navigator.clipboard.writeText(textToCopy);
 
         // Provide visual feedback to the user (optional)
-        const button = document.getElementById("copy-button")
+        const button = document.getElementById("copy-button");
 
-        button.innerText = "Copied!"
+        button.innerText = "Copied!";
 
         animate(
           success,
