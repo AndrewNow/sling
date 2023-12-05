@@ -3,11 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import * as dat from "lil-gui";
 import vertexShader from "../../components/three/shaders/vertex.glsl";
 import fragmentShader from "../../components/three/shaders/fragment.glsl";
-// import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
-// import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
-// ATTRIBUTES are associated with each VERTEX
-// UNIFORMS are the same throughout each VERTEX
 //
 // ════════════════════════════════════
 //             Base
@@ -70,19 +66,6 @@ const material = new THREE.ShaderMaterial({
   side: THREE.DoubleSide,
 });
 
-// gui
-//   .add(material.uniforms.uFrequency.value, "x")
-//   .min(0)
-//   .max(20)
-//   .step(0.01)
-//   .name("freqX");
-// gui
-//   .add(material.uniforms.uFrequency.value, "y")
-//   .min(0)
-//   .max(20)
-//   .step(0.01)
-//   .name("freqY");
-
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
 mesh.scale.y = 2 / 3;
@@ -100,8 +83,8 @@ const sizes = {
 
 window.addEventListener("resize", () => {
   // Update sizes
-  sizes.width = canvasContainer.innerWidth;
-  sizes.height = canvasContainer.innerHeight;
+  sizes.width = canvasContainer.clientWidth;
+  sizes.height = canvasContainer.clientHeight;
 
   // Update camera
   camera.aspect = sizes.width / sizes.height;
@@ -148,24 +131,11 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// const backgroundColor = new THREE.Color(0xff0000);
-// renderer.setClearColor(backgroundColor, 1);
-
 //
 // ════════════════════════════════════
 //             Animate
 // ════════════════════════════════════
 //
-
-// let mouseX = 0;
-// let mouseY = 0;
-
-// canvas.addEventListener("mousemove", (event) => {
-//   // Calculate the mouse position within the canvas
-//   const rect = canvas.getBoundingClientRect();
-//   mouseX = (event.clientX - rect.left) / canvas.width;
-//   mouseY = 1 - (event.clientY - rect.top) / canvas.height; // Invert Y-axis
-// });
 
 const clock = new THREE.Clock();
 
@@ -174,10 +144,6 @@ const tick = () => {
 
   // update material
   material.uniforms.uTime.value = elapsedTime;
-
-  // Update material uniforms based on mouse position
-  // material.uniforms.uFrequency.value.x = mouseX * 20; // Adjust the factor as needed
-  // material.uniforms.uFrequency.value.y = mouseY * 20; // Adjust the factor as needed
 
   // Update controls
   controls.update();
