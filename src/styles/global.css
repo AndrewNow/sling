@@ -75,3 +75,7 @@ small {
   font-family: "akzidenz-regular";
   font-size: 14px;
 }
+
+button {
+  color: var(--black);
+}

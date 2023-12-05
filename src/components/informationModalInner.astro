@@ -46,13 +46,43 @@ const services = [
     <br />
     <a href="https://www.instagram.com/sling.online/">@sling.online</a>
   </div>
-  <button class="contact">hello@sling.online</button>
+  <button class="contact" id="copy-button">
+    <svg
+      width="26"
+      height="25"
+      viewBox="0 0 26 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_2001_277)">
+        <path
+          d="M21.9215 4.73686L17.6518 0.653437C17.4743 0.470752 17.2619 0.325721 17.0271 0.227015C16.7924 0.128309 16.5401 0.0779549 16.2855 0.0789638H10.0749C9.56832 0.0911261 9.08656 0.300958 8.7326 0.663617C8.37865 1.02628 8.18058 1.51299 8.18073 2.01975V19.0987C8.18073 19.6134 8.3852 20.1071 8.74917 20.471C9.11314 20.835 9.60679 21.0395 10.1215 21.0395H20.5552C21.0699 21.0395 21.5636 20.835 21.9275 20.471C22.2915 20.1071 22.496 19.6134 22.496 19.0987V6.10317C22.497 5.84851 22.4466 5.59626 22.3479 5.36149C22.2492 5.12673 22.1042 4.91429 21.9215 4.73686ZM20.5552 19.0987H10.1215V2.01975H14.3447V6.10317C14.3447 6.6179 14.5491 7.11155 14.9131 7.47552C15.2771 7.83949 15.7707 8.04396 16.2855 8.04396H20.5552V19.0987ZM20.5552 6.10317H16.2855V2.01975L20.5552 6.10317Z"
+          fill="#5A5B0B"></path>
+        <path
+          d="M16.6724 22.9805H6.2387V5.90157H7.18581V3.96078H6.2387C5.72397 3.96078 5.23033 4.16526 4.86636 4.52923C4.50239 4.8932 4.29791 5.38684 4.29791 5.90157V22.9805C4.29791 23.4953 4.50239 23.9889 4.86636 24.3529C5.23033 24.7168 5.72397 24.9213 6.2387 24.9213H16.6724C17.1871 24.9213 17.6808 24.7168 18.0447 24.3529C18.4087 23.9889 18.6132 23.4953 18.6132 22.9805V22.0024H16.6724V22.9805Z"
+          fill="#5A5B0B"></path>
+      </g>
+      <defs>
+        <clipPath id="clip0_2001_277">
+          <rect
+            width="24.8421"
+            height="24.8421"
+            fill="white"
+            transform="translate(0.973694 0.078949)"></rect>
+        </clipPath>
+      </defs>
+    </svg>
+    <span id="text-to-copy"> hello@sling.online</span>
+  </button>
 </div>
 
 <style lang="scss">
   .modal-inner {
     background: white;
     padding: 1.25rem;
+    h3 {
+      letter-spacing: unset;
+    }
   }
 
   .details {
@@ -87,17 +117,60 @@ const services = [
   }
 
   .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
     border-radius: 8px;
     border: 1.553px solid #e1e31b;
     background: linear-gradient(180deg, #f5f83d 0%, #e1e31b 100%);
     box-shadow:
       0px 0px 0.94452px 0.70839px rgba(255, 255, 255, 0.5) inset,
       0px -0.94452px 0.94452px 0.23613px #b3b515 inset;
-    margin: 3rem auto;
     width: 80%;
+    margin: 6rem auto;
+    margin-bottom: 9rem;
     padding: 1rem;
     font-family: Arial, sans-serif;
     font-size: 20px;
     color: #5a5b0b;
   }
 </style>
+
+<script>
+  import { animate } from "motion";
+
+  document
+    .getElementById("copy-button")
+    .addEventListener("click", async function () {
+      const textToCopy = document.getElementById("text-to-copy").innerText;
+      const success = document.getElementById("copy-success");
+      try {
+        // Use the asynchronous Clipboard API to copy text
+        await navigator.clipboard.writeText(textToCopy);
+
+        // Provide visual feedback to the user (optional)
+        animate(
+          success,
+          {
+            transform: "translate(-300%, -50%) rotate(30deg)",
+          },
+          {
+            duration: 5,
+          }
+        ).finished.then(() => {
+          animate(
+            success,
+            {
+              transform: "translate(100%, -50%) rotate(30deg)",
+            },
+            { duration: 0 }
+          );
+        });
+        // alert("Text has been copied to the clipboard!");
+      } catch (err) {
+        // Handle any errors
+        console.error("Unable to copy text: ", err);
+      }
+    });
+</script>
