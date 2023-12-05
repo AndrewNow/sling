@@ -55,7 +55,7 @@ const material = new THREE.ShaderMaterial({
   transparent: false,
   uniforms: {
     // sin frequency
-    uFrequency: { value: new THREE.Vector2(3, 3) },
+    uFrequency: { value: new THREE.Vector2(5, 5) },
     // give the shaders a time value, see tick()
     uTime: { value: 0 },
     // add texture
@@ -107,7 +107,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(0, 0, 0.75);
+camera.position.set(0, 0, 0.6);
 scene.add(camera);
 
 // Controls
