@@ -152,7 +152,7 @@ const services = [
     .getElementById("copy-button")
     .addEventListener("click", async function () {
       const textToCopy = document.getElementById("text-to-copy").innerText;
-      const success = document.getElementById("copy-success");
+
       try {
         // Use the asynchronous Clipboard API to copy text
         await navigator.clipboard.writeText(textToCopy);
@@ -162,6 +162,16 @@ const services = [
 
         button.innerText = "Copied!";
 
+        // Create copy-success element if not already present
+        let success = document.getElementById("copy-success");
+        if (!success) {
+          success = document.createElement("div");
+          success.id = "copy-success";
+          success.classList.add("email-copied");
+          document.body.appendChild(success);
+        }
+
+        // Apply animation to the copy-success element
         animate(
           success,
           {
@@ -179,7 +189,6 @@ const services = [
             { duration: 0 }
           );
         });
-        // alert("Text has been copied to the clipboard!");
       } catch (err) {
         // Handle any errors
         console.error("Unable to copy text: ", err);

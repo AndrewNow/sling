@@ -7,18 +7,21 @@ import InformationModalInner from "../components/informationModalInner.astro";
   <div class="homepage-parent">
     <div class="homepage-wrapper" id="wrapper">
       <div class="homepage-inner">
-        <div class="webgl-wrapper" id="canvas-container">
-          <canvas class="webgl" id="webgl-canvas"></canvas>
+        <div class="sling-bg">
+          <img src="/images/Sling.png" id="sling-logo" />
         </div>
-        <h3>
+        <!-- <div class="webgl-wrapper" id="canvas-container">
+            <canvas class="webgl" id="webgl-canvas"></canvas>
+          </div> -->
+        <!-- <h3>
           Sling was born out of our love of creating meaningful products, and
           our disdain for the status quo. In our years of experience working
           freelance and for big agencies, we've seen it all — so we found a
           better way to run a creative business, for us and for everyone we work
           with.
-        </h3>
-        <div class="button">
-          <button id="info">More info</button>
+        </h3> -->
+        <div class="button" id="info">
+          <button id="info">Information</button>
         </div>
       </div>
     </div>
@@ -32,7 +35,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
       </div>
     </div>
   </div>
-  <span class="email-copied" id="copy-success">Email copied!</span>
+  <!-- <span class="email-copied" id="copy-success">Email copied!</span> -->
 </Layout>
 
 <style lang="scss">
@@ -44,7 +47,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
     top: 50%;
     left: 0%;
     transform: translate(100%, -50%) rotate(30deg);
-    background: #E1E31B;
+    background: #e1e31b;
     padding: 3rem;
     font-family: "Arial-narrow";
     text-transform: uppercase;
@@ -53,6 +56,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
   html {
     background: #ecf96e;
   }
+
   .homepage-parent {
     margin: 0 auto;
     position: fixed;
@@ -60,25 +64,61 @@ import InformationModalInner from "../components/informationModalInner.astro";
     height: 100svh;
     width: 100vw;
     perspective: 1000px;
+    // transform: translateY(100%);
   }
   .homepage-wrapper {
     background: white;
     padding: 1.25rem;
     position: relative;
     height: 100svh;
-    max-width: 700px;
+    // max-width: 700px;
     margin: 0 auto;
     display: grid;
     place-items: center;
+    // border: 2px solid green;
+
     h3 {
       margin: 3rem 0;
     }
   }
 
   .homepage-inner {
-    // border: 1px solid;
-    margin-bottom: 9rem;
+    width: 100%; // new
+    // border: 1px solid red;
+    display: grid;
+    place-items: center;
+    position: relative;
+    // margin-bottom: 9rem;
+
+    img {
+      position: relative;
+      z-index: 3;
+      width: 100px;
+      margin: 0 auto;
+      filter: invert(1);
+      transform-origin: top;
+    }
   }
+
+  // .sling-bg {
+  //   width: 100%;
+  //   // margin: 2rem auto;
+  //   // position: absolute;
+  //   // top: 50%;
+  //   // left: 50%;
+  //   // transform: translate(-50%, -50%);
+  //   border: 1px solid;
+  //   height: 500px;
+
+  //   img {
+  //     position: relative;
+  //     z-index: 3;
+  //     width: 100px;
+  //     margin: 0 auto;
+  //     filter: invert(1);
+  //     transform-origin: top;
+  //   }
+  // }
 
   .webgl-wrapper {
     // border: 1px solid;
@@ -112,15 +152,23 @@ import InformationModalInner from "../components/informationModalInner.astro";
   }
 
   .button {
+    z-index: 2;
+    opacity: 0;
+    position: absolute;
     // padding: 3rem 0;
-    button {
-      padding: 1rem;
-      display: inline-block;
-      width: 80%;
+    #info {
+      // opacity: 0; // new
+      padding: 1rem 1.75rem;
+      // display: inline-block; // old
+      display: block;
+      // width: 80%; // old
+      width: auto;
       margin: 0 auto;
-      font-size: 23px;
+      // font-size: 23px; // old
+      font-size: 20px;
       font-family: Arial, Helvetica, sans-serif;
-      border-radius: 14px;
+      // border-radius: 14px; // old
+      border-radius: 8px;
       border: 1px solid #e1e1e1;
       background: linear-gradient(180deg, #f8f8f8 0%, #fefefe 100%);
       box-shadow:
@@ -132,7 +180,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
   }
 
   .button:hover {
-    button {
+    #info {
       box-shadow:
         0px 1px 5px 1px #b0b0b0 inset,
         0px -1px 1px 0px #fcfcfc inset;
@@ -182,12 +230,90 @@ import InformationModalInner from "../components/informationModalInner.astro";
 <script src="../components/three/experience.js"></script>
 
 <script>
-  import { animate } from "motion";
+  import { animate, spring } from "motion";
 
+  const slingLogo = document.getElementById("sling-logo");
   const mainBg = document.getElementById("wrapper");
   const infoBtn = document.getElementById("info");
   const modal = document.getElementById("modal");
   const closeBtn = document.getElementById("close");
+
+  animate(
+    mainBg,
+    {
+      // transform: "translateY(0%)",
+      // scaleY: [0, 1]
+      y: ["100vh", "0vh"],
+      borderRadius: ["40px", "0px"],
+    },
+    {
+      borderRadius: { easing: "ease-in-out", duration: 2.5, delay: 0.25 },
+      y: {
+        easing: spring({
+          velocity: 2000,
+          stiffness: 350,
+          damping: 110,
+          mass: 15,
+        }),
+        delay: 0.25,
+      },
+    }
+  );
+
+  animate(
+    slingLogo,
+    {
+      y: ["100vh", "0vh"],
+      scaleY: 1,
+      scaleX: 1,
+    },
+    {
+      scaleY: {
+        easing: spring({
+          velocity: 50,
+          stiffness: 400,
+          damping: 50,
+          mass: 8,
+        }),
+      },
+      scaleX: {
+        easing: spring({
+          velocity: 100,
+          stiffness: 300,
+          damping: 50,
+          mass: 8,
+        }),
+      },
+    }
+  ).finished.then(() => {
+    animate(
+      infoBtn,
+      {
+        opacity: 1,
+      },
+      {
+        duration: 1,
+      }
+    );
+    animate(slingLogo, {
+      y: "-150%",
+    });
+  });
+  // animate(
+  //   slingLogo,
+  //   {
+  //     // y: ["100vh", "0vh"],
+  //     scaleY: [1, 1],
+  //   },
+  //   {
+  //     easing: spring({
+  //       velocity: 50,
+  //       stiffness: 300,
+  //       damping: 50,
+  //       mass: 8,
+  //     }),
+  //   }
+  // );
 
   infoBtn.addEventListener("click", () => {
     animate(
