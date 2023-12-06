@@ -79,22 +79,27 @@ const services = [
 <style lang="scss">
   .modal-inner {
     background: white;
-    padding: 1.25rem;
+    padding: 5.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
     h3 {
-      letter-spacing: unset;
+      font-size: 55px;
+      line-height: 120%;
+      padding-bottom: 1.5rem;
+      // letter-spacing: unset;
     }
   }
 
   .details {
-    margin: 3rem 0;
+    margin: 5rem 0;
     h4 {
       margin-bottom: 0.75rem;
-      font-size: 20px;
+      font-size: 32px;
       font-family: Arial, sans-serif;
       letter-spacing: -0.01rem;
     }
     a {
-      font-size: 20px;
+      font-size: 40px;
       font-family: "Arial-narrow";
     }
   }
@@ -109,19 +114,20 @@ const services = [
 
   .details-item {
     border-radius: 4px;
-    padding: 3px 9px;
-    font-size: 15px;
+    padding: 6px 18px;
+    font-size: 24px;
     font-family: "Arial-narrow";
     background: var(--grey-50);
     color: var(--grey-300);
   }
 
   .contact {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
-    border-radius: 8px;
+    border-radius: 22px;
     border: 1px solid #e1e31b;
     background: linear-gradient(180deg, #f5f83d 0%, #e1e31b 100%);
     box-shadow:
@@ -130,9 +136,9 @@ const services = [
     width: 80%;
     margin: 6rem auto;
     margin-bottom: 9rem;
-    padding: 1rem;
+    padding: 3rem;
     font-family: Arial, sans-serif;
-    font-size: 20px;
+    font-size: 32px;
     color: #5a5b0b;
   }
 
@@ -142,6 +148,34 @@ const services = [
       0px 1px 3px 1px #b3b515 inset;
 
     transform: translateY(2px);
+  }
+
+  @media (max-width: 576px) {
+    .modal-inner {
+      padding: 1.25rem;
+      h3 {
+        letter-spacing: unset;
+        font-size: 24px;
+        padding-bottom: 0;
+      }
+    }
+    .details {
+      margin: 3rem 0;
+      h4,
+      a {
+        font-size: 20px;
+      }
+    }
+    .details-item {
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 15px;
+    }
+    .contact {
+      padding: 1rem;
+      font-size: 20px;
+      border-radius: 8px;
+    }
   }
 </style>
 
@@ -165,10 +199,11 @@ const services = [
         // Create copy-success element if not already present
         let success = document.getElementById("copy-success");
         if (!success) {
-          success = document.createElement("div");
+          success = document.createElement("span");
           success.id = "copy-success";
           success.classList.add("email-copied");
-          document.body.appendChild(success);
+          success.innerText = "Email copied!";
+          document.documentElement.appendChild(success);
         }
 
         // Apply animation to the copy-success element

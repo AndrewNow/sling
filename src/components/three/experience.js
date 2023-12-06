@@ -14,7 +14,7 @@ import fragmentShader from "../../components/three/shaders/fragment.glsl";
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
-const canvasContainer = document.querySelector("#canvas-container");
+const canvasContainer = document.querySelector(".webgl-wrapper");
 
 // Scene
 const scene = new THREE.Scene();
@@ -55,7 +55,7 @@ const material = new THREE.ShaderMaterial({
   transparent: false,
   uniforms: {
     // sin frequency
-    uFrequency: { value: new THREE.Vector2(5, 5) },
+    uFrequency: { value: new THREE.Vector2(0, 0) },
     // give the shaders a time value, see tick()
     uTime: { value: 0 },
     // add texture
@@ -111,11 +111,11 @@ camera.position.set(0, 0, 0.6);
 scene.add(camera);
 
 // Controls
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
+// const controls = new OrbitControls(camera, canvas);
+// controls.enableDamping = true;
 // controls.autoRotate = true;
 // controls.autoRotateSpeed = 1;
-controls.enableZoom = false;
+// controls.enableZoom = false;
 
 //
 // ════════════════════════════════════
@@ -138,15 +138,37 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 //
 
 const clock = new THREE.Clock();
+// ...
+
+// Set a delay before starting the animation
+const animationDelay = 2.55; // in seconds
+let animationStarted = false;
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
-  // update material
-  material.uniforms.uTime.value = elapsedTime;
+  // Check if the delay has passed and animation has not started
+  if (elapsedTime > animationDelay && !animationStarted) {
+    // Start the animation
+    animationStarted = true;
+  }
+
+  // Only update the uTime if the animation has started
+  if (animationStarted) {
+    // Update material
+    material.uniforms.uTime.value = elapsedTime - animationDelay;
+
+    // Calculate new uFrequency values based on your logic
+    const progress = Math.min(1, elapsedTime - animationDelay);
+    const newFrequencyX = 0 + progress * (4 - 0);
+    const newFrequencyY = 0 + progress * (3 - 0);
+
+    // Update uFrequency
+    material.uniforms.uFrequency.value.set(newFrequencyX, newFrequencyY);
+  }
 
   // Update controls
-  controls.update();
+  // controls.update();
 
   // Render
   renderer.render(scene, camera);

@@ -7,19 +7,10 @@ import InformationModalInner from "../components/informationModalInner.astro";
   <div class="homepage-parent">
     <div class="homepage-wrapper" id="wrapper">
       <div class="homepage-inner">
-        <div class="sling-bg">
-          <img src="/images/Sling.png" id="sling-logo" />
+        <div class="webgl-wrapper" id="sling-logo">
+          <!-- <img src="/images/Sling.png" id="sling-logo" /> -->
+          <canvas class="webgl" id="webgl-canvas"></canvas>
         </div>
-        <!-- <div class="webgl-wrapper" id="canvas-container">
-            <canvas class="webgl" id="webgl-canvas"></canvas>
-          </div> -->
-        <!-- <h3>
-          Sling was born out of our love of creating meaningful products, and
-          our disdain for the status quo. In our years of experience working
-          freelance and for big agencies, we've seen it all — so we found a
-          better way to run a creative business, for us and for everyone we work
-          with.
-        </h3> -->
         <div class="button" id="info">
           <button id="info">Information</button>
         </div>
@@ -39,20 +30,6 @@ import InformationModalInner from "../components/informationModalInner.astro";
 </Layout>
 
 <style lang="scss">
-  .email-copied {
-    font-size: 96px;
-    white-space: nowrap;
-    position: fixed;
-    z-index: 1000;
-    top: 50%;
-    left: 0%;
-    transform: translate(100%, -50%) rotate(30deg);
-    background: #e1e31b;
-    padding: 3rem;
-    font-family: "Arial-narrow";
-    text-transform: uppercase;
-  }
-
   html {
     background: #ecf96e;
   }
@@ -90,35 +67,15 @@ import InformationModalInner from "../components/informationModalInner.astro";
     position: relative;
     // margin-bottom: 9rem;
 
-    img {
-      position: relative;
-      z-index: 3;
-      width: 100px;
-      margin: 0 auto;
-      filter: invert(1);
-      transform-origin: top;
-    }
+    // img {
+    //   position: relative;
+    //   z-index: 3;
+    //   width: 100px;
+    //   margin: 0 auto;
+    //   filter: invert(1);
+    //   transform-origin: top;
+    // }
   }
-
-  // .sling-bg {
-  //   width: 100%;
-  //   // margin: 2rem auto;
-  //   // position: absolute;
-  //   // top: 50%;
-  //   // left: 50%;
-  //   // transform: translate(-50%, -50%);
-  //   border: 1px solid;
-  //   height: 500px;
-
-  //   img {
-  //     position: relative;
-  //     z-index: 3;
-  //     width: 100px;
-  //     margin: 0 auto;
-  //     filter: invert(1);
-  //     transform-origin: top;
-  //   }
-  // }
 
   .webgl-wrapper {
     // border: 1px solid;
@@ -127,10 +84,11 @@ import InformationModalInner from "../components/informationModalInner.astro";
     position: relative;
     // height: 20vh;
     height: auto;
+    width: 150px;
     // width: 40%;
   }
   .webgl {
-    transform: translateY(2rem);
+    // transform: translateY(2rem);
     display: block;
     height: 100%;
     width: 100%;
@@ -194,8 +152,6 @@ import InformationModalInner from "../components/informationModalInner.astro";
     top: 0%;
     left: 0;
     width: 100vw;
-    // max-width: 700px;
-    // margin: 0 auto;
     height: 100vh;
     overflow-y: scroll;
     transform: translateY(100%);
@@ -208,8 +164,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
     background: white;
     height: auto;
     width: 100vw;
-    border-radius: 15px 15px 0px 0px;
-    // box-shadow: 0px -5px 70px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 70px 70px 0px 0px;
   }
   .close-btn {
     width: 100%;
@@ -218,11 +173,23 @@ import InformationModalInner from "../components/informationModalInner.astro";
       background: none;
       border: unset;
       font-family: "Arial-narrow";
-      font-size: 22px;
+      font-size: 32px;
       width: 100%;
       display: inline-block;
-      margin: 1rem auto;
+      padding: 1rem;
+      padding-top: 3rem;
       cursor: pointer;
+    }
+  }
+  @media (max-width: 576px) {
+    .info-modal-scroll-track {
+      border-radius: 15px 15px 0px 0px;
+    }
+    .close-btn {
+      button {
+        padding: 1rem;
+        font-size: 22px;
+      }
     }
   }
 </style>
@@ -241,8 +208,6 @@ import InformationModalInner from "../components/informationModalInner.astro";
   animate(
     mainBg,
     {
-      // transform: "translateY(0%)",
-      // scaleY: [0, 1]
       y: ["100vh", "0vh"],
       borderRadius: ["40px", "0px"],
     },
@@ -295,25 +260,22 @@ import InformationModalInner from "../components/informationModalInner.astro";
         duration: 1,
       }
     );
-    animate(slingLogo, {
-      y: "-150%",
-    });
+    animate(
+      slingLogo,
+      {
+        y: "-100%",
+        // scaleX: [1, -1, 1],
+      },
+      {
+        easing: spring({
+          velocity: 10,
+          stiffness: 100,
+          damping: 20,
+          mass: 2,
+        }),
+      }
+    );
   });
-  // animate(
-  //   slingLogo,
-  //   {
-  //     // y: ["100vh", "0vh"],
-  //     scaleY: [1, 1],
-  //   },
-  //   {
-  //     easing: spring({
-  //       velocity: 50,
-  //       stiffness: 300,
-  //       damping: 50,
-  //       mass: 8,
-  //     }),
-  //   }
-  // );
 
   infoBtn.addEventListener("click", () => {
     animate(

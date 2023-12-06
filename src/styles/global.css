@@ -79,3 +79,17 @@ small {
 button {
   color: var(--black);
 }
+
+.email-copied {
+  font-size: 96px;
+  white-space: nowrap;
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 0%;
+  transform: translate(100%, -50%) rotate(30deg);
+  background: #e1e31b;
+  padding: 3rem;
+  font-family: "Arial-narrow";
+  text-transform: uppercase;
+}
