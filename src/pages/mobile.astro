@@ -53,7 +53,6 @@ import InformationModalInner from "../components/informationModalInner.astro";
     display: grid;
     place-items: center;
     // border: 2px solid green;
-
     h3 {
       margin: 3rem 0;
     }
@@ -218,10 +217,20 @@ import InformationModalInner from "../components/informationModalInner.astro";
     mainBg,
     {
       y: ["100vh", "0vh"],
+      transform: [`scale(0)`, `scale(1)`],
       borderRadius: ["40px", "0px"],
     },
     {
       borderRadius: { easing: "ease-in-out", duration: 2.5, delay: 0.25 },
+      transform: {
+        easing: spring({
+          velocity: 200,
+          stiffness: 50,
+          damping: 100,
+          mass: 50,
+        }),
+        delay: 0.25,
+      },
       y: {
         easing: spring({
           velocity: 2000,
@@ -279,14 +288,25 @@ import InformationModalInner from "../components/informationModalInner.astro";
       slingLogo,
       {
         y: "-100%",
+        // scale: [1, 0.8],
       },
       {
-        easing: spring({
-          velocity: 10,
-          stiffness: 100,
-          damping: 20,
-          mass: 2,
-        }),
+        y: {
+          easing: spring({
+            velocity: 10,
+            stiffness: 100,
+            damping: 20,
+            mass: 2,
+          }),
+        },
+        scale: {
+          easing: spring({
+            velocity: 10,
+            stiffness: 100,
+            damping: 67,
+            mass: 2,
+          }),
+        },
       }
     );
   });
