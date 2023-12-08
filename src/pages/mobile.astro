@@ -7,9 +7,9 @@ import InformationModalInner from "../components/informationModalInner.astro";
   <div class="homepage-parent">
     <div class="homepage-wrapper" id="wrapper">
       <div class="homepage-inner">
-        <div class="webgl-wrapper" id="sling-logo">
-          <!-- <img src="/images/Sling.png" id="sling-logo" /> -->
-          <canvas class="webgl" id="webgl-canvas"></canvas>
+        <div class="logo-webgl-wrapper" id="sling-logo">
+          <img src="/images/Sling.png" id="sling-logo" />
+          <!-- <canvas class="webgl" id="webgl-canvas"></canvas> -->
         </div>
         <div class="button" id="info">
           <button id="info">Information</button>
@@ -67,17 +67,17 @@ import InformationModalInner from "../components/informationModalInner.astro";
     position: relative;
     // margin-bottom: 9rem;
 
-    // img {
-    //   position: relative;
-    //   z-index: 3;
-    //   width: 100px;
-    //   margin: 0 auto;
-    //   filter: invert(1);
-    //   transform-origin: top;
-    // }
+    img {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      margin: 0 auto;
+      filter: invert(1);
+      transform-origin: top;
+    }
   }
 
-  .webgl-wrapper {
+  .logo-webgl-wrapper {
     // border: 1px solid;
     // margin: 0 auto;
     aspect-ratio: 3/2;
@@ -85,7 +85,10 @@ import InformationModalInner from "../components/informationModalInner.astro";
     // height: 20vh;
     height: auto;
     width: 150px;
+    width: 10vw;
     // width: 40%;
+    display: grid;
+    place-items: center;
   }
   .webgl {
     // transform: translateY(2rem);
@@ -116,24 +119,27 @@ import InformationModalInner from "../components/informationModalInner.astro";
     // padding: 3rem 0;
     #info {
       // opacity: 0; // new
-      padding: 1rem 1.75rem;
+      // padding: 1rem 1.75rem; // old
+      padding: 0.75rem 1rem;
       // display: inline-block; // old
       display: block;
       // width: 80%; // old
       width: auto;
       margin: 0 auto;
       // font-size: 23px; // old
-      font-size: 20px;
+      font-size: 16px;
       font-family: Arial, Helvetica, sans-serif;
       // border-radius: 14px; // old
       border-radius: 8px;
+
       border: 1px solid #e1e1e1;
+
       background: linear-gradient(180deg, #f8f8f8 0%, #fefefe 100%);
       box-shadow:
         0px -1px 1px 1px #b0b0b0 inset,
         0px 0px 1px 0px #fcfcfc inset;
       cursor: pointer;
-      transition: 0.25s all ease;
+      transition: 0.1s all ease-in;
     }
   }
 
@@ -147,9 +153,11 @@ import InformationModalInner from "../components/informationModalInner.astro";
   }
 
   .info-modal {
+    overflow-x: hidden;
+
     position: fixed;
     z-index: 2;
-    top: 0%;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
@@ -159,12 +167,12 @@ import InformationModalInner from "../components/informationModalInner.astro";
   }
   .info-modal-scroll-track {
     position: absolute;
-    top: 2rem;
+    top: 3rem;
     left: 0%;
     background: white;
     height: auto;
     width: 100vw;
-    border-radius: 70px 70px 0px 0px;
+    border-radius: 3.846vw 3.846vw 0px 0px;
   }
   .close-btn {
     width: 100%;
@@ -181,9 +189,10 @@ import InformationModalInner from "../components/informationModalInner.astro";
       cursor: pointer;
     }
   }
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     .info-modal-scroll-track {
-      border-radius: 15px 15px 0px 0px;
+      top: 2rem;
+      border-radius: 3.846vw 3.846vw 0px 0px;
     }
     .close-btn {
       button {
@@ -257,14 +266,19 @@ import InformationModalInner from "../components/informationModalInner.astro";
         opacity: 1,
       },
       {
-        duration: 1,
+        // duration: 1,
+        easing: spring({
+          velocity: 50,
+          stiffness: 10,
+          damping: 2,
+          mass: 10,
+        }),
       }
     );
     animate(
       slingLogo,
       {
         y: "-100%",
-        // scaleX: [1, -1, 1],
       },
       {
         easing: spring({
@@ -282,7 +296,7 @@ import InformationModalInner from "../components/informationModalInner.astro";
       mainBg,
       {
         transform: "translate3d(0, -20px, -100px)",
-        borderRadius: "15px 15px 0px 0px",
+        borderRadius: "3.846vw 3.846vw 0px 0px",
         opacity: 0.95,
         filter: "brightness(.95)",
       },

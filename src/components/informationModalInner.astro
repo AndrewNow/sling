@@ -6,6 +6,7 @@ const pastClients = [
   "AirBnb",
   "Frank & Oak",
   "Hennessy Canada",
+  "O'Neill Canada",
 ];
 const services = [
   "UI / UX Design",
@@ -150,9 +151,10 @@ const services = [
     transform: translateY(2px);
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     .modal-inner {
       padding: 1.25rem;
+      max-width: 500px;
       h3 {
         letter-spacing: unset;
         font-size: 24px;
@@ -210,7 +212,7 @@ const services = [
         animate(
           success,
           {
-            transform: "translate(-300%, -50%) rotate(30deg)",
+            transform: "translate(-300vw, -50%) rotate(30deg)",
           },
           {
             duration: 5,
@@ -219,7 +221,7 @@ const services = [
           animate(
             success,
             {
-              transform: "translate(100%, -50%) rotate(30deg)",
+              transform: "translate(100vw, -50%) rotate(30deg)",
             },
             { duration: 0 }
           );
