@@ -24,9 +24,9 @@ const services = [
 <Layout>
   <div class="content-wrapper">
     <div class="content">
-      <!-- <div class="trail" style="background-image:url('/images/Favicon.png')"></div> -->
+      <div class="trail" style="background-image:url('/images/Favicon.png')"></div>
       <!-- <div class="trail" style="background-image:url('/images/tree.png')"></div> -->
-      <div class="trail" style="background-image:url('/images/Sling.png')"></div>
+      <!-- <div class="trail" style="background-image:url('/images/Sling.png')"></div> -->
       <!-- <div class="trail" style="background-image:url('/images/Sling-dark.png')"></div> -->
     </div>
   </div>
@@ -75,7 +75,7 @@ const services = [
           thoughtful, intuitive and lasting. This means taking on projects we
           believe in, for people we care about.
         </h4>
-        <div class="details">
+        <!-- <div class="details">
           <h4>Past clients include:</h4>
           <div class="details-flex">
             {
@@ -84,7 +84,7 @@ const services = [
               ))
             }
           </div>
-        </div>
+        </div> -->
         <div class="details">
           <h4>Services:</h4>
           <div class="details-flex">
@@ -137,16 +137,22 @@ const services = [
 
 <style lang="scss" is:global>
   .content-wrapper {
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
   }
+
   .content {
     flex: 1;
     display: grid;
     place-items: center;
   }
   .trail {
+    opacity: .3;
     position: relative;
     display: grid;
     place-items: center;
@@ -165,7 +171,7 @@ const services = [
     will-change: transform;
     grid-area: 1 / 1 / 2 / 2;
     mix-blend-mode: exclusion;
-    // filter: invert(1);
+    filter: invert(1);
   }
   @media screen and (min-width: 53em) {
     .content-wrapper {
@@ -377,10 +383,10 @@ const services = [
    * Gets the cursor position
    * @param {Event} ev - mousemove event
    */
-  const getCursorPos = (ev) => {
+  const getCursorPos = (e) => {
     return {
-      x: ev.clientX,
-      y: ev.clientY,
+      x: e.clientX,
+      y: e.clientY,
     };
   };
 
@@ -393,9 +399,9 @@ const services = [
    * Calculates the viewport size
    */
 
-  const wrapper = document.querySelector(".content-wrapper");
   const calcWinsize = () => {
     const wrapper = document.querySelector(".content-wrapper");
+    
     return {
       width: wrapper.clientWidth,
       height: wrapper.clientHeight,
@@ -410,7 +416,7 @@ const services = [
 
   // Track the cursor position
   let cursor = { x: winsize.width / 2, y: winsize.height / 2 };
-  window.addEventListener("mousemove", (ev) => (cursor = getCursorPos(ev)));
+  window.addEventListener("mousemove", (e) => (cursor = getCursorPos(e)));
 
   /**
    * Class representing an element that follows the cursor
@@ -592,7 +598,7 @@ const services = [
             );
 
         this.DOM.trailElems[i].style.transform =
-          `translateX(${this.imgTransforms[i].x}px) translateY(${this.imgTransforms[i].y}px) rotateX(${this.imgTransforms[i].rx}deg) rotateY(${this.imgTransforms[i].ry}deg) rotateZ(${this.imgTransforms[i].rz}deg) scale(${this.imgTransforms[i].scaleX})`;
+          `translateX(${this.imgTransforms[i].x}px) translateY(${this.imgTransforms[i].y}px) rotateX(${this.imgTransforms[i].rx}deg) rotateY(${this.imgTransforms[i].ry}deg) rotateZ(${this.imgTransforms[i].rz}deg)`;
       }
 
       // loop...
@@ -610,7 +616,7 @@ const services = [
       rx: [-0, 0],
       ry: [-10, 10],
       rz: [-0, 0],
-      scaleX: [1, 3],
+      scaleX: [0, 1],
     },
     // opacityChange: true,
     // amt: pos => 0.02*pos + 0.05,
