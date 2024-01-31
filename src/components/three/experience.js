@@ -25,7 +25,8 @@ const scene = new THREE.Scene();
 // ════════════════════════════════════
 //
 const textureLoader = new THREE.TextureLoader();
-const flagTexture = textureLoader.load("/images/Sling-dark.png");
+const flagTexture = textureLoader.load("/images/tree.png");
+// const flagTexture = textureLoader.load("/images/Sling-dark.png");
 
 // •───────•°•❀•°•───────•
 //           mesh
