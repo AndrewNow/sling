@@ -69,7 +69,7 @@ const material = new THREE.ShaderMaterial({
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
-mesh.scale.y = 2 / 3;
+mesh.scale.y = 3 / 3;
 scene.add(mesh);
 
 //
@@ -142,7 +142,8 @@ const clock = new THREE.Clock();
 // ...
 
 // Set a delay before starting the animation
-const animationDelay = 2.55; // in seconds
+// const animationDelay = 2.55; // in seconds
+const animationDelay = 0;
 let animationStarted = false;
 
 const tick = () => {

@@ -22,19 +22,17 @@ const services = [
 ---
 
 <Layout>
-  <div class="content-wrapper">
+  <!-- <div class="content-wrapper">
     <div class="content">
       <div class="trail" style="background-image:url('/images/Favicon.png')"></div>
-      <!-- <div class="trail" style="background-image:url('/images/tree.png')"></div> -->
-      <!-- <div class="trail" style="background-image:url('/images/Sling.png')"></div> -->
-      <!-- <div class="trail" style="background-image:url('/images/Sling-dark.png')"></div> -->
     </div>
-  </div>
+  </div> -->
   <section class="section" id="scroll-area">
     <div class="wrapper">
       <div class="left">
         <div class="sling-header">
           <svg
+            id="sling-logo"
             width="911"
             height="549"
             viewBox="0 0 911 549"
@@ -42,18 +40,23 @@ const services = [
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              id="sling-letter"
               d="M0 286.783L43.5969 286.783C45.922 309.824 51.1536 327.819 59.2917 340.768C67.6236 353.527 79.4432 363.81 94.7505 371.618C110.058 379.425 127.303 383.329 146.485 383.329C174 383.329 195.314 376.759 210.428 363.62C225.735 350.29 233.389 333.056 233.389 311.919C233.389 299.541 230.579 288.782 224.96 279.642C219.534 270.311 211.203 262.694 199.964 256.79C188.92 250.887 164.893 242.604 127.884 231.94C94.9443 222.418 71.4988 212.802 57.5479 203.09C43.5969 193.378 32.7461 181.096 24.9955 166.242C17.245 151.199 13.3697 134.251 13.3697 115.399C13.3697 81.5026 24.5111 53.7955 46.794 32.2773C69.0768 10.7591 99.1102 0 136.894 0C162.858 0 185.529 5.04631 204.905 15.1389C224.475 25.2315 239.589 39.704 250.246 58.5562C261.097 77.4084 266.721 103.592 267.496 129.109L223.216 129.109C220.891 101.878 212.559 81.693 198.22 68.5536C184.076 55.4142 164.118 48.8444 138.347 48.8444C112.189 48.8444 92.2316 54.6524 78.4743 66.2685C64.7171 77.6941 57.8385 92.5473 57.8385 110.828C57.8385 127.776 62.8764 140.916 72.9521 150.247C83.0278 159.578 105.698 169.004 140.963 178.525C175.453 187.856 199.674 195.949 213.625 202.804C234.939 213.468 251.021 227.56 261.872 245.079C272.723 262.408 278.148 283.164 278.148 307.349C278.148 331.342 272.432 353.241 261 373.046C249.568 392.66 233.97 407.608 214.206 417.891C194.636 428.174 170.997 433.316 143.288 433.316C100.079 433.316 65.5891 420.557 39.8185 395.04C14.2416 369.523 0.968819 330.39 0 286.783Z"
               fill="black"></path>
             <path
+              id="sling-letter"
               d="M303.899 425.889V7.141H346.624V425.889H303.899Z"
               fill="black"></path>
             <path
+              id="sling-letter"
               d="M384.001 66.2685V7.141H426.726V66.2685H384.001ZM384.001 425.889V122.54H426.726V425.889H384.001Z"
               fill="black"></path>
             <path
+              id="sling-letter"
               d="M462.94 425.889V122.54H501.596V165.671C510.897 148.914 522.232 136.441 535.602 128.252C549.165 119.874 564.667 115.684 582.105 115.684C595.669 115.684 608.167 118.35 619.599 123.682C631.224 128.824 640.525 135.679 647.501 144.248C654.67 152.627 659.998 163.576 663.486 177.097C666.974 190.617 668.718 211.374 668.718 239.366V425.889H625.702V241.366C625.702 219.086 623.765 202.804 619.889 192.521C616.014 182.238 609.91 174.336 601.578 168.813C593.44 163.1 583.946 160.244 573.095 160.244C552.556 160.244 536.183 167.766 523.976 182.81C511.769 197.853 505.665 223.656 505.665 260.218V425.889H462.94Z"
               fill="black"></path>
             <path
+              id="sling-letter"
               d="M696.503 451.025L738.356 451.026C740.294 467.212 746.107 486.635 755.795 494.443C765.483 502.441 778.95 506.44 796.195 506.44C814.99 506.44 829.91 501.965 840.954 493.015C852.193 484.255 859.846 471.115 863.915 453.596C866.434 442.932 867.694 420.462 867.694 386.185C858.393 399.325 847.93 409.227 836.304 415.892C824.678 422.557 811.793 425.889 797.648 425.889C767.421 425.889 742.329 413.321 722.371 388.185C699.507 359.24 688.075 320.488 688.075 271.929C688.075 239.366 693.113 210.897 703.188 186.523C713.264 162.148 726.44 144.248 742.716 132.823C759.186 121.397 777.594 115.684 797.939 115.684C812.859 115.684 826.422 119.302 838.629 126.538C851.03 133.775 861.978 144.629 871.472 159.101V122.54H911V384.757C911 431.412 907.125 464.641 899.374 484.445C891.624 504.44 878.932 520.15 861.3 531.576C843.667 543.192 822.45 549 797.648 549C764.902 549 739.713 540.336 722.08 523.007C704.448 505.678 695.922 481.684 696.503 451.025ZM732.253 268.787C732.253 308.586 738.938 337.626 752.307 355.907C765.677 374.188 782.05 383.329 801.427 383.329C820.803 383.329 837.273 374.379 850.836 356.479C864.4 338.579 871.182 310.11 871.182 271.072C871.182 232.987 864.206 204.709 850.255 186.237C836.304 167.575 819.35 158.245 799.392 158.245C781.566 158.245 765.871 167.575 752.307 186.237C738.938 204.709 732.253 232.225 732.253 268.787Z"
               fill="black"></path>
           </svg>
@@ -102,7 +105,7 @@ const services = [
             <a href="https://www.instagram.com/sling.online/">@sling.online</a>
           </div>
         </div>
-        <button class="contact" id="copy-button">
+        <!-- <button class="contact" id="copy-button">
           <svg
             width="26"
             height="25"
@@ -129,7 +132,7 @@ const services = [
             </defs>
           </svg>
           <span id="text-to-copy"> hello@sling.online</span>
-        </button>
+        </button> -->
       </div>
     </div>
   </section>
@@ -152,7 +155,7 @@ const services = [
     place-items: center;
   }
   .trail {
-    opacity: .3;
+    opacity: 0.3;
     position: relative;
     display: grid;
     place-items: center;
@@ -237,12 +240,13 @@ const services = [
 
   .right {
     flex: 1;
-    padding-top: 17vh;
+    // padding-top: 17vh;
+    padding-top: 5vh;
   }
 
   .details {
     margin: 3rem 0;
-    max-width: 550px;
+    max-width: 700px;
     h4 {
       margin-bottom: 1rem;
       font-size: 20px;
@@ -344,33 +348,43 @@ const services = [
       border-radius: 8px;
     }
   }
+
+  #sling-logo {
+    transform: translateX(-1000px);
+  }
 </style>
 
 <script>
-  // import { animate, scroll, spring } from "motion";
+  import { animate, stagger, scroll, spring } from "motion";
+  const charParent = document.querySelector("#sling-logo");
+  const char = document.querySelectorAll("#sling-letter");
 
-  // const char = document.querySelectorAll(".char");
-  // // const header = document.querySelector('.sling-header')
-  // const scrollArea = document.querySelector("#scroll-area");
+  animate(
+    charParent,
+    {
+      transform: `translateX(0px)`,
+    },
+    {
+      duration: 1.5,
+      // delay: stagger(0.25),
+    }
+  );
 
-  // char.forEach((ch, i) => {
-  //   const index = i + 1;
+  const bg = document.querySelector(".section");
 
-  //   const transform = `translateY(-${index * 0 + 100}vh)`;
-  //   const scale = `scaleY(${index * 0 + 5.35})`;
+  let clickCount = 0;
 
-  //   scroll(
-  //     animate(char[i], {
-  //       transform: `${transform} ${scale}`,
-  //     }),
+  bg.addEventListener("click", () => {
+    const SKEW_AMOUNT = 5;
 
-  //     {
-  //       target: scrollArea,
-  //       offset: ["start start", "end start"],
-  //     }
-  //   );
-  // });
+    clickCount += SKEW_AMOUNT;
+    clickCount = Math.min(clickCount, 90);
 
+    bg.style.transform = `rotateX(${clickCount}deg) rotateY(${clickCount}deg) rotateZ(${clickCount}deg)`;
+  });
+</script>
+
+<script>
   /**
    * Linear interpolation
    * @param {Number} a - first value to interpolate
@@ -401,7 +415,7 @@ const services = [
 
   const calcWinsize = () => {
     const wrapper = document.querySelector(".content-wrapper");
-    
+
     return {
       width: wrapper.clientWidth,
       height: wrapper.clientHeight,
