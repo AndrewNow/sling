@@ -1,10 +1,4 @@
----
-import Layout from "../layouts/BaseLayout.astro";
----
-
-<Layout>
-  <div class="loader-wrapper"></div>
-</Layout>
+<div class="loader-wrapper" id="loadWrapper"></div>
 
 <style is:global lang="scss">
   body {
@@ -15,12 +9,19 @@ import Layout from "../layouts/BaseLayout.astro";
     --num-rows: 5;
   }
   .loader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
     margin: 0;
     display: grid;
     grid-template-columns: repeat(var(--num-cols), 1fr);
     grid-template-rows: repeat(var(--num-rows), 1fr);
     height: 100vh;
     width: 100vw;
+    background: #ffffff;
+    backdrop-filter: blur(20px);
+    scale: 1;
   }
 
   .sling-cell {
@@ -75,7 +76,6 @@ import Layout from "../layouts/BaseLayout.astro";
     createSlingCells();
 
     const sling = document.querySelectorAll(".sling-cell");
-    console.log(sling);
 
     sling.forEach((el, i) => {
       animate(
@@ -88,12 +88,30 @@ import Layout from "../layouts/BaseLayout.astro";
         },
         {
           delay: Math.cos(1.5 * i) / Math.PI,
-          duration: 3,
+          duration: 4,
           easing: [0.83, 0, 0.17, 1],
           // repeat: Infinity,
           direction: "alternate",
         }
       );
     });
+  });
+
+  const wrapper = document.getElementById("loadWrapper");
+
+  animate(
+    wrapper,
+    {
+      opacity: 0,
+      scale: 0.87,
+      backdropFilter: `blur(0)`,
+    },
+    {
+      duration: 1.75,
+      delay: 3.15,
+      scale: { delay: 1, duration: 5 },
+    }
+  ).finished.then(() => {
+    wrapper.style.display = "none";
   });
 </script>

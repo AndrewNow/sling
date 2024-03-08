@@ -1,50 +1,314 @@
 ---
+import Loader from "../components/Loader.astro";
 import Experience from "../components/experience.astro";
 import Layout from "../layouts/BaseLayout.astro";
+
+const pastClients = [
+  "Vice Media Group",
+  "Condé Nast",
+  "Adobe Lightroom",
+  "AirBnb",
+  "Frank & Oak",
+  "Hennessy Canada",
+  "O'Neill Canada",
+];
+const services = [
+  "UI / UX Design",
+  "Web Development",
+  "Logo Design & Branding",
+  "Brand Strategy",
+  "Technical Consultation",
+  "App development",
+  "E-Commerce",
+];
 ---
 
 <Layout>
-  <div class="top-banner">
-    <p>Site under construction</p>
-  </div>
-  <Experience />
+  <Loader />
+  <section class="section" id="scroll-area">
+    <div class="bg" id="threejsWrapper">
+      <Experience />
+    </div>
+    <div class="wrapper">
+      <div class="left" id="leftSection">
+        <div class="heading">
+          <h3>
+            Sling partners with meaningful startups and impassioned individuals,
+            reliably developing digital solutions and compelling online
+            experiences.
+          </h3>
+          <br />
+          <br />
+          <h4>
+            We believe in focusing on relationships that foster meaningful work,
+            giving projects the careful attention they deserve.
+            <br />
+            <br />In a sea of online content, we strive to create work that is
+            thoughtful, intuitive and lasting. This means taking on projects we
+            believe in, for people we care about.
+          </h4>
+          <div class="details services">
+            <h4>Services</h4>
+            <div class="details-flex">
+              {
+                services.map((service) => (
+                  <span class="details-item">{service}</span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="details">
+            <h4>Contact</h4>
+            <div class="contact-flex">
+              <a href="mailto:hello@sling.online">hello@sling.online</a>
+              <a href="https://www.instagram.com/sling.online/">@sling.online</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right"></div>
+    </div>
+  </section>
 </Layout>
 
-<style>
-  .top-banner {
-    width: 100%;
-    height: 50px;
-    background-color: #ecf96e;
-    display: grid;
-    place-items: center;
+<style lang="scss">
+  .bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    // background: #ffffff28;
+    filter: blur(18px);
+    // opacity: 0.25;
+  }
+  .sling-header {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0;
+    display: grid;
+    place-items: center;
+
+    // outline: 1px solid red;
+    width: 90%;
+    margin: 0 auto;
+
+    svg {
+      display: block;
+      // outline: 1px solid red;
+      width: 90%;
+      margin: 0 auto;
+      margin-right: 5vw;
+    }
   }
-  h1 {
-    letter-spacing: -0.25rem;
-    font-size: 96px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+  .section {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .section {
+    h3,
+    h4 {
+      font-family: "Arial";
+      font-weight: 300;
+    }
+    h3 {
+      margin-top: 1rem;
+      font-size: 42px;
+      letter-spacing: unset;
+    }
+    h4 {
+      max-width: 700px;
+      font-size: 22px;
+      line-height: 130%;
+      letter-spacing: unset;
+      color: #949494;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+  }
+  .left {
+    flex: 1;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .right {
+    flex: 0.75;
+    // padding-top: 17vh;
+    padding-top: 5vh;
+  }
+
+  .details .services {
+    margin: 1rem 0;
+  }
+  .details {
+    margin: 3rem 0;
+    max-width: 700px;
+    h4 {
+      font-family: "Arial-narrow";
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-size: 16px;
+      letter-spacing: 0.01rem;
+      color: unset;
+    }
+    a {
+      font-size: 24px;
+      padding-bottom: 0.25rem;
+      font-family: "Arial-narrow";
+      display: block;
+    }
+    a:last-child {
+      margin-bottom: 0;
+    }
+    a:hover {
+      filter: brightness(1.5);
+    }
+  }
+
+  .details-flex {
+    display: inline-flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+  .contact-flex {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .details-item {
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 16px;
+    letter-spacing: 0.015rem;
+    font-family: "Arial-narrow";
+    background: var(--grey-50);
+    color: var(--grey-200);
+    // backdrop-filter: blur(20px);
+  }
+
+  .contact {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border-radius: 22px;
+    border: 1px solid #e1e31b;
+    background: linear-gradient(180deg, #f5f83d 0%, #e1e31b 100%);
+    box-shadow:
+      0px 0px 1px 1px rgba(255, 255, 255, 0.85) inset,
+      0px -1px 1px 1px #b3b515 inset;
+    width: 100%;
+    margin: 6rem auto;
+    margin-bottom: 9rem;
+    padding: 3rem;
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+    color: #5a5b0b;
+    transition: 0.15s all ease;
+  }
+
+  .contact:hover {
+    box-shadow:
+      0px 1px 5px 1px rgba(255, 255, 255, 0.85) inset,
+      0px 1px 3px 1px #b3b515 inset;
+
+    transform: translateY(2px);
+  }
+
+  @media (max-width: 992px) {
+    .sling-header {
+      position: relative;
+      font-size: 70px;
+      letter-spacing: -0.02rem;
+    }
+
+    .wrapper {
+      display: block;
+    }
+    .details {
+      margin: 3rem 0;
+      h4 {
+        letter-spacing: unset;
+        font-size: 16px;
+      }
+      a {
+        font-size: 20px;
+      }
+    }
+    .details-item {
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 15px;
+    }
+    .contact {
+      padding: 1rem;
+      font-size: 20px;
+      border-radius: 8px;
+    }
+
+    h3,
+    h4 {
+      line-height: 130%;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+    .bg {
+      filter: blur(10px);
+    }
+  }
+
+  // #sling-logo {
+  //   transform: translateX(-1000px);
+  // }
+
+  #leftSection {
+    opacity: 0;
+    transform: translateX(0vw) scaleY(1.05);
+  }
+  #threejsWrapper {
+    opacity: 0;
   }
 </style>
 
 <script>
   import { animate } from "motion";
 
-  const banner = document.querySelector(".top-banner");
-
+  const leftSection = document.getElementById("leftSection");
+  const threejsWrapper = document.getElementById("threejsWrapper");
   animate(
-    banner,
+    leftSection,
+    { opacity: 1, transform: `translate(0, 0) scale(1)` },
+    { delay: 4, duration: 1.5, easing: [0.83, 0, 0.17, 1] }
+  );
+  animate(
+    threejsWrapper,
     {
-      opacity: 1,
+      opacity: 0.25,
     },
     {
-      duration: 1,
-      delay: 0.5,
+      delay: 5,
+      duration: 3,
     }
   );
 </script>
