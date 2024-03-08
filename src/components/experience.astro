@@ -135,8 +135,8 @@
   // Base camera
   const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
 
-// Set the initial value for the camera
-const initialCameraFov = isMobile ? 75 : 45;
+  // Set the initial value for the camera
+  const initialCameraFov = isMobile ? 105 : 35;
   const camera = new THREE.PerspectiveCamera(
     initialCameraFov,
     sizes.width / sizes.height,
