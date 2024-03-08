@@ -243,7 +243,7 @@ const services = [
       display: block;
     }
     .details {
-      margin: 3rem 0;
+      margin: 2rem 0;
       h4 {
         letter-spacing: unset;
         font-size: 16px;
@@ -262,16 +262,23 @@ const services = [
       font-size: 20px;
       border-radius: 8px;
     }
-
-    h3,
-    h4 {
-      line-height: 130%;
+    .left {
+      justify-content: unset;
     }
-    h3 {
-      font-size: 20px;
+    .details.services {
+      padding-top: 3rem;
     }
-    h4 {
-      font-size: 20px;
+    .section {
+      h3,
+      h4 {
+        line-height: 130%;
+      }
+      h3 {
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 18px;
+      }
     }
     .bg {
       filter: blur(10px);
@@ -284,7 +291,9 @@ const services = [
 
   #leftSection {
     opacity: 0;
-    transform: translateX(0vw) scaleY(1.05);
+    transform: translateX(0vw) scaleY(1.025);
+    transform-origin: bottom;
+    filter: blur(8px);
   }
   #threejsWrapper {
     opacity: 0;
@@ -298,8 +307,8 @@ const services = [
   const threejsWrapper = document.getElementById("threejsWrapper");
   animate(
     leftSection,
-    { opacity: 1, transform: `translate(0, 0) scale(1)` },
-    { delay: 4, duration: 1.5, easing: [0.83, 0, 0.17, 1] }
+    { opacity: 1, transform: `translate(0, 0) scale(1)`, filter: `blur(0)` },
+    { delay: 2.6, duration: 2.5, easing: [0.83, 0, 0.17, 1] }
   );
   animate(
     threejsWrapper,
@@ -307,8 +316,8 @@ const services = [
       opacity: 0.25,
     },
     {
-      delay: 5,
-      duration: 3,
+      delay: 3,
+      duration: 4,
     }
   );
 </script>
