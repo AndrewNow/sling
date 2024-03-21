@@ -26,7 +26,7 @@
   --grey-400-opacity: #171717ce;
   --black: #000;
   --white: #fff;
-  --green-300: #bbce41;
+  --green-300: #8f9d35;
 }
 
 h1 {
@@ -87,7 +87,7 @@ button {
   top: 50%;
   left: 0%;
   transform: translate(100vw, -50%) rotate(30deg);
-  background: #e1e31b;
+  background: var(--green-300);
   padding: 3rem;
   font-family: "Arial-narrow";
   text-transform: uppercase;
