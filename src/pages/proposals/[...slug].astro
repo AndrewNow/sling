@@ -1,0 +1,200 @@
+---
+import SanityPortableText from "../../components/SanityPortableText.astro";
+import Layout from "../../layouts/BaseLayout.astro";
+import { getQuotePost } from "../../lib/api.js";
+
+const posts = await getQuotePost();
+const { slug } = Astro.params;
+
+const data = posts.find((data) => data.slug === slug);
+if (!data) return Astro.redirect("/404");
+
+Astro.cookies.delete("hash");
+let isLoggedIn = false;
+let pass = "oneill-";
+
+// password-gate the page
+const errors = { password: "" };
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const password = data.get("password");
+
+    if (pass === password) {
+      Astro.cookies.set("hash", "0ca10db593bdb4998a25f0d1b576d82f0d3427f3");
+    }
+
+    if (
+      typeof password !== "string" ||
+      password.length < 1 ||
+      password !== pass
+    ) {
+      errors.password += "Incorrect password!";
+    }
+
+    const hasErrors = Object.values(errors).some((msg) => msg);
+
+    if (!hasErrors && Astro.cookies.has("hash")) {
+      if (
+        Astro.cookies.get("hash").value ===
+        "0ca10db593bdb4998a25f0d1b576d82f0d3427f3"
+      ) {
+        isLoggedIn = true;
+      } else {
+        isLoggedIn = false;
+      }
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+//
+console.log(errors.password);
+---
+
+<Layout data={false}>
+  {
+    isLoggedIn ? (
+      <article class="quote-wrapper">
+        <header>
+          <div class="sling">
+            <h1>Sling</h1>
+            {data.clientLogo && (
+              <img
+                class="client-logo"
+                src={data.clientLogo}
+                alt="Client logo"
+              />
+            )}
+          </div>
+          <h2 class="quote-header">{data.title}</h2>
+          {data.preparedOn && (
+            <small class="prepared-on">Prepared {data.preparedOn}</small>
+          )}
+        </header>
+        <SanityPortableText portableText={data.body} />
+        <div class="sling footer">
+          <h1>Sling</h1>
+          {data.clientLogo && (
+            <img
+              class="client-logo"
+              src={data.clientLogo}
+              alt="See you soon's star logo"
+            />
+          )}
+        </div>
+      </article>
+    ) : (
+      <div class="wrapper">
+        <div class="login-flex">
+          <div class="sling">
+            <h1>Sling</h1>
+            {data.clientLogo && (
+              <img
+                class="client-logo"
+                src={data.clientLogo}
+                alt="Client logo"
+              />
+            )}
+          </div>
+          <form method="POST">
+            <label class="pw-label">
+              <p>Password:</p>
+              <input
+                class="pw-input"
+                type="password"
+                name="password"
+                required
+              />
+              {errors.password && <p class="pw-error">{errors.password}</p>}
+            </label>
+            <button class="pw-btn">Enter</button>
+          </form>
+        </div>
+      </div>
+    )
+  }
+</Layout>
+
+<style lang="scss">
+  .wrapper {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+  }
+  .pw-error {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    white-space: nowrap;
+    font-family: "arial-narrow";
+    color: var(--green-300);
+  }
+  .pw-label {
+    position: relative;
+    p {
+      opacity: 0.7;
+      font-family: "arial-narrow";
+    }
+  }
+  .pw-input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+  }
+  .pw-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "arial-narrow";
+    padding: 1rem 0.5rem;
+    margin: 0 1rem;
+    // border-radius: 8px;
+    // color: #5a5b0b;
+    // border: 1px solid #e1e31b;
+    // background: linear-gradient(180deg, #ebec5f 0%, #e1e31b 100%);
+    // box-shadow: 0px -3px 3px 1px #cacc18 inset;
+    // backdrop-filter: blur(70px);
+    transition: 0.3s all ease;
+  }
+  .pw-btn:hover {
+    opacity: 0.4;
+  }
+  header {
+    margin-bottom: 10rem;
+  }
+  .client-logo {
+    max-width: 84px;
+    height: auto;
+  }
+  .sling {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+
+    h1 {
+      font-size: 96px;
+      letter-spacing: -0.25rem;
+      margin-right: 1.25rem;
+    }
+  }
+  .quote-wrapper {
+    width: min(90vw, 700px);
+    margin: 5vh auto;
+  }
+  .quote-header {
+    text-transform: uppercase;
+  }
+  .prepared-on {
+    display: block;
+    margin: 1rem 0;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    color: var(--grey-300);
+  }
+  .footer {
+    margin-top: 10rem !important;
+  }
+</style>
