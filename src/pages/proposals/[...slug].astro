@@ -11,7 +11,15 @@ if (!data) return Astro.redirect("/404");
 
 Astro.cookies.delete("hash");
 let isLoggedIn = false;
-let pass = "oneill-sling-";
+
+function extractFirstWord(slugString) {
+  // Split the string by '-'
+  const words = slugString.split("-");
+  // Return the first word
+  return words[0];
+}
+
+let pass = `${extractFirstWord(slug)}-sling-`;
 
 // password-gate the page
 const errors = { password: "" };
