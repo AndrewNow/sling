@@ -1,0 +1,85 @@
+<div class="carousel-container">
+  <div class="carousel-item">
+    <img src="/images/projects/lazyrecords.png" alt="Carousel Image 1" />
+  </div>
+  <div class="carousel-item">
+    <img src="/images/projects/notespace.png" alt="Carousel Image 1" />
+  </div>
+  <div class="carousel-item">
+    <img src="/images/projects/sequence.png" alt="Carousel Image 1" />
+  </div>
+</div>
+
+<style>
+  .carousel-container {
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scroll-snap-type: x mandatory;
+    display: flex;
+    /* gap: .75rem; */
+    /* margin: .75rem; */
+    cursor: grab;
+  }
+
+  .carousel-container::-webkit-scrollbar {
+    display: none; /* WebKit */
+  }
+
+  .carousel-container:active {
+    cursor: grabbing;
+  }
+
+  .carousel-item {
+    flex: 0 0 auto;
+    width: auto;
+    /* width: calc(100% - 24px); */
+    height: 600px;
+    scroll-snap-align: center;
+    overflow: hidden;
+    padding: 1rem;
+    /* padding-top: 1.5rem; */
+  }
+  
+  .carousel-item img {
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    /* user-select: none; */
+    /* pointer-events: none; */
+    object-fit: cover;
+  }
+  .carousel-item:last-child {
+    padding-right: 1rem;
+  }
+</style>
+
+<script>
+  const carousel = document.querySelector(".carousel-container");
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  carousel.addEventListener("mousedown", (e) => {
+    isDown = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    isDown = false;
+  });
+
+  carousel.addEventListener("mouseup", () => {
+    isDown = false;
+  });
+
+  carousel.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 2;
+    carousel.scrollLeft = scrollLeft - walk;
+  });
+</script>
