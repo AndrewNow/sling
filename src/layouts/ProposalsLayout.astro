@@ -1,12 +1,11 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Nav from "../components/Nav.astro";
+import BaseHeadProposals from "../components/BaseHeadProposals.astro";
 const { data } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHeadProposals />
     {data === false && <meta name="robots" content="noindex, nofollow" />}
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,8 +15,7 @@ const { data } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>Sling</title>
   </head>
-  <body class="bg-[#F1F1F1]">
-    <!-- <Nav /> -->
+  <body>
     <slot />
   </body>
 </html>

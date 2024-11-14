@@ -1,323 +1,225 @@
 ---
-import Loader from "../components/Loader.astro";
-import Experience from "../components/experience.astro";
+import Carousel from "../components/Carousel.astro";
+import SlingLogo from "../components/SlingLogo.astro";
 import Layout from "../layouts/BaseLayout.astro";
+import Loader from "../components/Loader.astro";
+import Icon from "../components/icons/index.astro";
+import Services from "../components/sections/Services.astro";
+import Pricing from "../components/sections/Pricing.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import Footer from "../components/sections/Footer.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import FooterHover from "../components/FooterHover.astro";
 
-const pastClients = [
-  "Vice Media Group",
-  "Condé Nast",
-  "Adobe Lightroom",
-  "AirBnb",
-  "Frank & Oak",
-  "Hennessy Canada",
-  "O'Neill Canada",
+const pricing = [
+  {
+    title: "Retainer",
+    priceHeader: "Monthly",
+    price: "$3,000",
+    subtitle: "+ $2,000 for development",
+    description: [
+      {
+        icon: "Pen",
+        text: "Work directly with our founder",
+      },
+      {
+        icon: "Calendar",
+        text: "7 day/week response time",
+      },
+      {
+        icon: "Screen",
+        text: "Bi-weekly check-ins",
+      },
+    ],
+    ctaLink: "/",
+    ctaText: "Book a 15-min call",
+    fill: "bg-gradient-to-b from-[#3AC37E] to-[#8ACF48] shadow-[0px_10px_70px_0px_rgba(93,185,42,0.40)]",
+    shadow: "shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
+    rotate: "rotate-[-1deg]",
+  },
+  {
+    title: "Custom Project",
+    priceHeader: "Starting at",
+    price: "$5,000",
+    description: [
+      {
+        icon: "Pen",
+        text: "Work directly with our founder",
+      },
+      {
+        icon: "Calendar",
+        text: "7 day/week response time",
+      },
+      {
+        icon: "Screen",
+        text: "Bi-weekly check-ins",
+      },
+    ],
+    ctaLink: "/",
+    ctaText: "Book a 15-min call",
+    fill: "bg-[linear-gradient(146deg,_#759ED4_2.76%,_#3D64E6_96.95%)] shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
+    shadow: "shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
+    rotate: "rotate-[1.5deg]",
+  },
 ];
+
 const services = [
-  "UI / UX Design",
-  "Web Development",
-  "Logo Design & Branding",
-  "Brand Strategy",
-  "Technical Consultation",
-  "App development",
-  "E-Commerce",
+  {
+    icon: "WebDev",
+    title: "Web Development",
+  },
+  {
+    icon: "DesignSystems",
+    title: "Design Systems",
+  },
+  {
+    icon: "TeamAugmenting",
+    title: "Team Augmentation",
+  },
+  {
+    icon: "ProductDesign",
+    title: "Product Design",
+  },
+  {
+    icon: "WebDesign",
+    title: "Web Design",
+  },
+  {
+    icon: "Branding",
+    title: "Branding",
+  },
+  {
+    icon: "UXConsulting",
+    title: "UX Consulting",
+  },
+  {
+    icon: "PitchDecks",
+    title: "Pitch Decks",
+  },
+];
+
+const FAQdata = [
+  {
+    question: "Why Sling instead of a freelancer or design agency?",
+    answer:
+      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
+  },
+  {
+    question: "What's your typical workflow?",
+    answer:
+      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
+  },
+  {
+    question: "How big is your team?",
+    answer:
+      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
+  },
+  {
+    question: "What do you use to communicate with clients?",
+    answer:
+      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
+  },
+  {
+    question: "Can I join Sling as a contractor?",
+    answer:
+      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "We couldn’t have asked for a better experience. Andrew (Sling) is distinctly capable at what he does and thoroughly attentive to every detail discussed. He shared his time around the clock with us to realize precisely the website we had envisioned, making reality of what was an abstract idea in our minds. He swiftly responds to any adjustments that come up and has proactively shared new tools relevant to our website. Thank you for your exceptional service!",
+    name: "MA",
+    title: "Assistant Director",
+  },
+  {
+    quote:
+      "The team’s constant follow-up, open dialogue, and clear work plan made collaboration seamless. For every need, Sling proposed multiple solutions, some unconventional. Since launching in September 2022, site visits have significantly increased, and sales have doubled. Initially daunting, the process became enriching thanks to Sling’s talent, creativity, and reliability. We couldn’t be more satisfied with our website and its reception.",
+    name: "Valerie Savard",
+    title: "Publisher In-Chief",
+    logo: "/images/clientLogos/moebius-logo.png",
+  },
+  {
+    quote:
+      "We’re so lucky to have worked with the Sling team, led by Andrew, on a major overhaul of our ecommerce website. Not only was the work executed flawlessly, but they built on our vision and offered perspectives and solutions we never could have arrived at on our own. For the few months we worked together, the team was in constant communication, feeling like an extension of our internal team. We’ve seen a tremendous return on investment from their work and look forward to partnering with Sling again for our design and development needs at O'Neill.",
+    name: "Andrew Marcovich",
+    title: "Vice-President",
+    logo: "/images/clientLogos/oneill-logo.png",
+  },
+  {
+    quote:
+      "Sling brings an artisanal outlook and an uncompromising professionalism to the table. They created a website for our company, fully hitting the mark in terms of aesthetics and functionality. Working seamlessly together with another contractor, Sling gracefully orchestrated the maturation of the end product among multiple parties. We enjoyed our spirited exchanges and are looking forward to doing business again!",
+    name: "Danilo Flores",
+    title: "CEO & Co-Founder",
+    logo: "/images/clientLogos/mimotype-logo.png",
+  },
 ];
 ---
 
-<Layout>
-  <Loader />
-  <section class="section" id="scroll-area">
-    <div class="bg" id="threejsWrapper">
-      <Experience />
-    </div>
-    <div class="wrapper">
-      <div class="left" id="leftSection">
-        <div class="heading">
-          <h3>
-            Sling partners with purpose-driven businesses and impassioned
-            individuals, reliably developing compelling online experiences.
-          </h3>
-          <h4>
-            We prioritize relationships that inspire meaningful work, ensuring
-            each project receives the meticulous attention it deserves.
-            <br />
-            <br />In a sea of online content, we strive to create work that is
-            thoughtful, intuitive and enduring. This commitment extends to our
-            selection of projects, where we prioritize alignment with our values
-            and genuine care for our clients and partners.
-          </h4>
-          <div class="details services">
-            <h4>Services</h4>
-            <div class="details-flex">
-              {
-                services.map((service) => (
-                  <span class="details-item">{service}</span>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="details">
-            <h4>Contact</h4>
-            <div class="contact-flex">
-              <a href="mailto:hello@sling.online">hello@sling.online</a>
-              <a href="https://www.instagram.com/sling.online/">@sling.online</a
-              >
-            </div>
-          </div>
-        </div>
+<Layout data={false}>
+  <!-- <Loader /> -->
+  <div class="relative bg-[#f1f1f1] w-full rounded-2xl overflow-hidden">
+    <section
+      class="relative max-w-[95%] lg:max-w-[800px] mx-auto mt-[20vh] lg:my-[240px] flex flex-col items-center gap-4"
+    >
+      <h1 class="h1 text-balance text-center text-grey-950 max-w-[700px]">
+        World-class product design, without the agency overhead.
+      </h1>
+      <p
+        class="p text-grey-500 text-balance max-w-[95%] lg:max-w-[500px] text-center"
+      >
+        Trusted by startups and industry leaders, Sling specializes in
+        purpose-driven product design & online experiences.
+      </p>
+      <div class="mt-4 mb-16 flex gap-4">
+        <a
+          class="rounded-[14px] flex items-center justify-center gap-2 bg-grey-950 text-white py-3 pr-3 pl-6 text-center small font-medium leading-[150%] border-2 border-white/30"
+          >Book a free discovery call
+          <Icon icon="ChevronRight" />
+        </a>
       </div>
-      <div class="right"></div>
-    </div>
-  </section>
+    </section>
+    <Carousel />
+    <!-- <section class="relative max-w-[800px] py-28 lg:py-40 mx-auto">
+      <Services services={services} />
+    </section> -->
+    <section class="my-40 lg:my-0 relative max-w-[800px] mx-auto">
+      <Pricing pricing={pricing} />
+    </section>
+    <section class="my-40 lg:my-0 relative mx-auto">
+      <Testimonials testimonials={testimonials} />
+    </section>
+    <section class="my-40 lg:my-0 relative max-w-[700px] mx-auto">
+      <FAQ faq={FAQdata} />
+    </section>
+    <Footer />
+    <span class="hidden lg:block">
+      <FooterHover />
+    </span>
+  </div>
 </Layout>
 
-<style lang="scss">
-  .bg {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    // background: #ffffff28;
-    filter: blur(18px);
-    // opacity: 0.25;
-  }
-  .sling-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: grid;
-    place-items: center;
-
-    // outline: 1px solid red;
-    width: 90%;
-    margin: 0 auto;
-
-    svg {
-      display: block;
-      // outline: 1px solid red;
-      width: 90%;
-      margin: 0 auto;
-      margin-right: 5vw;
-    }
-  }
-
-  .section {
-    width: 95%;
-    margin: 0 auto;
-  }
-  .section {
-    h3,
-    h4 {
-      font-family: "Arial";
-      font-weight: 300;
-    }
-    h3 {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      font-size: 42px;
-      letter-spacing: unset;
-    }
-    h4 {
-      max-width: 700px;
-      font-size: 22px;
-      line-height: 130%;
-      letter-spacing: unset;
-      color: #949494;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .wrapper {
-    position: relative;
-    display: flex;
-  }
-  .left {
-    flex: 1;
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .right {
-    flex: 0.75;
-    // padding-top: 17vh;
-    padding-top: 5vh;
-  }
-
-  .details .services {
-    margin: 1rem 0;
-  }
-  .details {
-    margin: 3rem 0;
-    max-width: 700px;
-    h4 {
-      font-family: "Arial-narrow";
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      font-size: 16px;
-      letter-spacing: 0.01rem;
-      color: unset;
-    }
-    a {
-      font-size: 24px;
-      padding-bottom: 0.25rem;
-      font-family: "Arial-narrow";
-      display: block;
-    }
-    a:last-child {
-      margin-bottom: 0;
-    }
-    a:hover {
-      filter: brightness(1.5);
-    }
-  }
-
-  .details-flex {
-    display: inline-flex;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 9px;
-    flex-wrap: wrap;
-  }
-  .contact-flex {
-    display: inline-flex;
-    flex-direction: column;
-  }
-
-  .details-item {
-    border-radius: 4px;
-    padding: 6px 14px;
-    font-size: 16px;
-    letter-spacing: 0.015rem;
-    font-family: "Arial-narrow";
-    background: var(--grey-50);
-    color: var(--grey-200);
-    // backdrop-filter: blur(20px);
-  }
-
-  .contact {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    border-radius: 22px;
-    border: 1px solid #e1e31b;
-    background: linear-gradient(180deg, #f5f83d 0%, #e1e31b 100%);
-    box-shadow:
-      0px 0px 1px 1px rgba(255, 255, 255, 0.85) inset,
-      0px -1px 1px 1px #b3b515 inset;
-    width: 100%;
-    margin: 6rem auto;
-    margin-bottom: 9rem;
-    padding: 3rem;
-    font-family: Arial, sans-serif;
-    font-size: 32px;
-    color: #5a5b0b;
-    transition: 0.15s all ease;
-  }
-
-  .contact:hover {
-    box-shadow:
-      0px 1px 5px 1px rgba(255, 255, 255, 0.85) inset,
-      0px 1px 3px 1px #b3b515 inset;
-
-    transform: translateY(2px);
-  }
-
-  @media (max-width: 992px) {
-    .sling-header {
-      position: relative;
-      font-size: 70px;
-      letter-spacing: -0.02rem;
-    }
-
-    .wrapper {
-      display: block;
-    }
-    .details {
-      margin: 1.5rem 0;
-      h4 {
-        letter-spacing: unset;
-        font-size: 16px;
-      }
-      a {
-        font-size: 20px;
-      }
-    }
-    .details-item {
-      border-radius: 4px;
-      padding: 3px 9px;
-      font-size: 15px;
-    }
-    .contact {
-      padding: 1rem;
-      font-size: 20px;
-      border-radius: 8px;
-    }
-    .left {
-      justify-content: unset;
-    }
-    .details.services {
-      padding-top: 3rem;
-    }
-    .section {
-      h3,
-      h4 {
-        line-height: 130%;
-      }
-      h3 {
-        font-size: 24px;
-      }
-      h4 {
-        font-size: 18px;
-        line-height: 140%;
-      }
-    }
-    .bg {
-      filter: blur(5px);
-    }
-  }
-
-  // #sling-logo {
-  //   transform: translateX(-1000px);
-  // }
-
-  #leftSection {
-    opacity: 0;
-    transform: translateX(0vw) scaleY(1.025);
-    transform-origin: bottom;
-    filter: blur(8px);
-  }
-  #threejsWrapper {
-    opacity: 0;
-  }
-</style>
-
 <script>
-  import { animate } from "motion";
+  import { inView, animate } from "motion";
 
-  const leftSection = document.getElementById("leftSection");
-  const threejsWrapper = document.getElementById("threejsWrapper");
-  animate(
-    leftSection,
-    { opacity: 1, transform: `translate(0, 0) scale(1)`, filter: `blur(0)` },
-    { delay: 2.6, duration: 2.5, easing: [0.83, 0, 0.17, 1] }
-  );
-  animate(
-    threejsWrapper,
-    {
-      opacity: 0.25,
-    },
-    {
-      delay: 3.5,
-      duration: 4,
-    }
-  );
+  const textAreas = document.querySelectorAll(".text-area");
+
+  textAreas.forEach((element) => {
+    inView(
+      element,
+      ({ target, isIntersecting }) => {
+        if (isIntersecting) { 
+          animate(target, { color: "red" }, { duration: 0.25 });
+        }
+        return () => {
+          animate(target, { color: "green" }, { duration: 0.5 });
+        };
+      },
+      {
+        amount: 0.9,
+        margin: "50% 0px -50% 0px",
+      }
+    );
+  });
 </script>

@@ -19,6 +19,8 @@
     "@types/react-dom": "^18.2.12",
     "astro": "^3.1.2",
     "astro-portabletext": "^0.9.4",
+    "embla-carousel": "^8.3.1",
+    "embla-carousel-auto-scroll": "^8.3.1",
     "lil-gui": "^0.18.2",
     "motion": "^10.16.4",
     "react": "^18.2.0",

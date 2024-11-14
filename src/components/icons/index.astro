@@ -1,0 +1,31 @@
+---
+import Pen from "./Pen.astro";
+import Calendar from "./Calendar.astro";
+import Screen from "./Screen.astro";
+import WebDev from "./WebDev.astro";
+import DesignSystems from "./DesignSystems.astro";
+import TeamAugmenting from "./TeamAugmenting.astro";
+import ProductDesign from "./ProductDesign.astro";
+import WebDesign from "./WebDesign.astro";
+import Branding from "./Branding.astro";
+import UXConsulting from "./UXConsulting.astro";
+import PitchDecks from "./PitchDecks.astro";
+import ChevronRight from "./ChevronRight.astro";
+import Star from "./Star.astro";
+
+const { icon } = Astro.props;
+---
+
+{icon == "Pen" && <Pen />}
+{icon == "Calendar" && <Calendar />}
+{icon == "Screen" && <Screen />}
+{icon == "WebDev" && <WebDev />}
+{icon == "DesignSystems" && <DesignSystems />}
+{icon == "TeamAugmenting" && <TeamAugmenting />}
+{icon == "ProductDesign" && <ProductDesign />}
+{icon == "WebDesign" && <WebDesign />}
+{icon == "Branding" && <Branding />}
+{icon == "UXConsulting" && <UXConsulting />}
+{icon == "PitchDecks" && <PitchDecks />}
+{icon == "Star" && <Star />}
+{icon == "ChevronRight" && <ChevronRight />}

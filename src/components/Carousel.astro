@@ -1,85 +1,66 @@
-<div class="carousel-container">
-  <div class="carousel-item">
-    <img src="/images/projects/lazyrecords.png" alt="Carousel Image 1" />
-  </div>
-  <div class="carousel-item">
-    <img src="/images/projects/notespace.png" alt="Carousel Image 1" />
-  </div>
-  <div class="carousel-item">
-    <img src="/images/projects/sequence.png" alt="Carousel Image 1" />
+---
+
+---
+
+<div class=" w-full" id="embla">
+  <div class="embla__container flex">
+    {
+      [
+        {
+          src: "/images/projects/lazyrecords.png",
+          alt: "Lazy Records Project"
+        },
+        {
+          src: "/images/projects/notespace.png", 
+          alt: "Notespace Project"
+        },
+        {
+          src: "/images/projects/sequence.png",
+          alt: "Sequence Project"
+        }
+      ].map((slide) => (
+        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[300px] lg:h-[850px]">
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            class="h-full w-auto object-contain rounded-md mx-auto shadow-[0px_0px_100px_-5px_rgba(0,0,0,0.10)]"
+          />
+        </div>
+      ))
+    }
   </div>
 </div>
 
 <style>
-  .carousel-container {
-    width: 100%;
-    overflow-x: scroll;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scroll-snap-type: x mandatory;
-    display: flex;
-    /* gap: .75rem; */
-    /* margin: .75rem; */
-    cursor: grab;
+  .embla__container {
+    backface-visibility: hidden;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .carousel-container::-webkit-scrollbar {
-    display: none; /* WebKit */
-  }
-
-  .carousel-container:active {
-    cursor: grabbing;
-  }
-
-  .carousel-item {
-    flex: 0 0 auto;
-    width: auto;
-    /* width: calc(100% - 24px); */
-    height: 600px;
-    scroll-snap-align: center;
-    overflow: hidden;
+  .embla__slide {
+    position: relative;
     padding: 1rem;
-    /* padding-top: 1.5rem; */
-  }
-  
-  .carousel-item img {
-    border-radius: 6px;
-    width: 100%;
-    height: 100%;
-    /* user-select: none; */
-    /* pointer-events: none; */
-    object-fit: cover;
-  }
-  .carousel-item:last-child {
-    padding-right: 1rem;
   }
 </style>
 
 <script>
-  const carousel = document.querySelector(".carousel-container");
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  import EmblaCarousel from "embla-carousel";
+  import AutoScroll from "embla-carousel-auto-scroll";
 
-  carousel.addEventListener("mousedown", (e) => {
-    isDown = true;
-    startX = e.pageX - carousel.offsetLeft;
-    scrollLeft = carousel.scrollLeft;
-  });
+  const emblaNode = document.querySelector("#embla");
+  const options = { 
+    loop: true,
+    align: "start",
+    skipSnaps: false
+  };
 
-  carousel.addEventListener("mouseleave", () => {
-    isDown = false;
-  });
-
-  carousel.addEventListener("mouseup", () => {
-    isDown = false;
-  });
-
-  carousel.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - carousel.offsetLeft;
-    const walk = (x - startX) * 2;
-    carousel.scrollLeft = scrollLeft - walk;
-  });
+  const embla = EmblaCarousel(emblaNode, options, [
+    AutoScroll({
+      playOnInit: true,
+      stopOnInteraction: false,
+      speed: 0.5
+    })
+  ]);
 </script>

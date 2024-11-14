@@ -1,0 +1,103 @@
+@import url("./reset.css");
+
+@font-face {
+  font-family: "arial-narrow";
+  src: url("../fonts/arial-narrow.woff2") format("WOFF2");
+}
+@font-face {
+  font-family: "akzidenz-regular";
+  src: url("../fonts/akzidenz-regular.woff2") format("WOFF2");
+}
+@font-face {
+  font-family: "akzidenz-medium";
+  src: url("../fonts/akzidenz-medium.woff2") format("WOFF2");
+}
+@font-face {
+  font-family: "items-thin";
+  src: url("../fonts/items-thin.woff2") format("WOFF2");
+}
+
+:root {
+  --grey-50: #f2f2f2;
+  --grey-100: #dbdbdb;
+  --grey-200: #7c7c7c;
+  --grey-300: #3e3e3e;
+  --grey-400: #171717;
+  --grey-400-opacity: #171717ce;
+  --black: #000;
+  --white: #fff;
+  --green-300: #8f9d35;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a {
+  font-family: Arial;
+}
+
+h1 {
+  font-family: "arial-narrow";
+  /* font-stretch: condensed; */
+  font-weight: 100;
+  font-size: 96px;
+}
+h2 {
+  font-family: "arial-narrow";
+  font-weight: 100;
+  font-size: 32px;
+}
+h3 {
+  font-family: "arial-narrow";
+  letter-spacing: 0.03rem;
+  font-size: 24px;
+  font-weight: 300;
+}
+h4 {
+  font-family: "akzidenz-regular";
+  letter-spacing: 0.03rem;
+  font-size: 18px;
+  font-weight: 100;
+}
+h5 {
+  font-family: "akzidenz-regular";
+  letter-spacing: 0.05rem;
+  font-size: 14px;
+  font-weight: 100;
+}
+h6 {
+  font-family: "arial-narrow";
+}
+p,
+ol,
+ul,
+li {
+  font-family: "akzidenz-regular";
+  letter-spacing: 0.01rem;
+  line-height: 150%;
+  font-size: 14px;
+}
+small {
+  font-family: "akzidenz-regular";
+  font-size: 14px;
+}
+
+button {
+  color: var(--black);
+}
+
+.email-copied {
+  font-size: 10vw;
+  white-space: nowrap;
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 0%;
+  transform: translate(100vw, -50%) rotate(30deg);
+  background: var(--green-300);
+  padding: 3rem;
+  font-family: "Arial-narrow";
+  text-transform: uppercase;
+}

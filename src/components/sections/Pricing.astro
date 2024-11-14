@@ -1,0 +1,26 @@
+---
+import PricingCard from "../PricingCard.astro";
+
+const { pricing } = Astro.props;
+---
+
+<div
+  class="my-0 lg:my-[15vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto"
+>
+  <h2 class="text-area">
+    We excel in product design, development and strategy.
+  </h2>
+  <h2 class="text-area">
+    Thanks to our trusted network of collaborators & partners, we can offer a
+    wide range of services to deliver an end-to-end experience, no matter your
+    needs.
+  </h2>
+  <h2 class="text-area">Projects take 3-8 weeks on average.</h2>
+  <div class="mt-0 lg:mt-24 flex flex-col w-full lg:w-auto lg:flex-row gap-24">
+    {
+      pricing.map((entry) => {
+        return <PricingCard {...entry} />;
+      })
+    }
+  </div>
+</div>

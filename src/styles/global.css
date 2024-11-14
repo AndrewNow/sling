@@ -1,24 +1,20 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url("./reset.css");
+
+
 
 @font-face {
   font-family: "arial-narrow";
   src: url("../fonts/arial-narrow.woff2") format("WOFF2");
 }
-@font-face {
-  font-family: "akzidenz-regular";
-  src: url("../fonts/akzidenz-regular.woff2") format("WOFF2");
-}
-@font-face {
-  font-family: "akzidenz-medium";
-  src: url("../fonts/akzidenz-medium.woff2") format("WOFF2");
-}
-@font-face {
-  font-family: "items-thin";
-  src: url("../fonts/items-thin.woff2") format("WOFF2");
-}
+
+
 
 :root {
-  --grey-50: #f2f2f2;
+  --grey-50: #F6F6F6;
   --grey-100: #dbdbdb;
   --grey-200: #7c7c7c;
   --grey-300: #3e3e3e;
@@ -28,76 +24,40 @@
   --white: #fff;
   --green-300: #8f9d35;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-p,
-a {
-  font-family: Arial;
+
+.h1 {
+  @apply font-sf-medium font-medium text-[32px] md:text-[48px] leading-[125%] tracking-[-.01em];
 }
 
-h1 {
-  font-family: "arial-narrow";
-  /* font-stretch: condensed; */
-  font-weight: 100;
-  font-size: 96px;
-}
-h2 {
-  font-family: "arial-narrow";
-  font-weight: 100;
-  font-size: 32px;
-}
-h3 {
-  font-family: "arial-narrow";
-  letter-spacing: 0.03rem;
-  font-size: 24px;
-  font-weight: 300;
-}
-h4 {
-  font-family: "akzidenz-regular";
-  letter-spacing: 0.03rem;
-  font-size: 18px;
-  font-weight: 100;
-}
-h5 {
-  font-family: "akzidenz-regular";
-  letter-spacing: 0.05rem;
-  font-size: 14px;
-  font-weight: 100;
-}
-h6 {
-  font-family: "arial-narrow";
-}
-p,
-ol,
-ul,
-li {
-  font-family: "akzidenz-regular";
-  letter-spacing: 0.01rem;
-  line-height: 150%;
-  font-size: 14px;
-}
-small {
-  font-family: "akzidenz-regular";
-  font-size: 14px;
+.h2 {
+  @apply font-sf-medium text-[28px] md:text-[36px] leading-[35px] md:leading-[45px] tracking-[-0.01em];
 }
 
-button {
-  color: var(--black);
+.h3 {
+  @apply font-sf-medium font-medium text-[24px] md:text-[30px] leading-[30px] md:leading-[37.5px] tracking-[0];
 }
 
-.email-copied {
-  font-size: 10vw;
-  white-space: nowrap;
-  position: fixed;
-  z-index: 1000;
-  top: 50%;
-  left: 0%;
-  transform: translate(100vw, -50%) rotate(30deg);
-  background: var(--green-300);
-  padding: 3rem;
-  font-family: "Arial-narrow";
-  text-transform: uppercase;
+.h4 {
+  @apply font-sf-medium text-[18px] md:text-[20px] leading-[24px] md:leading-[28px] tracking-[0];
+}
+
+.h5 {
+  @apply font-arial-narrow text-[32px] md:text-[48px] leading-[40px] md:leading-[60px] tracking-[0];
+}
+
+.h6 {
+  @apply font-sf-medium text-[20px] leading-[22.4px] tracking-[0];
+}
+
+.p {
+  @apply font-sf-regular font-light text-[14px] md:text-[18px] leading-[160%] tracking-[-0.005em];
+}
+
+.small {
+  @apply font-sf-medium font-light text-[14px] md:text-[16px] leading-[20px] md:leading-[150%] tracking-[-0.005em];
+}
+
+
+.text-area {
+  @apply h2 text-grey-200 text-pretty mx-auto w-[90%] lg:w-full;
 }

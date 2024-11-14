@@ -1,0 +1,99 @@
+<div
+  id="footer-hover"
+  class="absolute bottom-0 left-0 z-10 w-full transition-transform duration-300 ease-out"
+>
+  <div
+    id="hover-wrapper"
+    class="relative w-fit mx-auto transition-transform duration-300 ease-out"
+  >
+    <svg
+      width="782"
+      height="99"
+      viewBox="0 0 782 99"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="transition-transform duration-300 ease-out origin-bottom"
+    >
+      <path
+        id="hover-path"
+        d="M182.11 0.347656C144.333 0.347794 128.837 1.50564 105.845 52.3495C85.1745 98.0576 84.4618 99.3477 0 99.3477L782 99.3475C697.538 99.3475 696.825 98.0574 676.155 52.3495C653.163 1.50564 637.667 0.347794 599.89 0.347656H182.11Z"
+        fill="#D9D9D9"></path>
+      <path
+        id="hover-path-gradient"
+        d="M182.11 0.347656C144.333 0.347794 128.837 1.50564 105.845 52.3495C85.1745 98.0576 84.4618 99.3477 0 99.3477L782 99.3475C697.538 99.3475 696.825 98.0574 676.155 52.3495C653.163 1.50564 637.667 0.347794 599.89 0.347656H182.11Z"
+        fill="url(#paint0_linear_3498_6897)"></path>
+      <defs>
+        <linearGradient
+          id="paint0_linear_3498_6897"
+          x1="0"
+          y1="49.8477"
+          x2="782"
+          y2="49.8477"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#6980FA"></stop>
+          <stop offset="1" stop-color="#8195FF"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div
+      id="footer-text"
+      class="absolute inset-0 flex items-center justify-center !font-arial-narrow text-white opacity-0 translate-y-[20px] transition-all duration-300 h1"
+    >
+      <a href="mailto:hello@sling.online"> hello@sling.online </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const footerHover = document.getElementById("footer-hover");
+  const hoverWrapper = document.getElementById("hover-wrapper");
+  const svg = footerHover?.querySelector("svg");
+  const text = hoverWrapper?.querySelector("#footer-text");
+
+  document.addEventListener("mousemove", (e) => {
+    if (!svg || !footerHover || !text || !hoverWrapper) return;
+
+    const viewportHeight = window.innerHeight;
+    const untuckTrigger = viewportHeight * 0.5;
+    const scaleTrigger = viewportHeight * 0.9;
+    const textTrigger = viewportHeight * 0.7;
+
+    // Calculate Y tucking (0 to 80px)
+    const yMovement = e.clientY > untuckTrigger ? 0 : 80;
+
+    // Calculate scale factor (only for SVG)
+    let scaleY;
+    if (e.clientY > scaleTrigger) {
+      scaleY = 1;
+    } else if (e.clientY <= untuckTrigger) {
+      scaleY = 0.3;
+    } else {
+      const range = scaleTrigger - untuckTrigger;
+      const position = e.clientY - untuckTrigger;
+      const progress = position / range;
+      scaleY = 0.3 + 0.7 * progress;
+    }
+
+    // Handle X movement
+    const viewportWidth = window.innerWidth;
+    const maxMoveX = (viewportWidth - 782) / 2;
+    const cursorPercent = e.clientX / viewportWidth;
+    const xMovement = maxMoveX * (cursorPercent * 2 - 1);
+
+    // Handle text visibility and position
+    if (e.clientY > textTrigger) {
+      text.style.opacity = "1";
+      text.style.transform = "translateY(0)";
+    } else {
+      text.style.opacity = "0";
+      text.style.transform = "translateY(20px)";
+    }
+
+    // Apply transforms
+    svg.style.transform = `scaleY(${scaleY})`;
+    
+    hoverWrapper.style.transform = `translateX(${xMovement}px)`;
+    footerHover.style.transform = `translateY(${yMovement}px)`;
+  });
+</script>
