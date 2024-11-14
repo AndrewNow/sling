@@ -11,12 +11,13 @@ const { pricing } = Astro.props;
     We excel in product design, front-end development and brand strategy.
   </h2>
   <h2 class="text-area">
-    Thanks to our trusted network of collaborators & partners, we offer a
-    wide range of services to deliver an end-to-end experience, no matter your
-    needs.
+    Thanks to our trusted network of collaborators & partners, we offer a wide
+    range of services to deliver an end-to-end experience, no matter your needs.
   </h2>
   <h2 class="text-area">Full-scope projects take 4-10 weeks on average.</h2>
-  <div class="mt-[15vh] lg:mt-24 flex flex-col w-full lg:w-auto lg:flex-row gap-24">
+  <div
+    class="mt-[15vh] lg:mt-24 flex flex-col w-full lg:w-auto lg:flex-row gap-24"
+  >
     {
       pricing.map((entry) => {
         return <PricingCard {...entry} />;

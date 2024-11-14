@@ -4,7 +4,7 @@ import TestimonialCard from "./TestimonialCard.astro";
 ---
 
 <div
-  class="my-12 lg:mt-[40vh] lg:mb-[25vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto"
+  class="my-12 lg:my-[20vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto"
 >
   <h2 class="text-area">
     In a sea of online content, we strive to create work that is thoughtful,
@@ -19,12 +19,20 @@ import TestimonialCard from "./TestimonialCard.astro";
   </h2>
 </div>
 
-<div class="relative h-[80vh] overflow-hidden w-[90%] lg:w-full mx-auto">
+<div
+  class="relative h-[80vh] lg:h-auto overflow-hidden w-[90%] lg:w-full mx-auto lg:-rotate-[1.5deg]"
+>
   <div class="embla mt-16" id="testimonials-carousel">
     <div class="embla__container">
       {testimonials.map((entry) => <TestimonialCard entry={entry} />)}
     </div>
   </div>
+  <div class="embla mt-8 hidden lg:block" id="testimonials-carousel-reverse">
+    <div class="embla__container">
+      {testimonials.map((entry) => <TestimonialCard entry={entry} />)}
+    </div>
+  </div>
+
   <div
     class="z-10 w-full h-[10vh] block lg:hidden bg-gradient-to-t from-transparent to-[#F1F1F1] absolute top-16 left-0 right-0"
   >
@@ -47,17 +55,29 @@ import TestimonialCard from "./TestimonialCard.astro";
     flex-direction: column;
     height: 80vh;
   }
+
+  @media (min-width: 1024px) {
+    .embla__container {
+      flex-direction: row;
+      height: auto;
+    }
+  }
 </style>
 
 <script>
   import EmblaCarousel from "embla-carousel";
   import AutoScroll from "embla-carousel-auto-scroll";
 
+  const isMobile = window.innerWidth < 1024;
+
   const options = {
     loop: true,
     containScroll: false,
-    axis: "y",
+    axis: isMobile ? "y" : "x",
     startIndex: 0,
+    dragFree: true,
+    skipSnaps: true,
+    inViewThreshold: 0,
   };
 
   const autoScrollOptions = {
@@ -66,14 +86,19 @@ import TestimonialCard from "./TestimonialCard.astro";
     stopOnMouseEnter: false,
   };
 
-  const carousel = document.querySelector("#testimonials-carousel");
+  const reverseAutoScrollOptions = {
+    speed: -0.75,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false,
+  };
 
+  // Initialize forward carousel
+  const carousel = document.querySelector("#testimonials-carousel");
   if (carousel) {
     const emblaInstance = EmblaCarousel(carousel, options, [
       AutoScroll(autoScrollOptions),
     ]);
 
-    // Handle the loop manually with a smoother transition
     emblaInstance.on("select", () => {
       const lastSlide = emblaInstance.slideNodes().length - 1;
       if (emblaInstance.selectedScrollSnap() === lastSlide) {
@@ -82,5 +107,26 @@ import TestimonialCard from "./TestimonialCard.astro";
         }, 2000);
       }
     });
+  }
+
+  // Initialize reverse carousel only on desktop
+  if (!isMobile) {
+    const reverseCarousel = document.querySelector(
+      "#testimonials-carousel-reverse"
+    );
+    if (reverseCarousel) {
+      const reverseEmblaInstance = EmblaCarousel(reverseCarousel, options, [
+        AutoScroll(reverseAutoScrollOptions),
+      ]);
+
+      reverseEmblaInstance.on("select", () => {
+        const lastSlide = reverseEmblaInstance.slideNodes().length - 1;
+        if (reverseEmblaInstance.selectedScrollSnap() === lastSlide) {
+          setTimeout(() => {
+            reverseEmblaInstance.scrollTo(0, true);
+          }, 2000);
+        }
+      });
+    }
   }
 </script>

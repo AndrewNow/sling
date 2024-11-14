@@ -12,11 +12,13 @@ const {
   rotate,
   ctaLink,
   ctaText,
+  index,
 } = Astro.props;
 ---
 
 <div
-  class={`rounded-[30px] w-[90%] mx-auto lg:min-w-[395px] border-[3px] border-white/60 p-8 pb-12 lg:p-10 lg:pb-14 flex flex-col gap-6 lg:gap-10 ${fill} ${shadow} ${rotate}`}
+  class={`rounded-[30px] w-[90%] mx-auto lg:min-w-[395px] border-[3px] border-white/60 p-8 pb-12 lg:p-10 lg:pb-14 flex flex-col gap-6 lg:gap-10 ${fill} ${shadow} opacity-0`}
+  id="pricing-card"
 >
   <h3 class="h2 weight-500 text-white/80">{title}</h3>
   <div class="flex flex-col justify-between gap-12 h-full">
@@ -46,9 +48,48 @@ const {
     <div>
       <a
         class="px-4 py-2 w-full h-full rounded-lg bg-white/20 inline text-center"
-        href={ctaLink}
+        href="https://cal.com/sling/meeting"
+        target="_blank"
+        rel="noopener noreferrer"
         ><span class="text-white text-center w-full small">{ctaText}</span></a
       >
     </div>
   </div>
 </div>
+
+<script>
+  import { inView, animate, spring } from "motion";
+
+  const pricingCards = document.querySelectorAll(`#pricing-card`);
+
+  pricingCards.forEach((pricingCard, i) => {
+    inView(
+      pricingCard,
+      ({ target }) => {
+        animate(
+          target,
+          {
+            opacity: [null, 1],
+            y: [100, 0],
+            rotate: [i === 0 ? 10 : -20, i == 0 ? -1.5 : 1],
+            filter: ["blur(3px)", "blur(0px)"],
+          },
+          {
+            delay: i * 0.015,
+            duration: 0.8,
+            easing: spring({
+              stiffness: 150,
+              damping: 12,
+              mass: 1.2
+            }),
+            opacity: { duration: 1.2 },
+          }
+        );
+      },
+      {
+        amount: 0.5,
+        margin: "-30% 0% -30% 0%",
+      }
+    );
+  });
+</script>

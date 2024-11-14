@@ -34,7 +34,7 @@ const slides = [
             quality="100"
             class="h-full w-auto object-contain rounded-md mx-auto shadow-[0px_0px_100px_-5px_rgba(0,0,0,0.10)]"
           />
-          <small class="text-grey-300 text-center">{slide.title}</small>
+          <div class="ml-2 small text-grey-300 translate-y-3">{slide.title}</div>
         </div>
       ))
     }
@@ -63,7 +63,9 @@ const slides = [
   const options = {
     loop: true,
     align: "start",
-    skipSnaps: false,
+    dragFree: true,
+    skipSnaps: true,
+    inViewThreshold: 0,
   };
 
   const embla = EmblaCarousel(emblaNode, options, [
