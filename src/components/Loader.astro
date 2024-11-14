@@ -12,6 +12,11 @@
   :root {
     --num-cols: 5;
     --num-rows: 5;
+
+    @media (max-width: 768px) {
+      --num-cols: 3;
+      --num-rows: 4;
+    }
   }
   .loader-parent {
     width: 99vw;
@@ -43,19 +48,25 @@
   }
 
   .sling-cell {
-    font-family: "arial-narrow";
     display: flex;
     align-items: center;
     justify-content: center;
-    /* aspect-ratio: 911/560; */
     width: calc(100vw / var(--num-cols));
     height: calc(100vh / var(--num-rows));
-    font-size: calc(7vw * var(--num-rows) / var(--num-cols));
     opacity: 0;
     clip-path: inset(0% 0% 0% 0%);
     filter: blur(7px);
     transform: translateY(0px) scale(1, 1) skew(0deg) rotate(0deg);
-    // border: 1px solid #ccc;
+
+    svg {
+      width: 100%;
+      height: auto;
+      max-width: 150px;
+
+      @media (max-width: 768px) {
+        max-width: 100px;
+      }
+    }
   }
 
   /* Optionally, add some styling to make it visually appealing */
@@ -71,40 +82,63 @@
 <script>
   import { animate } from "motion";
 
+  // Toggle loader behavior
+  const SHOW_EVERY_VISIT = false; // Set to false to show only once per session
+
   document.addEventListener("DOMContentLoaded", async function () {
-    // Check if loader has already run this session
-    if (sessionStorage.getItem('loaderShown')) {
+    // Check if loader should be shown
+    if (!SHOW_EVERY_VISIT && sessionStorage.getItem("loaderShown")) {
       const parent = document.querySelector(".loader-parent");
       parent.style.display = "none";
       return;
     }
 
-    // Set flag that loader has run
-    sessionStorage.setItem('loaderShown', 'true');
-    
+    // Set flag that loader has run (only if we're tracking sessions)
+    if (!SHOW_EVERY_VISIT) {
+      sessionStorage.setItem("loaderShown", "true");
+    }
+
     // Lock scroll when loader starts
-    document.body.classList.add('loading');
-    
+    document.body.classList.add("loading");
+
     // Unlock scroll after 3.5 seconds
     setTimeout(() => {
-      document.body.classList.remove('loading');
+      document.body.classList.remove("loading");
     }, 3500);
-    
+
     const grid = document.querySelector(".loader-wrapper");
 
-    const NUM_COLS = 10;
-    const NUM_ROWS = 10;
+    const NUM_COLS = window.innerWidth <= 768 ? 5 : 10;
+    const NUM_ROWS = window.innerWidth <= 768 ? 8 : 10;
     const NUM_ROWS_COLS = NUM_ROWS * NUM_COLS;
 
     // Function to create sling cells with a delay
     const createSlingCells = () => {
       for (let i = 0; i < NUM_ROWS_COLS; i++) {
-        const cell = document.createElement("p");
+        const cell = document.createElement("div");
         cell.classList.add("sling-cell");
-        cell.textContent = "Sling";
+        cell.innerHTML = `<svg
+  viewBox="0 0 233 141"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M0 73.6545L11.1505 73.6545C11.7452 79.5723 13.0832 84.1941 15.1646 87.5198C17.2956 90.7966 20.3186 93.4376 24.2337 95.4428C28.1487 97.448 32.5593 98.4506 37.4655 98.4506C44.5027 98.4506 49.9541 96.7633 53.8195 93.3887C57.7346 89.9651 59.6921 85.539 59.6921 80.1103C59.6921 76.9313 58.9735 74.1681 57.5364 71.8205C56.1488 69.424 54.0178 67.4677 51.1434 65.9516C48.3187 64.4355 42.1735 62.308 32.708 59.5692C24.2832 57.1238 18.2868 54.654 14.7186 52.1597C11.1505 49.6655 8.37523 46.5109 6.39293 42.6961C4.41063 38.8325 3.41947 34.4797 3.41947 29.6379C3.41947 20.9324 6.26904 13.8163 11.9682 8.2898C17.6673 2.76327 25.3487 0 35.0124 0C41.6532 0 47.4514 1.29605 52.4072 3.88814C57.4125 6.48023 61.278 10.1972 64.0036 15.039C66.7789 19.8809 68.2173 26.6056 68.4155 33.1592L57.0904 33.1592C56.4957 26.1655 54.3647 20.9813 50.6974 17.6067C47.0797 14.232 41.9753 12.5447 35.3841 12.5447C28.6938 12.5447 23.5894 14.0364 20.0708 17.0198C16.5522 19.9542 14.7929 23.769 14.7929 28.4641C14.7929 32.8169 16.0814 36.1915 18.6584 38.5879C21.2354 40.9844 27.0337 43.4053 36.0532 45.8507C44.8744 48.2471 51.0691 50.3257 54.6372 52.0864C60.0886 54.8252 64.2019 58.4443 66.9771 62.9438C69.7523 67.3944 71.1399 72.7253 71.1399 78.9365C71.1399 85.0989 69.678 90.7232 66.7541 95.8096C63.8302 100.847 59.8408 104.686 54.7859 107.327C49.7806 109.968 43.7346 111.289 36.6478 111.289C25.5965 111.289 16.7752 108.012 10.1841 101.458C3.64248 94.9048 0.247788 84.8543 0 73.6545Z"
+    fill="black"></path>
+  <path
+    d="M77.7261 109.381V1.83403H88.6536V109.381H77.7261Z"
+    fill="black"></path>
+  <path
+    d="M98.2132 17.0198V1.83403H109.141V17.0198H98.2132ZM98.2132 109.381V31.4719H109.141V109.381H98.2132Z"
+    fill="black"></path>
+  <path
+    d="M118.403 109.381V31.4719H128.29V42.5494C130.669 38.2456 133.568 35.0421 136.987 32.9391C140.456 30.7872 144.421 29.7112 148.881 29.7112C152.35 29.7112 155.546 30.3959 158.47 31.7653C161.444 33.0858 163.823 34.8465 165.607 37.0473C167.44 39.1993 168.803 42.0114 169.695 45.4839C170.587 48.9563 171.033 54.2872 171.033 61.4766V109.381H160.031V61.9901C160.031 56.2679 159.536 52.0864 158.545 49.4454C157.554 46.8044 155.992 44.7747 153.861 43.3564C151.78 41.8892 149.352 41.1556 146.577 41.1556C141.323 41.1556 137.136 43.0874 134.014 46.9511C130.892 50.8148 129.33 57.4417 129.33 66.8319V109.381H118.403Z"
+    fill="black"></path>
+  <path
+    d="M178.14 115.837L188.844 115.837C189.34 119.994 190.826 124.983 193.304 126.988C195.782 129.042 199.227 130.069 203.637 130.069C208.444 130.069 212.26 128.92 215.085 126.621C217.959 124.371 219.917 120.997 220.958 116.497C221.602 113.759 221.924 107.988 221.924 99.1842C219.545 102.559 216.869 105.102 213.896 106.814C210.922 108.525 207.627 109.381 204.009 109.381C196.278 109.381 189.86 106.153 184.756 99.6977C178.908 92.2638 175.984 82.3111 175.984 69.8397C175.984 61.4766 177.272 54.1649 179.849 47.9048C182.426 41.6446 185.796 37.0473 189.959 34.1129C194.172 31.1785 198.88 29.7112 204.083 29.7112C207.899 29.7112 211.368 30.6405 214.49 32.499C217.662 34.3574 220.462 37.1452 222.89 40.8621V31.4719H233V98.8174C233 110.8 232.009 119.334 230.027 124.42C228.044 129.556 224.798 133.591 220.288 136.525C215.779 139.508 210.352 141 204.009 141C195.634 141 189.191 138.775 184.681 134.324C180.172 129.874 177.991 123.711 178.14 115.837ZM187.283 69.0328C187.283 79.2544 188.993 86.7128 192.412 91.4079C195.832 96.103 200.019 98.4506 204.975 98.4506C209.931 98.4506 214.143 96.1519 217.612 91.5546C221.081 86.9573 222.816 79.6457 222.816 69.6197C222.816 59.8382 221.032 52.5754 217.464 47.8314C213.896 43.0385 209.559 40.642 204.455 40.642C199.896 40.642 195.881 43.0385 192.412 47.8314C188.993 52.5754 187.283 59.6426 187.283 69.0328Z"
+    fill="black"></path>
+</svg>`;
         grid.appendChild(cell);
-
-        // Introduce a delay using a Promise
       }
     };
 
