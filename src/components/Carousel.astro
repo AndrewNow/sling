@@ -3,20 +3,44 @@ import { Image } from "astro:assets";
 
 const slides = [
   {
-    src: "/images/projects/sequence.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZJHhxprWiFBCM7ojU9VpIYmufd3sXreO6hnbt",
     title: "Sequence",
+    type: "image",
   },
   {
-    src: "/images/projects/lazyrecords.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZ6kC1BPgcqDNHchOJ4syvYzouQg5MwkEUtpFP",
+    title: "Sequence",
+    type: "image",
+  },
+  {
+    src: "https://utfs.io/f/uU55CSHY2nOZPt5K2Pik9ZnVM4Tza6vQhKIGJUypAbNd0oWF",
     title: "Lazyrecords",
+    type: "image",
   },
   {
-    src: "/images/projects/notespace.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZx9zwewV14wJPeTUEcfQHzL5AFNjZnhWbGg9t",
     title: "Notespace",
+    type: "image",
   },
   {
-    src: "/images/projects/horizon.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZ0VjUX7MoQFWieS5JjcpCAfZBUn7hEDXO8vIP",
     title: "Horizon",
+    type: "image",
+  },
+  {
+    src: "https://utfs.io/f/uU55CSHY2nOZVT0rUtBq8p07USdHzkX2KbrcDWMQAC13tfLl",
+    title: "See you soon",
+    type: "video",
+  },
+  {
+    src: "https://utfs.io/f/uU55CSHY2nOZ1Eyssl0bnrY7A4yEQoV98jgi0DvhBpH5WZtC",
+    title: "See you soon",
+    type: "video",
+  },
+  {
+    src: "https://utfs.io/f/uU55CSHY2nOZivrPSPxJW2cXYzsF9MT83qvOmSrdDyRxu1EI",
+    title: "Eight Branches",
+    type: "image",
   },
 ];
 ---
@@ -25,16 +49,51 @@ const slides = [
   <div class="embla__container flex">
     {
       slides.map((slide) => (
-        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[280px] lg:h-[850px]">
-          <Image
-            src={slide.src}
-            alt={slide.title}
-            width={1920}
-            height={1080}
-            quality="100"
-            class="h-full w-auto object-contain rounded-md mx-auto shadow-[0px_0px_100px_-5px_rgba(0,0,0,0.10)]"
-          />
-          <div class="ml-2 small text-grey-300 translate-y-3">{slide.title}</div>
+        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[260px] lg:h-[850px] relative">
+          <div class="shadow-3xl shadow-black/10 h-full">
+            {slide.type === "video" ? (
+              <>
+                {/* <video
+                  src={slide.src}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  class="absolute inset-0 w-full h-full object-cover scale-90 blur-2xl opacity-100 saturate-150"
+                /> */}
+                <video
+                  src={slide.src}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  class="relative h-full w-auto object-contain rounded-md mx-auto"
+                />
+              </>
+            ) : (
+              <>
+                {/* <Image
+                  src={slide.src}
+                  alt={`${slide.title} background`}
+                  width={25}
+                  height={14}
+                  quality="10"
+                  class="absolute inset-0 w-full h-full object-cover scale-90 blur-2xl opacity-100 saturate-150"
+                /> */}
+                <Image
+                  src={slide.src}
+                  alt={slide.title}
+                  width={1920}
+                  height={1080}
+                  quality="100"
+                  class="relative h-full w-auto object-contain rounded-md mx-auto"
+                />
+              </>
+            )}
+          </div>
+          <div class="select-nonerelative ml-2 small text-grey-300 translate-y-3">
+            {slide.title}
+          </div>
         </div>
       ))
     }
