@@ -1,26 +1,55 @@
 ---
 const { faq } = Astro.props;
+
+const data = [
+  {
+    question: "Why Sling instead of a freelancer or design agency?",
+    answer:
+      "Traditional design agencies produce impressive results, but high overhead fees and lengthy timelines, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs. We like to think of ourselves as an extension of your team, for moments where you need an extra boost.",
+  },
+  {
+    question: "What makes you different from other agencies?",
+    answer:
+      "As a relatively early-stage agency, we have a lot to prove. With every project, we deliver world-class work, on time, and on budget, at rates that are extremely competitive. \n\nWe have a lot of experience working with startups and established companies from all angles, and we've built a reputation for being reliable, communicative, and personable.",
+  },
+  {
+    question: "What's your typical workflow?",
+    answer:
+      "It varies from project to project, but for custom projects it usually follows the following steps:\n\n1. Discovery call\n2. Proposal & contract SOP\n4. Kickoff call for moodboarding (if applicable)\n5. Design work\n6. Dev work (if applicable) \n7. Ongoing review and feedback\n8. Final tweaks\n9. Launch + maintenance \n \nFor retainer projects, this can vary greatly depending on your needs - we can discuss this in more detail during the discovery call.",
+  },
+  {
+    question: "How big is your team?",
+    answer:
+      "As it stands, most projects have been reliably delivered by a single person, our founder. For projects that require more hands, we'll bring in freelancers from our network who are experts in their respective fields.",
+  },
+  {
+    question: "What do you use to communicate with clients?",
+    answer:
+      "Slack, Discord, Google Meet, Zoom, etc. We're flexible and will meet you where you are.",
+  },
+  {
+    question: "Can I join Sling as a contractor?",
+    answer:
+      "Yes, we're always on the lookout for talented designers and developers to join our team. If you're interested, please reach out to us at hello@sling.online",
+  },
+];
 ---
 
-<div class="flex flex-col gap-2 py-14 lg:py-[40vh]">
-  <h2 class="text-area mb-16 text-center">
-    You might be wondering:
-  </h2>
+<div class="flex flex-col gap-2">
+  <p class="h2 mb-6 text-center text-grey-300">Common questions</p>
   {
-    faq.map((entry) => {
+    data.map((entry) => {
       return (
         <div
-          class="border rounded-2xl border-gray-300 border-dashed p-6 bg-gray-50/55 cursor-pointer transition-colors"
+          class="border rounded-2xl border-white/30 data-[expanded=true]:border-gray-300 border-solid p-6 lg:p-8 bg-gray-50/90 cursor-pointer transition-colors"
           role="button"
           aria-expanded="false"
         >
           <div class="flex w-full justify-between text-left">
-            <span class="h4 font-medium text-grey-900 user-select-none">
-              {entry.question}
-            </span>
-            <span class="ml-6 flex items-center text-grey-500">
+            <span class="h4 text-grey-900 select-none">{entry.question}</span>
+            <span class="ml-6 flex items-center text-grey-300">
               <svg
-                class="h-6 w-6 transform transition-transform duration-200 user-select-none"
+                class="h-6 w-6 transform transition-transform duration-200 select-none"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -41,7 +70,7 @@ const { faq } = Astro.props;
             role="region"
           >
             <div class="pt-8">
-              <p class="p text-gray-500 whitespace-pre-line text-balance user-select-none">
+              <p class="p text-gray-500 whitespace-pre-line text-balance select-none">
                 {entry.answer}
               </p>
             </div>

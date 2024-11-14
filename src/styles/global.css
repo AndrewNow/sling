@@ -1,20 +1,16 @@
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import url("./reset.css");
-
-
 
 @font-face {
   font-family: "arial-narrow";
   src: url("../fonts/arial-narrow.woff2") format("WOFF2");
 }
 
-
-
 :root {
-  --grey-50: #F6F6F6;
+  --grey-50: #f6f6f6;
   --grey-100: #dbdbdb;
   --grey-200: #7c7c7c;
   --grey-300: #3e3e3e;
@@ -30,7 +26,7 @@
 }
 
 .h2 {
-  @apply font-sf-medium text-[28px] md:text-[36px] leading-[35px] md:leading-[45px] tracking-[-0.01em];
+  @apply font-sf-regular text-[28px] md:text-[30px] leading-[125%] tracking-[-0.01rem];
 }
 
 .h3 {
@@ -50,14 +46,32 @@
 }
 
 .p {
-  @apply font-sf-regular font-light text-[14px] md:text-[18px] leading-[160%] tracking-[-0.005em];
+  @apply font-sf-regular font-normal text-[14px] md:text-[18px] leading-[160%];
 }
 
 .small {
   @apply font-sf-medium font-light text-[14px] md:text-[16px] leading-[20px] md:leading-[150%] tracking-[-0.005em];
 }
 
-
 .text-area {
-  @apply h2 text-grey-200 text-pretty mx-auto w-[90%] lg:w-full;
+  @apply h2 text-grey-200 text-pretty mx-auto w-[90%] my-2 lg:w-full;
+}
+
+@layer utilities {
+  .cta-wrapper {
+    @apply relative bg-black/30 rounded-[14px] overflow-hidden;
+  }
+  /* gradient */
+  .cta-wrapper::before {
+    background: conic-gradient(
+      rgb(255, 0, 132) 0deg,
+      rgb(137, 19, 255, .5) 0deg,
+      transparent 95deg
+    );
+
+    @apply content-[''] absolute left-[-25%] top-[-25%] h-[150%] w-[150%] animate-border-spin;
+  }
+  .cta-content {
+    @apply absolute size-[calc(100%-4px)] top-[2px] left-[2px] bg-grey-950 text-white rounded-[12px] px-4 py-3 flex items-center justify-center gap-2;
+  }
 }

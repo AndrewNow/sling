@@ -3,7 +3,9 @@ const { testimonials } = Astro.props;
 import TestimonialCard from "./TestimonialCard.astro";
 ---
 
-<div class="mt-12 lg:mt-[40vh] lg:mb-[25vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto">
+<div
+  class="my-12 lg:mt-[40vh] lg:mb-[25vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto"
+>
   <h2 class="text-area">
     In a sea of online content, we strive to create work that is thoughtful,
     intuitive and lasting.
@@ -16,99 +18,69 @@ import TestimonialCard from "./TestimonialCard.astro";
     the results are undeniable.
   </h2>
 </div>
-<div>
 
-  <div class="testimonials-wrapper -rotate-[1.5deg] relative">
-    <div class="embla mt-16" id="testimonials-carousel-1">
-      <div class="embla__container flex">
-        {
-          testimonials.map((entry) => {
-            return <TestimonialCard entry={entry} />;
-          })
-        }
-    </div>
-  </div>
-  <div class="embla mt-8" id="testimonials-carousel-2">
-    <div class="embla__container flex">
-      {
-        testimonials.reverse().map((entry) => {
-          return <TestimonialCard entry={entry} />;
-        })
-      }
+<div class="relative h-[80vh] overflow-hidden w-[90%] lg:w-full mx-auto">
+  <div class="embla mt-16" id="testimonials-carousel">
+    <div class="embla__container">
+      {testimonials.map((entry) => <TestimonialCard entry={entry} />)}
     </div>
   </div>
   <div
-  class="z-10 w-full h-[20vh] bg-gradient-to-b from-transparent to-[#F1F1F1] absolute -bottom-5 left-0 right-0"
+    class="z-10 w-full h-[10vh] block lg:hidden bg-gradient-to-t from-transparent to-[#F1F1F1] absolute top-16 left-0 right-0"
   >
+  </div>
+  <div
+    class="z-10 w-full h-[10vh] lg:h-[20vh] bg-gradient-to-b from-transparent to-[#F1F1F1] absolute bottom-0 lg:-bottom-5 left-0 right-0"
+  >
+  </div>
 </div>
-</div>
 
-  <style>
-    .embla {
-      --slide-spacing: 1rem;
-      --slide-size: 100%;
-      --slide-height: auto;
-    }
+<style>
+  .embla {
+    --slide-spacing: 1rem;
+    overflow: hidden;
+    height: 100%;
+  }
 
-    .embla__container {
-      backface-visibility: hidden;
-      display: flex;
-      touch-action: pan-y;
-      margin-left: calc(var(--slide-spacing) * -1);
-    }
-  </style>
+  .embla__container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+  }
+</style>
 
-  <script>
-    import EmblaCarousel from "embla-carousel";
-    import AutoScroll from "embla-carousel-auto-scroll";
+<script>
+  import EmblaCarousel from "embla-carousel";
+  import AutoScroll from "embla-carousel-auto-scroll";
 
-    const options = {
-      loop: true,
-      containScroll: "trimSnaps",
-      dragFree: true,
-    };
+  const options = {
+    loop: true,
+    containScroll: false,
+    axis: "y",
+    startIndex: 0,
+  };
 
-    const carousel1Options = {
-      speed: 0.75,
-      stopOnInteraction: false,
-      stopOnMouseEnter: false,
-    };
+  const autoScrollOptions = {
+    speed: 0.75,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false,
+  };
 
-    const carousel2Options = {
-      speed: -0.75,
-      stopOnInteraction: false,
-      stopOnMouseEnter: false,
-    };
+  const carousel = document.querySelector("#testimonials-carousel");
 
-    const wrapper = document.querySelector(".testimonials-wrapper");
-    const carousel1 = document.querySelector("#testimonials-carousel-1");
-    const carousel2 = document.querySelector("#testimonials-carousel-2");
+  if (carousel) {
+    const emblaInstance = EmblaCarousel(carousel, options, [
+      AutoScroll(autoScrollOptions),
+    ]);
 
-    let embla1Instance;
-    let embla2Instance;
-
-    if (carousel1) {
-      embla1Instance = EmblaCarousel(carousel1 as HTMLElement, options, [
-        AutoScroll(carousel1Options),
-      ]);
-    }
-
-    if (carousel2) {
-      embla2Instance = EmblaCarousel(carousel2 as HTMLElement, options, [
-        AutoScroll(carousel2Options),
-      ]);
-    }
-
-    // if (wrapper) {
-    //   wrapper.addEventListener('mouseenter', () => {
-    //     embla1Instance.plugins().autoScroll.stop();
-    //     embla2Instance.plugins().autoScroll.stop();
-    //   });
-
-    //   wrapper.addEventListener('mouseleave', () => {
-    //     embla1Instance.plugins().autoScroll.play();
-    //     embla2Instance.plugins().autoScroll.play();
-    //   });
-    // }
-  </script>
-</div>
+    // Handle the loop manually with a smoother transition
+    emblaInstance.on("select", () => {
+      const lastSlide = emblaInstance.slideNodes().length - 1;
+      if (emblaInstance.selectedScrollSnap() === lastSlide) {
+        setTimeout(() => {
+          emblaInstance.scrollTo(0, true);
+        }, 2000);
+      }
+    });
+  }
+</script>

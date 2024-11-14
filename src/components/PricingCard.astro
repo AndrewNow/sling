@@ -16,37 +16,39 @@ const {
 ---
 
 <div
-  class={`rounded-[30px] w-[90%] mx-auto lg:min-w-[395px] border-[3px] border-white/60 p-10 pb-14 flex flex-col gap-10 ${fill} ${shadow} ${rotate}`}
+  class={`rounded-[30px] w-[90%] mx-auto lg:min-w-[395px] border-[3px] border-white/60 p-8 pb-12 lg:p-10 lg:pb-14 flex flex-col gap-6 lg:gap-10 ${fill} ${shadow} ${rotate}`}
 >
-  <h3 class="h3 weight-500 text-white/80">{title}</h3>
-  <div class="flex flex-col gap-6">
-    <div class="flex flex-col gap-1">
-      <p class="small text-white/80">{priceHeader}</p>
-      <p class="h2 text-white/90">{price}</p>
-      {subtitle && <p class="p text-white/70">{subtitle}</p>}
+  <h3 class="h2 weight-500 text-white/80">{title}</h3>
+  <div class="flex flex-col justify-between gap-12 h-full">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-1">
+        <p class="small text-white/80">{priceHeader}</p>
+        <p class="h2 text-white/90">{price}</p>
+        {subtitle && <p class="p text-white/70">{subtitle}</p>}
+      </div>
+      <div class="flex flex-col gap-2">
+        {
+          description.map((entry) => {
+            return (
+              <div>
+                <p class="small text-white/80 flex">
+                  <span class="mr-2 opacity-80">
+                    <Icon icon={entry.icon} />
+                  </span>
+                  {entry.text}
+                </p>
+              </div>
+            );
+          })
+        }
+      </div>
     </div>
-    <div class="flex flex-col gap-2">
-      {
-        description.map((entry) => {
-          return (
-            <div>
-              <p class="small text-white/80 flex">
-                <span class="mr-2 opacity-80">
-                  <Icon icon={entry.icon} />
-                </span>
-                {entry.text}
-              </p>
-            </div>
-          );
-        })
-      }
+    <div>
+      <a
+        class="px-4 py-2 w-full h-full rounded-lg bg-white/20 inline text-center"
+        href={ctaLink}
+        ><span class="text-white text-center w-full small">{ctaText}</span></a
+      >
     </div>
-  </div>
-  <div>
-    <a
-      class="px-4 py-2 w-full h-full rounded-lg bg-white/20 inline text-center"
-      href={ctaLink}
-      ><span class="text-white text-center w-full small">{ctaText}</span></a
-    >
   </div>
 </div>

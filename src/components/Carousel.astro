@@ -1,30 +1,40 @@
 ---
+import { Image } from "astro:assets";
 
+const slides = [
+  {
+    src: "/images/projects/sequence.png",
+    title: "Sequence",
+  },
+  {
+    src: "/images/projects/lazyrecords.png",
+    title: "Lazyrecords",
+  },
+  {
+    src: "/images/projects/notespace.png",
+    title: "Notespace",
+  },
+  {
+    src: "/images/projects/horizon.png",
+    title: "Horizon",
+  },
+];
 ---
 
-<div class=" w-full" id="embla">
+<div class="w-full" id="embla">
   <div class="embla__container flex">
     {
-      [
-        {
-          src: "/images/projects/lazyrecords.png",
-          alt: "Lazy Records Project"
-        },
-        {
-          src: "/images/projects/notespace.png", 
-          alt: "Notespace Project"
-        },
-        {
-          src: "/images/projects/sequence.png",
-          alt: "Sequence Project"
-        }
-      ].map((slide) => (
-        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[300px] lg:h-[850px]">
-          <img
+      slides.map((slide) => (
+        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[280px] lg:h-[850px]">
+          <Image
             src={slide.src}
-            alt={slide.alt}
+            alt={slide.title}
+            width={1920}
+            height={1080}
+            quality="100"
             class="h-full w-auto object-contain rounded-md mx-auto shadow-[0px_0px_100px_-5px_rgba(0,0,0,0.10)]"
           />
+          <small class="text-grey-300 text-center">{slide.title}</small>
         </div>
       ))
     }
@@ -50,17 +60,17 @@
   import AutoScroll from "embla-carousel-auto-scroll";
 
   const emblaNode = document.querySelector("#embla");
-  const options = { 
+  const options = {
     loop: true,
     align: "start",
-    skipSnaps: false
+    skipSnaps: false,
   };
 
   const embla = EmblaCarousel(emblaNode, options, [
     AutoScroll({
       playOnInit: true,
       stopOnInteraction: false,
-      speed: 0.5
-    })
+      speed: 0.5,
+    }),
   ]);
 </script>

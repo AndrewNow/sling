@@ -34,7 +34,7 @@ const pricing = [
     ctaLink: "/",
     ctaText: "Book a 15-min call",
     fill: "bg-gradient-to-b from-[#3AC37E] to-[#8ACF48] shadow-[0px_10px_70px_0px_rgba(93,185,42,0.40)]",
-    shadow: "shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
+    shadow: "shadow-[0px_0px_50px_0px_rgba(93,185,42,0.40)]",
     rotate: "rotate-[-1deg]",
   },
   {
@@ -58,7 +58,7 @@ const pricing = [
     ctaLink: "/",
     ctaText: "Book a 15-min call",
     fill: "bg-[linear-gradient(146deg,_#759ED4_2.76%,_#3D64E6_96.95%)] shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
-    shadow: "shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
+    shadow: "shadow-[0px_0px_60px_0px_rgba(61,100,230,0.40)]",
     rotate: "rotate-[1.5deg]",
   },
 ];
@@ -98,34 +98,6 @@ const services = [
   },
 ];
 
-const FAQdata = [
-  {
-    question: "Why Sling instead of a freelancer or design agency?",
-    answer:
-      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
-  },
-  {
-    question: "What's your typical workflow?",
-    answer:
-      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
-  },
-  {
-    question: "How big is your team?",
-    answer:
-      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
-  },
-  {
-    question: "What do you use to communicate with clients?",
-    answer:
-      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
-  },
-  {
-    question: "Can I join Sling as a contractor?",
-    answer:
-      "Traditional design agencies produce impressive results, but their strict processes, lengthy timelines and high overhead fees, even for simple projects, can often be limiting.\n\nFreelancers, meanwhile, are often more affordable and immediate, but it can be hard to find consistency and quality.\n\nSling bridges this gap, delivering top-quality, dependable work with quick turnaround times and the flexibility to adapt to your specific needs.",
-  },
-];
-
 const testimonials = [
   {
     quote:
@@ -161,7 +133,7 @@ const testimonials = [
   <!-- <Loader /> -->
   <div class="relative bg-[#f1f1f1] w-full rounded-2xl overflow-hidden">
     <section
-      class="relative max-w-[95%] lg:max-w-[800px] mx-auto mt-[20vh] lg:my-[240px] flex flex-col items-center gap-4"
+      class="relative max-w-[95%] lg:max-w-[800px] mx-auto mt-[20vh] lg:my-[240px] lg:mb-[100px] flex flex-col items-center gap-4"
     >
       <h1 class="h1 text-balance text-center text-grey-950 max-w-[700px]">
         World-class product design, without the agency overhead.
@@ -172,26 +144,37 @@ const testimonials = [
         Trusted by startups and industry leaders, Sling specializes in
         purpose-driven product design & online experiences.
       </p>
-      <div class="mt-4 mb-16 flex gap-4">
+      <div class="mt-4 mb-16 flex gap-4 flex-col lg:flex-row">
         <a
           class="rounded-[14px] flex items-center justify-center gap-2 bg-grey-950 text-white py-3 pr-3 pl-6 text-center small font-medium leading-[150%] border-2 border-white/30"
           >Book a free discovery call
           <Icon icon="ChevronRight" />
         </a>
+        <!-- <a
+          class="cta-wrapper w-[230px] h-[56px]"
+          >
+          <div class="cta-content flex items-center gap-2 small font-medium">
+
+            Book a free discovery call
+            <Icon icon="ChevronRight" />
+          </div>
+        </a> -->
       </div>
     </section>
     <Carousel />
     <!-- <section class="relative max-w-[800px] py-28 lg:py-40 mx-auto">
       <Services services={services} />
     </section> -->
-    <section class="my-40 lg:my-0 relative max-w-[800px] mx-auto">
+    <section class="my-40 lg:my-20 relative max-w-[800px] mx-auto">
       <Pricing pricing={pricing} />
     </section>
-    <section class="my-40 lg:my-0 relative mx-auto">
+    <section class="my-40 lg:my-20 relative mx-auto">
       <Testimonials testimonials={testimonials} />
     </section>
-    <section class="my-40 lg:my-0 relative max-w-[700px] mx-auto">
-      <FAQ faq={FAQdata} />
+    <section
+      class="my-0 lg:my-20 relative max-w-[90%] lg:max-w-[700px] mx-auto"
+    >
+      <FAQ  />
     </section>
     <Footer />
     <span class="hidden lg:block">
@@ -209,16 +192,16 @@ const testimonials = [
     inView(
       element,
       ({ target, isIntersecting }) => {
-        if (isIntersecting) { 
-          animate(target, { color: "red" }, { duration: 0.25 });
+        if (isIntersecting) {
+          animate(target, { color: "#3d3d3d" }, { duration: 0.25 });
         }
         return () => {
-          animate(target, { color: "green" }, { duration: 0.5 });
+          animate(target, { color: "#d1d1d1" }, { duration: 0.5 });
         };
       },
       {
-        amount: 0.9,
-        margin: "50% 0px -50% 0px",
+        amount: window.innerWidth < 1024 ? 0.4 : 0.8,
+        margin: "-40% 0% -40% 0%",
       }
     );
   });
