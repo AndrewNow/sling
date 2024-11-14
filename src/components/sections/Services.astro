@@ -1,21 +1,54 @@
 ---
 import Icon from "../icons/index.astro";
-const { services } = Astro.props;
+
+const services = [
+  {
+    icon: "WebDev",
+    title: "Web Development",
+  },
+  {
+    icon: "DesignSystems",
+    title: "Design Systems",
+  },
+  {
+    icon: "TeamAugmenting",
+    title: "Team Augmentation",
+  },
+  {
+    icon: "ProductDesign",
+    title: "Product Design",
+  },
+  {
+    icon: "WebDesign",
+    title: "Web Design",
+  },
+  {
+    icon: "Branding",
+    title: "Branding",
+  },
+  {
+    icon: "UXConsulting",
+    title: "UX Consulting",
+  },
+  {
+    icon: "PitchDecks",
+    title: "Pitch Decks",
+  },
+];
 ---
 
 <div class="mx-auto flex flex-col items-center max-w-[575px] w-full">
-  <div class="my-0 lg:my-[15vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto">
+  <div
+    class="my-0 lg:my-[15vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto"
+  >
     <h2 class="text-area">
       We excel in product design, development and strategy.
     </h2>
     <h2 class="text-area">
-      Thanks to our trusted network of collaborators, we offer a
-      wide range of services to deliver end-to-end solutions, no matter your
-      needs.
+      Thanks to our trusted network of collaborators, we offer a wide range of
+      services to deliver end-to-end solutions, no matter your needs.
     </h2>
-    <h2 class="text-area">
-      Consider us the newest addition to your team.
-    </h2>
+    <h2 class="text-area">Consider us the newest addition to your team.</h2>
   </div>
   <div class="flex flex-wrap items-center justify-center gap-2">
     {

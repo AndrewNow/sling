@@ -5,6 +5,9 @@
 <style is:global lang="scss">
   body {
     margin: 0;
+    &.loading {
+      overflow: hidden;
+    }
   }
   :root {
     --num-cols: 5;
@@ -34,7 +37,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: #ffffff;
+    background: #f1f1f1;
     backdrop-filter: blur(20px);
     scale: 1;
   }
@@ -69,6 +72,24 @@
   import { animate } from "motion";
 
   document.addEventListener("DOMContentLoaded", async function () {
+    // Check if loader has already run this session
+    if (sessionStorage.getItem('loaderShown')) {
+      const parent = document.querySelector(".loader-parent");
+      parent.style.display = "none";
+      return;
+    }
+
+    // Set flag that loader has run
+    sessionStorage.setItem('loaderShown', 'true');
+    
+    // Lock scroll when loader starts
+    document.body.classList.add('loading');
+    
+    // Unlock scroll after 3.5 seconds
+    setTimeout(() => {
+      document.body.classList.remove('loading');
+    }, 3500);
+    
     const grid = document.querySelector(".loader-wrapper");
 
     const NUM_COLS = 10;

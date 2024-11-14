@@ -10,179 +10,57 @@ import FAQ from "../components/sections/FAQ.astro";
 import Footer from "../components/sections/Footer.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
 import FooterHover from "../components/FooterHover.astro";
-
-const pricing = [
-  {
-    title: "Retainer",
-    priceHeader: "Monthly",
-    price: "$3,000",
-    subtitle: "+ $2,000 for development",
-    description: [
-      {
-        icon: "Pen",
-        text: "Work directly with our founder",
-      },
-      {
-        icon: "Calendar",
-        text: "7 day/week response time",
-      },
-      {
-        icon: "Screen",
-        text: "Bi-weekly check-ins",
-      },
-    ],
-    ctaLink: "/",
-    ctaText: "Book a 15-min call",
-    fill: "bg-gradient-to-b from-[#3AC37E] to-[#8ACF48] shadow-[0px_10px_70px_0px_rgba(93,185,42,0.40)]",
-    shadow: "shadow-[0px_0px_50px_0px_rgba(93,185,42,0.40)]",
-    rotate: "rotate-[-1deg]",
-  },
-  {
-    title: "Custom Project",
-    priceHeader: "Starting at",
-    price: "$5,000",
-    description: [
-      {
-        icon: "Pen",
-        text: "Work directly with our founder",
-      },
-      {
-        icon: "Calendar",
-        text: "7 day/week response time",
-      },
-      {
-        icon: "Screen",
-        text: "Bi-weekly check-ins",
-      },
-    ],
-    ctaLink: "/",
-    ctaText: "Book a 15-min call",
-    fill: "bg-[linear-gradient(146deg,_#759ED4_2.76%,_#3D64E6_96.95%)] shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
-    shadow: "shadow-[0px_0px_60px_0px_rgba(61,100,230,0.40)]",
-    rotate: "rotate-[1.5deg]",
-  },
-];
-
-const services = [
-  {
-    icon: "WebDev",
-    title: "Web Development",
-  },
-  {
-    icon: "DesignSystems",
-    title: "Design Systems",
-  },
-  {
-    icon: "TeamAugmenting",
-    title: "Team Augmentation",
-  },
-  {
-    icon: "ProductDesign",
-    title: "Product Design",
-  },
-  {
-    icon: "WebDesign",
-    title: "Web Design",
-  },
-  {
-    icon: "Branding",
-    title: "Branding",
-  },
-  {
-    icon: "UXConsulting",
-    title: "UX Consulting",
-  },
-  {
-    icon: "PitchDecks",
-    title: "Pitch Decks",
-  },
-];
-
-const testimonials = [
-  {
-    quote:
-      "We couldn’t have asked for a better experience. Andrew (Sling) is distinctly capable at what he does and thoroughly attentive to every detail discussed. He shared his time around the clock with us to realize precisely the website we had envisioned, making reality of what was an abstract idea in our minds. He swiftly responds to any adjustments that come up and has proactively shared new tools relevant to our website. Thank you for your exceptional service!",
-    name: "MA",
-    title: "Assistant Director",
-  },
-  {
-    quote:
-      "The team’s constant follow-up, open dialogue, and clear work plan made collaboration seamless. For every need, Sling proposed multiple solutions, some unconventional. Since launching in September 2022, site visits have significantly increased, and sales have doubled. Initially daunting, the process became enriching thanks to Sling’s talent, creativity, and reliability. We couldn’t be more satisfied with our website and its reception.",
-    name: "Valerie Savard",
-    title: "Publisher In-Chief",
-    logo: "/images/clientLogos/moebius-logo.png",
-  },
-  {
-    quote:
-      "We’re so lucky to have worked with the Sling team, led by Andrew, on a major overhaul of our ecommerce website. Not only was the work executed flawlessly, but they built on our vision and offered perspectives and solutions we never could have arrived at on our own. For the few months we worked together, the team was in constant communication, feeling like an extension of our internal team. We’ve seen a tremendous return on investment from their work and look forward to partnering with Sling again for our design and development needs at O'Neill.",
-    name: "Andrew Marcovich",
-    title: "Vice-President",
-    logo: "/images/clientLogos/oneill-logo.png",
-  },
-  {
-    quote:
-      "Sling brings an artisanal outlook and an uncompromising professionalism to the table. They created a website for our company, fully hitting the mark in terms of aesthetics and functionality. Working seamlessly together with another contractor, Sling gracefully orchestrated the maturation of the end product among multiple parties. We enjoyed our spirited exchanges and are looking forward to doing business again!",
-    name: "Danilo Flores",
-    title: "CEO & Co-Founder",
-    logo: "/images/clientLogos/mimotype-logo.png",
-  },
-];
 ---
 
 <Layout data={false}>
-  <!-- <Loader /> -->
-  <div class="relative bg-[#f1f1f1] w-full rounded-2xl overflow-hidden">
-    <section
-      class="relative max-w-[95%] lg:max-w-[800px] mx-auto mt-[20vh] lg:my-[240px] lg:mb-[100px] flex flex-col items-center gap-4"
-    >
-      <h1 class="h1 text-balance text-center text-grey-950 max-w-[700px]">
-        World-class product design, without the agency overhead.
-      </h1>
-      <p
-        class="p text-grey-500 text-balance max-w-[95%] lg:max-w-[500px] text-center"
+  <Loader />
+  <div class="opacity-0 translate-y-10" id="body-content">
+    <div class="relative bg-[#f1f1f1] w-full rounded-2xl overflow-hidden">
+      <section
+        class="relative max-w-[90%] lg:max-w-[800px] mx-auto mt-[15vh] lg:my-[240px] lg:mb-[100px] flex flex-col items-start lg:items-center gap-4"
       >
-        Trusted by startups and industry leaders, Sling specializes in
-        purpose-driven product design & online experiences.
-      </p>
-      <div class="mt-4 mb-16 flex gap-4 flex-col lg:flex-row">
-        <a
-          href="https://cal.com/sling/meeting"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-[14px] flex items-center justify-center gap-2 bg-grey-950 text-white py-3 pr-3 pl-6 text-center small font-medium leading-[150%] border-2 border-white/30"
-          >Book a free discovery call
-          <Icon icon="ChevronRight" />
-        </a>
-        <!-- <a
-          class="cta-wrapper w-[230px] h-[56px]"
-          >
-          <div class="cta-content flex items-center gap-2 small font-medium">
-
-            Book a free discovery call
+        <h1
+          class="h1 text-balance text-left lg:text-center text-grey-950 max-w-full lg:max-w-[700px]"
+        >
+          World-class product design, without the agency overhead.
+        </h1>
+        <p
+          class="p text-grey-500 text-pretty lg:text-balance text-left lg:text-center max-w-[90%] lg:max-w-[500px]"
+        >
+          Trusted by startups and industry leaders, Sling specializes in
+          purpose-driven product design & online experiences.
+        </p>
+        <div class="mt-4 mb-16 flex gap-4 flex-col lg:flex-row">
+          <a
+            href="https://cal.com/sling/meeting"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-[14px] flex items-center justify-start lg:justify-center gap-2 bg-grey-950 text-white py-3 pr-3 pl-6 text-left lg:text-center small font-medium leading-[150%] border-2 border-white/30"
+            >Book a free discovery call
             <Icon icon="ChevronRight" />
-          </div>
-        </a> -->
-      </div>
-    </section>
-    <Carousel />
-    <!-- <section class="relative max-w-[800px] py-28 lg:py-40 mx-auto">
+          </a>
+        </div>
+      </section>
+      <Carousel />
+      <!-- <section class="relative max-w-[800px] py-28 lg:py-40 mx-auto">
       <Services services={services} />
     </section> -->
-    <section class="my-40 lg:my-20 relative max-w-[800px] mx-auto">
-      <Pricing pricing={pricing} />
-    </section>
-    <section class="my-40 lg:my-20 relative mx-auto">
-      <Testimonials testimonials={testimonials} />
-    </section>
-    <section
-      class="my-0 lg:my-40 lg:mt-[20vh] relative max-w-[90%] lg:max-w-[700px] mx-auto"
-    >
-      <FAQ />
-    </section>
-    <Footer />
-    <span class="hidden lg:block">
-      <FooterHover />
-    </span>
+      <section class="my-40 lg:my-20 relative max-w-[800px] mx-auto">
+        <Pricing />
+      </section>
+      <section class="my-40 lg:my-20 relative mx-auto">
+        <Testimonials />
+      </section>
+      <section
+        class="my-0 lg:my-40 lg:mt-[20vh] relative max-w-[90%] lg:max-w-[700px] mx-auto"
+      >
+        <FAQ />
+      </section>
+      <Footer />
+      <span class="hidden lg:block">
+        <FooterHover />
+      </span>
+    </div>
   </div>
 </Layout>
 
@@ -208,4 +86,23 @@ const testimonials = [
       }
     );
   });
+
+  const body = document.getElementById("body-content");
+
+  // Check if loader has already run this session
+  if (sessionStorage.getItem('loaderShown')) {
+    // If loader has run before, show content immediately
+    animate(
+      body,
+      { opacity: 1, y: 0 },
+      { duration: 0 }
+    );
+  } else {
+    // If this is first load with loader, animate with delay
+    animate(
+      body,
+      { opacity: 1, y: [10, 0] },
+      { duration: 1.36, easing: "ease-in", delay: 3.35 }
+    );
+  }
 </script>

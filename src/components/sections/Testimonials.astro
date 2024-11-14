@@ -1,6 +1,35 @@
 ---
-const { testimonials } = Astro.props;
 import TestimonialCard from "./TestimonialCard.astro";
+
+const testimonials = [
+  {
+    quote:
+      "We couldn’t have asked for a better experience. Andrew (Sling) is distinctly capable at what he does and thoroughly attentive to every detail discussed. He shared his time around the clock with us to realize precisely the website we had envisioned, making reality of what was an abstract idea in our minds. He swiftly responds to any adjustments that come up and has proactively shared new tools relevant to our website. Thank you for your exceptional service!",
+    name: "MA",
+    title: "Assistant Director",
+  },
+  {
+    quote:
+      "The team’s constant follow-up, open dialogue, and clear work plan made collaboration seamless. For every need, Sling proposed multiple solutions, some unconventional. Since launching in September 2022, site visits have significantly increased, and sales have doubled. Initially daunting, the process became enriching thanks to Sling’s talent, creativity, and reliability. We couldn’t be more satisfied with our website and its reception.",
+    name: "Valerie Savard",
+    title: "Publisher In-Chief",
+    logo: "/images/clientLogos/moebius-logo.png",
+  },
+  {
+    quote:
+      "We’re so lucky to have worked with the Sling team, led by Andrew, on a major overhaul of our ecommerce website. Not only was the work executed flawlessly, but they built on our vision and offered perspectives and solutions we never could have arrived at on our own. For the few months we worked together, the team was in constant communication, feeling like an extension of our internal team. We’ve seen a tremendous return on investment from their work and look forward to partnering with Sling again for our design and development needs at O'Neill.",
+    name: "Andrew Marcovich",
+    title: "Vice-President",
+    logo: "/images/clientLogos/oneill-logo.png",
+  },
+  {
+    quote:
+      "Sling brings an artisanal outlook and an uncompromising professionalism to the table. They created a website for our company, fully hitting the mark in terms of aesthetics and functionality. Working seamlessly together with another contractor, Sling gracefully orchestrated the maturation of the end product among multiple parties. We enjoyed our spirited exchanges and are looking forward to doing business again!",
+    name: "Danilo Flores",
+    title: "CEO & Co-Founder",
+    logo: "/images/clientLogos/mimotype-logo.png",
+  },
+];
 ---
 
 <div

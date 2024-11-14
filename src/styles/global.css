@@ -22,7 +22,7 @@
 }
 
 .h1 {
-  @apply font-sf-medium font-medium text-[32px] md:text-[48px] leading-[125%] tracking-[-.01em];
+  @apply font-sf-medium font-medium text-[34px] md:text-[48px] leading-[125%] tracking-[-.02em] lg:tracking-[-.01em];
 }
 
 .h2 {
@@ -46,32 +46,14 @@
 }
 
 .p {
-  @apply font-sf-regular font-normal text-[14px] md:text-[18px] leading-[160%];
+  @apply font-sf-regular !font-medium text-[14px] md:text-[18px] leading-[160%];
 }
 
 .small {
-  @apply font-sf-medium font-light text-[14px] md:text-[16px] leading-[20px] md:leading-[150%] tracking-[-0.005em];
+  @apply font-sf-medium !font-medium text-[14px] md:text-[16px] leading-[20px] md:leading-[150%] tracking-[-0.005em];
 }
 
 .text-area {
   @apply h2 text-grey-200 text-pretty mx-auto w-[90%] my-2 lg:w-full;
 }
 
-@layer utilities {
-  .cta-wrapper {
-    @apply relative bg-black/30 rounded-[14px] overflow-hidden;
-  }
-  /* gradient */
-  .cta-wrapper::before {
-    background: conic-gradient(
-      rgb(255, 0, 132) 0deg,
-      rgb(137, 19, 255, .5) 0deg,
-      transparent 95deg
-    );
-
-    @apply content-[''] absolute left-[-25%] top-[-25%] h-[150%] w-[150%] animate-border-spin;
-  }
-  .cta-content {
-    @apply absolute size-[calc(100%-4px)] top-[2px] left-[2px] bg-grey-950 text-white rounded-[12px] px-4 py-3 flex items-center justify-center gap-2;
-  }
-}

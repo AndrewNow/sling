@@ -1,7 +1,57 @@
 ---
 import PricingCard from "../PricingCard.astro";
 
-const { pricing } = Astro.props;
+const pricing = [
+  {
+    title: "Retainer",
+    priceHeader: "Monthly",
+    price: "$3,000",
+    subtitle: "+ $2,000 for development",
+    description: [
+      {
+        icon: "Pen",
+        text: "Work directly with our founder",
+      },
+      {
+        icon: "Calendar",
+        text: "7 day/week response time",
+      },
+      {
+        icon: "Screen",
+        text: "Bi-weekly check-ins",
+      },
+    ],
+    ctaLink: "/",
+    ctaText: "Book a 15-min call",
+    fill: "bg-gradient-to-b from-[#3AC37E] to-[#8ACF48] shadow-[0px_10px_70px_0px_rgba(93,185,42,0.40)]",
+    shadow: "shadow-[0px_0px_50px_0px_rgba(93,185,42,0.40)]",
+    rotate: "rotate-[-1deg]",
+  },
+  {
+    title: "Custom Project",
+    priceHeader: "Starting at",
+    price: "$5,000",
+    description: [
+      {
+        icon: "Pen",
+        text: "Work directly with our founder",
+      },
+      {
+        icon: "Calendar",
+        text: "7 day/week response time",
+      },
+      {
+        icon: "Screen",
+        text: "Bi-weekly check-ins",
+      },
+    ],
+    ctaLink: "/",
+    ctaText: "Book a 15-min call",
+    fill: "bg-[linear-gradient(146deg,_#759ED4_2.76%,_#3D64E6_96.95%)] shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
+    shadow: "shadow-[0px_0px_60px_0px_rgba(61,100,230,0.40)]",
+    rotate: "rotate-[1.5deg]",
+  },
+];
 ---
 
 <div

@@ -6,7 +6,7 @@ import SlingLogo from "../SlingLogo.astro";
   class="h-[50vh] lg:h-[90vh] w-full flex items-center justify-center mix-blend-darken"
 >
   <span
-    class="mx-auto w-[70vw] max-w-[900px] shadow-[inset_0px_7px_35px_0px_rgba(255,255,255,0.50)]"
+    class="mx-auto w-[70vw] max-w-[900px] shadow-[inset_0px_7px_35px_0px_rgba(255,255,255,0.50)] animate-pulse-shadow"
   >
     <svg
       class="w-full"
@@ -67,7 +67,35 @@ import SlingLogo from "../SlingLogo.astro";
     </svg>
   </span>
   <div
-    class="absolute z-3 bottom-0 left-0 w-full h-[47vh] bg-gradient-to-b from-[rgba(240,240,240,0)] to-[#F1F1F1] to-[70%]"
+    class="absolute z-3 bottom-0 left-0 w-full h-[47vh] bg-gradient-to-b from-[rgba(240,240,240,0)] to-[#F1F1F1] to-[70%] animate-gradient-fade"
   >
   </div>
 </footer>
+
+<style>
+  @keyframes pulse-shadow {
+    0%, 100% {
+      box-shadow: inset 0px 7px 35px 0px rgba(255,255,255,1);
+    }
+    50% {
+      box-shadow: inset 0px 7px 25px 0px rgba(255,255,255,0);
+    }
+  }
+
+  @keyframes gradient-fade {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  .animate-pulse-shadow {
+    animation: pulse-shadow 1s ease-in-out infinite;
+  }
+
+  .animate-gradient-fade {
+    animation: gradient-fade 6s ease-in-out infinite;
+  }
+</style>
