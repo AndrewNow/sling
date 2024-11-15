@@ -3,32 +3,32 @@ import { Image } from "astro:assets";
 
 const slides = [
   {
-    // src: "https://utfs.io/f/uU55CSHY2nOZJHhxprWiFBCM7ojU9VpIYmufd3sXreO6hnbt",
-    src: "/images/projects/sequence2.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZJHhxprWiFBCM7ojU9VpIYmufd3sXreO6hnbt",
+    // src: "/images/projects/sequence2.png",
     title: "Sequence",
     type: "image",
   },
   {
-    // src: "https://utfs.io/f/uU55CSHY2nOZ6kC1BPgcqDNHchOJ4syvYzouQg5MwkEUtpFP",
-    src: "/images/projects/sequence1.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZ6kC1BPgcqDNHchOJ4syvYzouQg5MwkEUtpFP",
+    // src: "/images/projects/sequence1.png",
     title: "Sequence",
     type: "image",
   },
   {
-    // src: "https://utfs.io/f/uU55CSHY2nOZPt5K2Pik9ZnVM4Tza6vQhKIGJUypAbNd0oWF",
-    src: "/images/projects/lazyrecords.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZPt5K2Pik9ZnVM4Tza6vQhKIGJUypAbNd0oWF",
+    // src: "/images/projects/lazyrecords.png",
     title: "Lazyrecords",
     type: "image",
   },
   {
-    // src: "https://utfs.io/f/uU55CSHY2nOZx9zwewV14wJPeTUEcfQHzL5AFNjZnhWbGg9t",
-    src: "/images/projects/notespace.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZx9zwewV14wJPeTUEcfQHzL5AFNjZnhWbGg9t",
+    // src: "/images/projects/notespace.png",
     title: "Notespace",
     type: "image",
   },
   {
-    // src: "https://utfs.io/f/uU55CSHY2nOZ0VjUX7MoQFWieS5JjcpCAfZBUn7hEDXO8vIP",
-    src: "/images/projects/horizon.png",
+    src: "https://utfs.io/f/uU55CSHY2nOZ0VjUX7MoQFWieS5JjcpCAfZBUn7hEDXO8vIP",
+    // src: "/images/projects/horizon.png",
     title: "Horizon",
     type: "image",
   },
@@ -54,7 +54,7 @@ const slides = [
   <div class="embla__container flex">
     {
       slides.map((slide) => (
-        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[64vw] lg:h-[850px] relative">
+        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[65vw] lg:h-[850px] relative">
           <div class="shadow-3xl shadow-black/10 h-full">
             {slide.type === "video" ? (
               <>
@@ -89,7 +89,11 @@ const slides = [
                   src={slide.src}
                   alt={slide.title}
                   width={1920}
-                  height={1080}
+                  height={1250}
+                  widths={[240, 400, 800, 1200, 1920]}
+                  sizes="(max-width: 640px) 240px, (max-width: 768px) 400px, (max-width: 1024px) 800px, (max-width: 1280px) 1200px, 1920px"
+                  format="webp"
+                  loading="eager"
                   quality="100"
                   class="relative h-full w-auto object-contain rounded-md mx-auto"
                 />
@@ -119,7 +123,7 @@ const slides = [
   }
   @media (max-width: 576px) {
     .embla__slide {
-      padding: 0.5rem;
+      padding: 0.25rem;
     }
   }
 </style>

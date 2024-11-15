@@ -7,19 +7,25 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: "server",
   adapter: vercel(),
   vite: {
-    plugins: [glsl()
-    // glslify()
-    ]
+    plugins: [
+      glsl(),
+      // glslify()
+    ],
   },
-
-  integrations: [sanity({
-    projectId: "m2uqkqq4",
-    dataset: "production",
-    apiVersion: "2023-10-10",
-    // Set useCdn to false if you're building statically.
-    useCdn: false
-  }), tailwind()]
+  image: {
+    domains: ["cdn.sanity.io", "astro.build, utfs.io"],
+  },
+  integrations: [
+    sanity({
+      projectId: "m2uqkqq4",
+      dataset: "production",
+      apiVersion: "2023-10-10",
+      // Set useCdn to false if you're building statically.
+      useCdn: false,
+    }),
+    tailwind(),
+  ],
 });
