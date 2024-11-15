@@ -28,7 +28,7 @@ import FooterHover from "../components/FooterHover.astro";
           class="p text-grey-500 text-pretty lg:text-balance text-left lg:text-center max-w-[90%] lg:max-w-[500px]"
         >
           Trusted by startups and industry leaders, Sling specializes in
-          purpose-driven website design & development.
+          purpose-driven website desi.
         </p>
         <div class="mt-4 mb-16 flex gap-4 flex-col lg:flex-row">
           <a
@@ -60,9 +60,36 @@ import FooterHover from "../components/FooterHover.astro";
       <span class="hidden lg:block">
         <FooterHover />
       </span>
+      <!-- <span class="block lg:hidden">
+        <button id="copy-email" class=" h-full relative bg-[#6980FA] hover:bg-[#8195FF] text-white py-4 px-6 rounded-xl transition-colors duration-300">
+          <span id="email-text" class="font-medium">hello@sling.online</span>
+          <span
+            id="copy-confirmation"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-0 transition-opacity duration-300 font-medium"
+          >
+            Copied!
+          </span>
+        </button>
+      </span> -->
     </div>
   </div>
 </Layout>
+<script is:inline>
+  document.getElementById("copy-email").addEventListener("click", () => {
+    navigator.clipboard.writeText("hello@sling.online");
+
+    const confirmation = document.getElementById("copy-confirmation");
+    const emailText = document.getElementById("email-text");
+
+    confirmation.style.opacity = "1";
+    emailText.style.opacity = "0";
+
+    setTimeout(() => {
+      confirmation.style.opacity = "0";
+      emailText.style.opacity = "1";
+    }, 2000);
+  });
+</script>
 
 <script>
   import { inView, animate } from "motion";
@@ -90,13 +117,9 @@ import FooterHover from "../components/FooterHover.astro";
   const body = document.getElementById("body-content");
 
   // Check if loader has already run this session
-  if (sessionStorage.getItem('loaderShown')) {
+  if (sessionStorage.getItem("loaderShown")) {
     // If loader has run before, show content immediately
-    animate(
-      body,
-      { opacity: 1, y: 0 },
-      { duration: 0 }
-    );
+    animate(body, { opacity: 1, y: 0 }, { duration: 0 });
   } else {
     // If this is first load with loader, animate with delay
     animate(
