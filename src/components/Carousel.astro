@@ -54,37 +54,21 @@ const slides = [
   <div class="embla__container flex">
     {
       slides.map((slide) => (
-        <div class="embla__slide min-w-0 flex-[0_0_auto] h-[65vw] lg:h-[850px] relative">
+        <div class="relative p-1 lg:p-2 min-w-0 flex-[0_0_auto] h-[65vw] lg:h-[550px] relative">
           <div class="shadow-3xl shadow-black/10 h-full">
             {slide.type === "video" ? (
               <>
-                {/* <video
-                  src={slide.src}
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="absolute inset-0 w-full h-full object-cover scale-90 blur-2xl opacity-100 saturate-150"
-                /> */}
                 <video
                   src={slide.src}
                   autoplay
                   muted
                   loop
                   playsinline
-                  class="relative h-full w-auto object-contain rounded-md mx-auto"
+                  class="relative h-full w-auto object-contain rounded-lg mx-auto"
                 />
               </>
             ) : (
               <>
-                {/* <Image
-                  src={slide.src}
-                  alt={`${slide.title} background`}
-                  width={25}
-                  height={14}
-                  quality="10"
-                  class="absolute inset-0 w-full h-full object-cover scale-90 blur-2xl opacity-100 saturate-150"
-                /> */}
                 <Image
                   src={slide.src}
                   alt={slide.title}
@@ -95,7 +79,7 @@ const slides = [
                   format="webp"
                   loading="eager"
                   quality="100"
-                  class="relative h-full w-auto object-contain rounded-md mx-auto"
+                  class="relative h-full w-auto object-contain rounded-lg mx-auto"
                 />
               </>
             )}
@@ -115,16 +99,6 @@ const slides = [
     -webkit-touch-callout: none;
     -khtml-user-select: none;
     -webkit-tap-highlight-color: transparent;
-  }
-
-  .embla__slide {
-    position: relative;
-    padding: 1rem;
-  }
-  @media (max-width: 576px) {
-    .embla__slide {
-      padding: 0.25rem;
-    }
   }
 </style>
 

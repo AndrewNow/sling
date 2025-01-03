@@ -22,7 +22,7 @@
 }
 
 .h1 {
-  @apply font-sf-medium font-medium text-[34px] md:text-[48px] leading-[125%] tracking-[-.02em] lg:tracking-[-.01em];
+  @apply font-sf-medium font-medium text-[34px] md:text-[42px] leading-[110%] tracking-[-.02em] lg:tracking-[-.01em];
 }
 
 .h2 {
