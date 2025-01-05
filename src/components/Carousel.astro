@@ -3,6 +3,12 @@ import { Image } from "astro:assets";
 
 const slides = [
   {
+    src: "https://utfs.io/f/uU55CSHY2nOZiBbY7U6xJW2cXYzsF9MT83qvOmSrdDyRxu1E",
+    // src: "/images/projects/sequence2.png",
+    title: "Navattic",
+    type: "image",
+  },
+  {
     src: "https://utfs.io/f/uU55CSHY2nOZJHhxprWiFBCM7ojU9VpIYmufd3sXreO6hnbt",
     // src: "/images/projects/sequence2.png",
     title: "Sequence",
@@ -54,7 +60,7 @@ const slides = [
   <div class="embla__container flex">
     {
       slides.map((slide) => (
-        <div class="relative p-1 lg:p-2 min-w-0 flex-[0_0_auto] h-[65vw] lg:h-[550px] relative">
+        <div class="relative p-1 lg:p-2 min-w-0 flex-[0_0_auto] h-[60vw] lg:h-[550px] select-none cursor-grab">
           <div class="shadow-3xl shadow-black/10 h-full">
             {slide.type === "video" ? (
               <>
@@ -64,7 +70,7 @@ const slides = [
                   muted
                   loop
                   playsinline
-                  class="relative h-full w-auto object-contain rounded-lg mx-auto"
+                  class="relative h-full w-auto object-contain rounded-md md:rounded-lg mx-auto"
                 />
               </>
             ) : (
@@ -79,7 +85,7 @@ const slides = [
                   format="webp"
                   loading="eager"
                   quality="100"
-                  class="relative h-full w-auto object-contain rounded-lg mx-auto"
+                  class="relative h-full w-auto object-contain rounded-md md:rounded-lg mx-auto"
                 />
               </>
             )}

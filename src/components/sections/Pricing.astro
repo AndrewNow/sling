@@ -25,7 +25,7 @@ const pricing = [
     ctaText: "Book a 15-min call",
     fill: "bg-gradient-to-b from-[#3AC37E] to-[#8ACF48] shadow-[0px_10px_70px_0px_rgba(93,185,42,0.40)]",
     shadow: "shadow-[0px_0px_50px_0px_rgba(93,185,42,0.40)]",
-    rotate: "rotate-[-1deg]",
+    rotate: "rotate-[-1deg] md:rotate-[-1.5deg]",
   },
   {
     title: "Custom Project",
@@ -34,7 +34,7 @@ const pricing = [
     description: [
       {
         icon: "Pen",
-        text: "Work directly with our founder",
+        text: "Ideal for full-scope projects",
       },
       {
         icon: "Calendar",
@@ -49,29 +49,17 @@ const pricing = [
     ctaText: "Book a 15-min call",
     fill: "bg-[linear-gradient(146deg,_#759ED4_2.76%,_#3D64E6_96.95%)] shadow-[0px_10px_70px_0px_rgba(61,100,230,0.40)]",
     shadow: "shadow-[0px_0px_60px_0px_rgba(61,100,230,0.40)]",
-    rotate: "rotate-[1.5deg]",
+    rotate: "rotate-[1deg] md:rotate-[1.5deg]",
   },
 ];
 ---
 
 <div
-  class="my-0 lg:my-[20vh] flex flex-col gap-8 items-center max-w-[515px] mx-auto"
+  class="flex flex-col justify-center lg:w-auto lg:flex-row gap-12 md:gap-20 w-full mx-auto"
 >
-  <h2 class="text-area">
-    We excel in product design, front-end development and brand strategy.
-  </h2>
-  <h2 class="text-area">
-    Thanks to our trusted network of collaborators & partners, we offer a wide
-    range of services to deliver an end-to-end experience, no matter your needs.
-  </h2>
-  <h2 class="text-area">Full-scope projects take 4-10 weeks on average.</h2>
-  <div
-    class="mt-[15vh] lg:mt-24 flex flex-col w-full lg:w-auto lg:flex-row gap-24"
-  >
-    {
-      pricing.map((entry) => {
-        return <PricingCard {...entry} />;
-      })
-    }
-  </div>
+  {
+    pricing.map((entry) => {
+      return <PricingCard {...entry} />;
+    })
+  }
 </div>

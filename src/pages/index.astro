@@ -17,25 +17,27 @@ import FooterHover from "../components/FooterHover.astro";
   <div class="opacity-0 translate-y-10" id="body-content">
     <div class="relative bg-[#f1f1f1] w-full rounded-2xl overflow-hidden">
       <section
-        class="relative max-w-[90%] lg:max-w-[800px] mx-auto mt-[15vh] lg:my-[200px] lg:mb-[100px] flex flex-col items-start lg:items-center gap-4 md:gap-8"
+        class="relative max-w-[90%] lg:max-w-[800px] mx-auto mt-[13vh] lg:mt-[15vh] lg:mb-[100px] flex flex-col items-center gap-4 md:gap-8"
       >
         <h1
-          class="h1 text-balance text-left lg:text-center text-grey-900 max-w-full lg:max-w-[700px]"
+          class="h1 text-balance text-center text-black max-w-full lg:max-w-[700px]"
         >
           World-class product design, without the agency overhead.
         </h1>
         <p
-          class="p text-grey-500 text-balance lg:text-balance text-left lg:text-center max-w-[90%] lg:max-w-[500px]"
+          class="p text-grey-600 text-balance text-center max-w-[90%] lg:max-w-[500px]"
         >
           Trusted by startups and industry leaders, Sling specializes in
           purpose-driven website design.
         </p>
-        <div class="mt-2 mb-16 flex gap-4 flex-col lg:flex-row group">
+        <div
+          class="mt-2 mb-16 flex gap-4 flex-col lg:flex-row group items-center"
+        >
           <a
             href="https://cal.com/sling/meeting"
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-[14px] flex items-center justify-start lg:justify-center gap-2 bg-grey-950 group-hover:bg-grey-950/90 transition-colors duration-300 text-white py-3 pr-3 pl-6 text-left lg:text-center small font-medium leading-[150%] border-2 border-white/10 group"
+            class="rounded-[14px] flex items-center justify-center gap-2 bg-black group-hover:bg-grey-950/90 transition-colors duration-300 text-white pl-4 px-1.5 py-2 sm:py-3 sm:pr-3 sm:pl-6 text-center small font-medium leading-[150%] border-2 border-white/10 group"
             >Book a free discovery call
             <div class="transition-transform group-hover:translate-x-0.5">
               <Icon icon="ChevronRight" />
@@ -44,24 +46,48 @@ import FooterHover from "../components/FooterHover.astro";
         </div>
       </section>
       <Carousel />
-      <!-- <section class="relative max-w-[800px] py-28 lg:py-40 mx-auto">
-      <Services services={services} />
-    </section> -->
-      <section class="my-40 lg:my-20 relative max-w-[800px] mx-auto">
+      <div class="text-parent">
+        <h2 class="text-area">
+          We excel in product design, front-end development and brand strategy.
+        </h2>
+        <h2 class="text-area">
+          Thanks to our trusted network of collaborators & partners, we offer a
+          wide range of services to deliver an end-to-end experience, no matter
+          your needs.
+        </h2>
+        <h2 class="text-area">
+          Full-scope projects take 4-10 weeks on average.
+        </h2>
+      </div>
+      <section class="relative max-w-[1200px] mx-auto">
         <Pricing />
       </section>
-      <section class="my-40 lg:my-20 relative mx-auto">
+      <div class="text-parent">
+        <h2 class="text-area">
+          In a sea of online content, we strive to create work that is
+          thoughtful, intuitive and lasting.
+        </h2>
+        <h2 class="text-area">
+          This means taking on projects we believe in, with people who share our
+          vision and values.
+        </h2>
+        <h2 class="text-area">
+          When projects are driven by strong foundations and positive
+          relationships, the results speak for themselves.
+        </h2>
+      </div>
+      <section class="relative mx-auto">
         <Testimonials />
       </section>
       <section
-        class="my-0 lg:my-40 lg:mt-[20vh] relative max-w-[90%] lg:max-w-[700px] mx-auto"
+        class="mt-[15vh] lg:mt-[25vh] relative max-w-[90%] lg:max-w-[700px] mx-auto"
       >
         <FAQ />
       </section>
       <Footer />
-      <span class="hidden lg:block">
+      <!-- <span class="hidden lg:block">
         <FooterHover />
-      </span>
+      </span> -->
       <!-- <span class="block lg:hidden">
         <button id="copy-email" class=" h-full relative bg-[#6980FA] hover:bg-[#8195FF] text-white py-4 px-6 rounded-xl transition-colors duration-300">
           <span id="email-text" class="font-medium">hello@sling.online</span>
@@ -75,59 +101,60 @@ import FooterHover from "../components/FooterHover.astro";
       </span> -->
     </div>
   </div>
-</Layout>
-<script is:inline>
-  document.getElementById("copy-email").addEventListener("click", () => {
-    navigator.clipboard.writeText("hello@sling.online");
 
-    const confirmation = document.getElementById("copy-confirmation");
-    const emailText = document.getElementById("email-text");
+  <script is:inline>
+    document.getElementById("copy-email").addEventListener("click", () => {
+      navigator.clipboard.writeText("hello@sling.online");
 
-    confirmation.style.opacity = "1";
-    emailText.style.opacity = "0";
+      const confirmation = document.getElementById("copy-confirmation");
+      const emailText = document.getElementById("email-text");
 
-    setTimeout(() => {
-      confirmation.style.opacity = "0";
-      emailText.style.opacity = "1";
-    }, 2000);
-  });
-</script>
+      confirmation.style.opacity = "1";
+      emailText.style.opacity = "0";
 
-<script>
-  import { inView, animate } from "motion";
+      setTimeout(() => {
+        confirmation.style.opacity = "0";
+        emailText.style.opacity = "1";
+      }, 2000);
+    });
+  </script>
 
-  const textAreas = document.querySelectorAll(".text-area");
+  <script>
+    import { inView, animate } from "motion";
 
-  textAreas.forEach((element) => {
-    inView(
-      element,
-      ({ target, isIntersecting }) => {
-        if (isIntersecting) {
-          animate(target, { color: "#3d3d3d" }, { duration: 0.25 });
+    const textAreas = document.querySelectorAll(".text-area");
+
+    textAreas.forEach((element) => {
+      inView(
+        element,
+        ({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            animate(target, { color: "#3d3d3d" }, { duration: 0.25 });
+          }
+          return () => {
+            animate(target, { color: "#d1d1d1" }, { duration: 0.5 });
+          };
+        },
+        {
+          amount: window.innerWidth < 1024 ? 0.4 : 0.8,
+          margin: "-40% 0% -40% 0%",
         }
-        return () => {
-          animate(target, { color: "#d1d1d1" }, { duration: 0.5 });
-        };
-      },
-      {
-        amount: window.innerWidth < 1024 ? 0.4 : 0.8,
-        margin: "-40% 0% -40% 0%",
-      }
-    );
-  });
+      );
+    });
 
-  const body = document.getElementById("body-content");
+    const body = document.getElementById("body-content");
 
-  // Check if loader has already run this session
-  if (sessionStorage.getItem("loaderShown")) {
-    // If loader has run before, show content immediately
-    animate(body, { opacity: 1, y: 0 }, { duration: 0 });
-  } else {
-    // If this is first load with loader, animate with delay
-    animate(
-      body,
-      { opacity: 1, y: [10, 0] },
-      { duration: 1, easing: "ease-in", delay: 3.5 }
-    );
-  }
-</script>
+    // Check if loader has already run this session
+    if (sessionStorage.getItem("loaderShown")) {
+      // If loader has run before, show content immediately
+      animate(body, { opacity: 1, y: 0 }, { duration: 0 });
+    } else {
+      // If this is first load with loader, animate with delay
+      animate(
+        body,
+        { opacity: 1, y: [10, 0] },
+        { duration: 1, easing: "ease-in", delay: 3.5 }
+      );
+    }
+  </script>
+</Layout>

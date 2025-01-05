@@ -1,22 +1,11 @@
----
-import SlingLogo from "./SlingLogo.astro";
----
 
 <nav
-  class="w-full flex items-center justify-between max-w-[90%] md:max-w-none mx-auto p-0 sm:p-8 py-6 fixed left-1/2 -translate-x-1/2 top-0 z-50"
+  class="w-full flex items-center justify-between max-w-[90%] md:max-w-none mx-auto p-0 sm:p-8 py-6 fixed left-1/2 -translate-x-1/2 bottom-0 z-20 translate-y-full transition-transform duration-300"
 >
-  <div class="">
-    <SlingLogo
-      color="black"
-      classProps="w-16 md:w-20 hover:opacity-50 transition-opacity duration-300 cursor-pointer"
-    />
-  </div>
+  {/* Rest of your nav content stays the same */}
   <div
-    class="h4 rounded-lg bg-grey-950/15 backdrop-blur-2xl text-white px-4 py-2"
+    class="mx-auto h6 rounded-[14px] bg-grey-950/15 backdrop-blur-3xl text-white px-4 py-2"
   >
-    <!-- <a href="/" class="mr-[2px] hover:opacity-50 transition-opacity duration-300"
-      >Work,
-    </a> -->
     <a
       href="https://www.instagram.com/sling.online/"
       target="_blank"
@@ -33,3 +22,17 @@ import SlingLogo from "./SlingLogo.astro";
     </a>
   </div>
 </nav>
+
+<script>
+  import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+  const nav = document.querySelector("nav");
+
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 300) {
+      nav?.classList.remove("translate-y-full");
+    } else {
+      nav?.classList.add("translate-y-full");
+    }
+  });
+</script>

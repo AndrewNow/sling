@@ -22,11 +22,11 @@
 }
 
 .h1 {
-  @apply font-sf-medium font-medium text-[34px] md:text-[42px] leading-[110%] tracking-[-.02em] lg:tracking-[-.01em];
+  @apply font-sf-medium font-medium text-[26px] md:text-[42px] leading-[110%] tracking-[-.02em] lg:tracking-[-.01em];
 }
 
 .h2 {
-  @apply font-sf-regular text-[28px] md:text-[30px] leading-[125%] tracking-[-0.01rem];
+  @apply font-sf-regular text-[24px] tracking-[-0.03rem] md:text-[30px] leading-[125%] sm:tracking-[-0.01rem];
 }
 
 .h3 {
@@ -42,7 +42,7 @@
 }
 
 .h6 {
-  @apply font-sf-medium text-[20px] leading-[22.4px] tracking-[0];
+  @apply font-sf-medium text-[16px] leading-[22.4px] tracking-[0];
 }
 
 .p {
@@ -50,10 +50,13 @@
 }
 
 .small {
-  @apply font-sf-medium !font-medium text-[14px] md:text-[16px] leading-[20px] md:leading-[150%] tracking-[-0.005em];
+  @apply font-sf-medium !font-medium text-[14px] md:text-[14px] leading-[20px] md:leading-[150%] tracking-[-0.005em];
+}
+
+.text-parent {
+  @apply flex flex-col my-[15vh] lg:my-[25vh] max-w-[515px] gap-8 mx-auto;
 }
 
 .text-area {
   @apply h2 text-grey-200 text-pretty mx-auto w-[90%] my-2 lg:w-full;
 }
-

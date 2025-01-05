@@ -17,12 +17,11 @@ const {
 ---
 
 <div
-  class={`rounded-[30px] w-[90%] mx-auto lg:min-w-[395px] border-[3px] border-white/60 p-8 py-10 lg:py-10 flex flex-col gap-6 lg:gap-10 ${fill} ${shadow} opacity-0`}
+  class={`rounded-xl md:rounded-[24px] flex-1 w-full min-h-[400px] lg:min-h-[500px] lg:max-w-[450px] border-1 md:border-[2px] border-white/60 p-8 py-10 pb-8 lg:py-10 lg:px-10 flex flex-col gap-6 justify-between lg:gap-10 ${fill} ${shadow} opacity-0`}
   id="pricing-card"
 >
-  <h3 class="h2 weight-500 text-white/80">{title}</h3>
-
   <div class="flex flex-col justify-between gap-8 h-full">
+    <h3 class="h2 weight-500 text-white/80">{title}</h3>
     <div class="flex flex-col gap-1">
       <p class="small text-white/80">{priceHeader}</p>
       <p class="h2 text-white/90">{price}</p>
@@ -44,20 +43,21 @@ const {
         })
       }
     </div>
-    <a
-      class="px-5 py-3 lg:px-4 lg:py-3 rounded-lg bg-white/20 inline text-center hover:bg-white/30 transition-colors duration-200"
-      href="https://cal.com/sling/meeting"
-      target="_blank"
-      rel="noopener noreferrer"
-      ><span class="text-white text-center w-full small">{ctaText}</span></a
-    >
   </div>
+  <a
+    class="px-5 py-3 lg:px-4 lg:py-3 rounded-lg bg-white/20 inline text-center hover:bg-white/30 transition-colors duration-200"
+    href="https://cal.com/sling/meeting"
+    target="_blank"
+    rel="noopener noreferrer"
+    ><span class="text-white text-center w-full small">{ctaText}</span></a
+  >
 </div>
 
 <script>
   import { inView, animate, spring } from "motion";
 
   const pricingCards = document.querySelectorAll(`#pricing-card`);
+  const isMobile = window.innerWidth < 768; // Check for mobile viewport
 
   pricingCards.forEach((pricingCard, i) => {
     inView(
@@ -68,18 +68,19 @@ const {
           {
             opacity: [null, 1],
             y: [100, 0],
-            rotate: [i === 0 ? 10 : -20, i == 0 ? -1.5 : 1],
+            rotate: [
+              i === 0 ? (isMobile ? 5 : 10) : isMobile ? -10 : -20,
+              i === 0 ? (isMobile ? 1 : -1.5) : isMobile ? -0.5 : 1,
+            ],
             filter: ["blur(3px)", "blur(0px)"],
           },
           {
             delay: i * 0.015,
-            // duration: 0.8,
             easing: spring({
               stiffness: 120,
               damping: 14,
               mass: 1.2,
             }),
-            // opacity: { duration: 1.2 },
           }
         );
       },
